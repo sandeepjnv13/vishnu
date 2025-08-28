@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dominos Spaces</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-bg: #000;
+      --brand-fg: #fff;
+      --brand-accent: #f9c900;
+      --text: #333;
+      --text-2: #222;
+      --text-3: #444;
+      --surface: #ffffff;
+      --surface-2: #fdfdfd;
+      --radius: 14px;
+      --shadow-1: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+      --blur: 4px;
+      --timing: 250ms;
+      --easing: cubic-bezier(.2,.8,.2,1);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Bebas Neue', sans-serif;
+      position: relative;
+      color: var(--text);
+      background: #fafafa; /* background image removed */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 40px;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--brand-bg);
+      color: var(--brand-fg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: padding var(--timing) var(--easing), box-shadow var(--timing) var(--easing), background-color var(--timing) var(--easing);
+      will-change: padding, box-shadow, background-color;
+    }
+    header.scrolled {
+      padding: 12px 40px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      background-color: rgba(0,0,0,0.95);
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img {
+      height: 42px;
+      transition: transform var(--timing) var(--easing);
+    }
+    .logo:hover img { transform: scale(1.05); }
+    .logo span {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    /* Nav with animated underline */
+    nav a {
+      color: var(--brand-fg);
+      margin-left: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color var(--timing) var(--easing), opacity var(--timing) var(--easing);
+      opacity: 0.95;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--brand-accent), #ffe66d);
+      transition: width var(--timing) var(--easing);
+    }
+    nav a:hover { color: var(--brand-accent); opacity: 1; }
+    nav a:hover::after { width: 100%; }
+
+    /* Mobile menu (keeps your structure, just not hidden) */
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: transparent;
+      color: var(--brand-fg);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      height: 72vh;
+      min-height: 520px;
+      max-height: 800px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .banner::after{
+      /* subtle gradient veil to help text overlays later if needed */
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.3) 100%);
+      pointer-events:none;
+      z-index:2;
+    }
+
+    .banner-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 900ms var(--easing), transform 8s linear;
+      opacity: 0;
+      z-index: 1;
+      transform: scale(1.02);
+    }
+    .banner-slide.active {
+      opacity: 1;
+      z-index: 2;
+      transform: scale(1); /* gentle zoom-out on active */
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      height: 10px;
+      width: 10px;
+      background-color: #d8d8d8;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.65);
+      transition: transform var(--timing) var(--easing), background-color var(--timing) var(--easing);
+    }
+    .dot:hover { transform: scale(1.2); }
+    .dot.active { background-color: var(--brand-accent); }
+
+    /* Sections */
+    .full-tile {
+      background: rgba(255, 255, 255, 0.75);
+      text-align: center;
+      backdrop-filter: blur(var(--blur));
+    }
+    .full-tile h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+    .full-tile p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-2);
+    }
+
+    .interior-section {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(var(--blur));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-1);
+      overflow: hidden;
+      margin: 50px auto;
+      transform: translateY(12px);
+      opacity: 0;
+      transition: transform 600ms var(--easing), opacity 600ms var(--easing), box-shadow var(--timing) var(--easing);
+      will-change: transform, opacity;
+    }
+    .interior-section.revealed {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .interior-section:hover{
+      box-shadow: var(--shadow-2);
+    }
+
+    .interior-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .interior-text, .interior-slideshow {
+      flex: 1 1 50%;
+      padding: 40px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 350px;
+    }
+
+    .interior-text {
+      background-color: var(--surface);
+      flex-direction: column;
+      border-right: 1px solid #eee;
+      gap: 10px;
+    }
+
+    .interior-text h2 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+      color: #111;
+      letter-spacing: 0.6px;
+    }
+
+    .interior-text p {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text-3);
+      text-wrap: pretty;
+    }
+
+    .interior-slideshow {
+      background-color: var(--surface-2);
+      position: relative;
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: var(--shadow-1);
+    }
+
+    .slide-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 900ms var(--easing), transform 4.5s linear;
+      z-index: 1;
+      transform: scale(1.04);
+    }
+    .slide-image.active {
+      opacity: 1;
+      z-index: 2;
+      transform: scale(1);
+    }
+
+    #contact p {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-2);
+      align-items: center;
+    }
+
+    #contact a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    #contact a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: var(--brand-bg);
+      color: var(--brand-fg);
+      padding: 30px;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .container { padding: 42px 20px; }
+      nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .interior-text, .interior-slideshow {
+        padding: 28px 18px;
+      }
+    }
+    @media (max-width: 768px) {
+      .interior-row { flex-direction: column; }
+      .interior-text, .interior-slideshow { border-right: none; }
+      .banner { height: 58vh; min-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="logo">
+    <img src="logo.png" alt="DominosSpaces Logo" />
+    <span>DominoSpaces</span>
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  <nav id="desktopNav" aria-label="Primary">
+    <a href="#about">About</a>
+    <a href="#interior">Interior</a>
+    <a href="#services-turnkey">Turnkey</a>
+    <a href="#services-supply">Supply</a>
+    <a href="#services-consulting">Consulting</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- simple mobile menu preserving your links -->
+<nav id="mobileNav" style="display:none; background:#0a0a0a; border-top:1px solid rgba(255,255,255,0.08);">
+  <div class="container" style="padding:16px 24px; display:flex; flex-direction:column; gap:12px;">
+    <a style="color:#fff; text-decoration:none;" href="#about">About</a>
+    <a style="color:#fff; text-decoration:none;" href="#interior">Interior</a>
+    <a style="color:#fff; text-decoration:none;" href="#services-turnkey">Turnkey</a>
+    <a style="color:#fff; text-decoration:none;" href="#services-supply">Supply</a>
+    <a style="color:#fff; text-decoration:none;" href="#services-consulting">Consulting</a>
+    <a style="color:#fff; text-decoration:none;" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="banner" id="banner" aria-label="Showcase">
+  <div class="banner-slide active" id="slide1"></div>
+  <div class="banner-slide" id="slide2"></div>
+  <div class="dots" role="tablist" aria-label="Slide selector">
+    <span class="dot active" role="tab" tabindex="0" aria-selected="true" aria-controls="slide1"></span>
+    <span class="dot" role="tab" tabindex="0" aria-selected="false" aria-controls="slide2"></span>
+    <span class="dot" role="tab" tabindex="0" aria-selected="false" aria-controls="slide3"></span>
+  </div>
+</div>
+
+<section class="full-tile" id="about">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>
+      Domino Spaces is a multidisciplinary interior design and build company specializing in bespoke spatial solutions. We offer comprehensive services including design consultancy, turnkey execution, and curated product supply.
+    </p>
+  </div>
+</section>
+
+<section class="interior-section" id="interior">
+  <div class="container interior-row">
+    <div class="interior-text">
+      <h2>Interior Design</h2>
+      <p>
+        Our interiors strike a balance between beauty and practicality, curated to match our clients’ personality and lifestyle.
+      </p>
+    </div>
+    <div class="interior-slideshow">
+      <div class="slide-wrapper">
+        <img class="slide-image active" src="Image1.jpg" alt="Interior Slide 1">
+        <!-- (optional) add more images to rotate automatically -->
+        <!-- <img class="slide-image" src="Image1b.jpg" alt="Interior Slide 2"> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="interior-section" id="services-turnkey">
+  <div class="container interior-row">
+    <div class="interior-text">
+      <h2>Turnkey Execution</h2>
+      <p>
+        We manage everything — drawings, permits, procurement, construction — to bring your space to life effortlessly.
+      </p>
+    </div>
+    <div class="interior-slideshow">
+      <div class="slide-wrapper">
+        <img class="slide-image active" src="Image2.jpg" alt="Turnkey Slide 1">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="interior-section" id="services-supply">
+  <div class="container interior-row">
+    <div class="interior-text">
+      <h2>Product Supply</h2>
+      <p>
+        We provide curated and customized products for your space, tailored to your needs.
+      </p>
+    </div>
+    <div class="interior-slideshow">
+      <div class="slide-wrapper">
+        <img class="slide-image active" src="Image3.jpg" alt="Supply Slide 1">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="interior-section" id="services-consulting">
+  <div class="container interior-row">
+    <div class="interior-text">
+      <h2>Material Consulting</h2>
+      <p>
+        Choose smart, sustainable, and cost-effective materials that last and enhance your space’s character.
+      </p>
+    </div>
+    <div class="interior-slideshow">
+      <div class="slide-wrapper">
+        <img class="slide-image active" src="consulting1.jpg" alt="Consulting Slide 1">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="full-tile" id="contact">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p>
+      📧 Email: <a href="mailto:hello@studioform.com">hello@studioform.com</a><br>
+      📞 Phone: +91-98765-43210<br>
+      🏢 Address: 45 Urban Heights, Sector 72, Noida, India
+    </p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 StudioForm Architects. Designed with purpose, built with pride.
+</footer>
+
+<script>
+  // Header compress on scroll
+  const siteHeader = document.getElementById('site-header');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    if (y > 12 && y >= lastY) siteHeader.classList.add('scrolled');
+    else if (y < 12) siteHeader.classList.remove('scrolled');
+    lastY = y;
+  }, { passive: true });
+
+  // Mobile menu (no framework)
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  menuToggle?.addEventListener('click', () => {
+    const open = mobileNav.style.display !== 'none';
+    mobileNav.style.display = open ? 'none' : 'block';
+    menuToggle.setAttribute('aria-expanded', String(!open));
+  });
+
+  // Banner slideshow with gentle zoom + dot navigation + pause on hover
+  const images = ["banner_1.jpg", "banner_2.jpg", "banner_3.jpg"];
+  let current = 0;
+  const slide1 = document.getElementById("slide1");
+  const slide2 = document.getElementById("slide2");
+  const dots = document.querySelectorAll(".dot");
+  let currentSlide = slide1, nextSlide = slide2;
+  let bannerTimer;
+  const banner = document.getElementById('banner');
+
+  function showSlide(index) {
+    nextSlide.style.backgroundImage = `url('${images[index]}')`;
+    nextSlide.classList.add("active");
+    currentSlide.classList.remove("active");
+    [currentSlide, nextSlide] = [nextSlide, currentSlide];
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+      dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+  }
+
+  function next() {
+    current = (current + 1) % images.length;
+    showSlide(current);
+  }
+
+  function startBanner(){ bannerTimer = setInterval(next, 4500); }
+  function stopBanner(){ clearInterval(bannerTimer); }
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener("click", () => {
+      current = idx;
+      showSlide(current);
+    });
+    dot.addEventListener("keydown", (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        current = idx;
+        showSlide(current);
+      }
+    });
+  });
+
+  currentSlide.style.backgroundImage = `url('${images[0]}')`;
+  startBanner();
+  banner.addEventListener('mouseenter', stopBanner);
+  banner.addEventListener('mouseleave', startBanner);
+
+  // Rotate slides for each section (works even if only one image is present)
+  const rotateSlides = (selector, intervalMs = 5200) => {
+    const slides = Array.from(document.querySelectorAll(`${selector} .slide-image`));
+    if (slides.length <= 1) return; // nothing to rotate
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, intervalMs);
+  };
+
+  rotateSlides("#interior");
+  rotateSlides("#services-turnkey");
+  rotateSlides("#services-supply");
+  rotateSlides("#services-consulting");
+
+  // Reveal on scroll (cards slide up subtly)
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.14 });
+
+  document.querySelectorAll('.interior-section').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
