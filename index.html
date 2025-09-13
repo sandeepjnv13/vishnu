@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dominos Spaces</title>
+  <title>Infinitspaces</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
@@ -52,7 +52,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 40px;
+      padding: 8px 24px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -60,10 +60,14 @@
       will-change: padding, box-shadow, background-color;
     }
     header.scrolled {
-      padding: 12px 40px;
+      padding: 8px 24px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.18);
       background-color: rgba(0,0,0,0.95);
       backdrop-filter: saturate(140%) blur(6px);
+    }
+
+    header.scrolled .logo img {
+      height: clamp(60px, 6vh, 80px);
     }
 
     .logo {
@@ -71,10 +75,17 @@
       align-items: center;
       gap: 12px;
     }
+
     .logo img {
-      height: 42px;
+      display: block;
+      height: clamp(72px, 9vh, 120px);   /* bigger min/mid/max */
+      width: auto;                        /* keeps aspect ratio */
+      max-width: min(55vw, 700px);        /* allow a wider wordmark */
       transition: transform var(--timing) var(--easing);
     }
+
+
+
     .logo:hover img { transform: scale(1.05); }
     .logo span {
       font-size: 1.9rem;
@@ -331,10 +342,17 @@
 <body>
 
 <header id="site-header">
-  <div class="logo">
-    <img src="logo.png" alt="DominosSpaces Logo" />
-    <span>DominoSpaces</span>
-  </div>
+  <a class="logo" href="/" aria-label="Infinitspaces Home">
+    <img
+            src="logo.png"
+            alt="Infinitspaces — logo and wordmark"
+            decoding="async"
+            fetchpriority="high"
+    />
+
+  </a>
+
+
   <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
   <nav id="desktopNav" aria-label="Primary">
     <a href="#about">About</a>
@@ -372,7 +390,7 @@
   <div class="container">
     <h2>About Us</h2>
     <p>
-      Domino Spaces is a multidisciplinary interior design and build company specializing in bespoke spatial solutions. We offer comprehensive services including design consultancy, turnkey execution, and curated product supply.
+      Infinitspaces is a multidisciplinary interior design and build company specializing in bespoke spatial solutions. We offer comprehensive services including design consultancy, turnkey execution, and curated product supply.
     </p>
   </div>
 </section>
@@ -437,7 +455,7 @@
     </div>
     <div class="interior-slideshow">
       <div class="slide-wrapper">
-        <img class="slide-image active" src="consulting1.jpg" alt="Consulting Slide 1">
+        <img class="slide-image active" src="Image3.jpg" alt="Consulting Slide 1">
       </div>
     </div>
   </div>
@@ -449,13 +467,13 @@
     <p>
       📧 Email: <a href="mailto:hello@studioform.com">hello@studioform.com</a><br>
       📞 Phone: +91-98765-43210<br>
-      🏢 Address: 45 Urban Heights, Sector 72, Noida, India
+      🏢 Address: Workpod, Plot 93, Sector 44, Gurugram, Haryana 122003, India
     </p>
   </div>
 </section>
 
 <footer>
-  &copy; 2025 StudioForm Architects. Designed with purpose, built with pride.
+  &copy; 2025 Infinitspaces Technologies Pvt. Ltd
 </footer>
 
 <script>
