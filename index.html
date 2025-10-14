@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/services.css">
   <link rel="stylesheet" href="css/specialization.css">
+  <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
@@ -27,9 +28,17 @@
   <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
   <nav id="desktopNav" aria-label="Primary">
     <a href="#about">About Us</a>
-    <a href="#interior">Our Services</a>
-    <a href="#services-turnkey">Our Work</a>
-    <a href="#contact">Contact</a>
+    <div class="nav-item has-dropdown">
+      <a href="#services" class="nav-link" aria-haspopup="true" aria-expanded="false">Our Services</a>
+      <ul class="dropdown" aria-label="Services submenu">
+        <li><a href="#services">Interior Design</a></li>
+        <li><a href="#services">Product Supply</a></li>
+        <li><a href="#services">Turnkey Execution</a></li>
+      </ul>
+    </div>
+
+    <a href="#specialization">Our Work</a>
+    <a href="#footer">Contact</a>
   </nav>
 </header>
 
@@ -89,21 +98,15 @@
 </script>
 
 
+<div id="footer-container"></div>
 
-<section class="full-tile" id="contact">
-  <div class="container">
-    <h2>Contact Us</h2>
-    <p>
-      📧 Email: <a href="mailto:hello@studioform.com">hello@studioform.com</a><br>
-      📞 Phone: +91-98765-43210<br>
-      🏢 Address: Workpod, Plot 93, Sector 44, Gurugram, Haryana 122003, India
-    </p>
-  </div>
-</section>
+<script>
+  // Load footer dynamically
+  fetch('sections/footer.html')
+    .then(r => r.text())
+    .then(html => document.getElementById('footer-container').innerHTML = html);
+</script>
 
-<footer>
-  &copy; 2025 Infinitspaces Technologies Pvt. Ltd
-</footer>
 <script src="js/main.js" defer></script>
 
 </body>

@@ -377,3 +377,85 @@ footer {
   padding-top: 10px;
 }
 
+
+/* --- Header dropdown --- */
+#desktopNav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0; /* we already space with margin-left on links */
+}
+
+.nav-item.has-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 24px; /* match other links */
+}
+
+.nav-item.has-dropdown > .nav-link {
+  color: var(--brand-fg);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding-bottom: 4px;
+  line-height: var(--header-h-desktop);
+  position: relative;
+}
+
+/* submenu panel */
+.dropdown {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  min-width: 220px;
+  background: rgba(20,20,20,0.98);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  padding: 10px 8px;
+  display: none;
+  z-index: 1200;
+}
+
+/* show on hover or keyboard focus */
+.nav-item.has-dropdown:hover .dropdown,
+.nav-item.has-dropdown:focus-within .dropdown {
+  display: block;
+}
+
+/* submenu items */
+.dropdown li { list-style: none; }
+.dropdown a {
+  display: block;
+  padding: 10px 12px;
+  color: #ddd;
+  text-decoration: none;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+.dropdown a:hover,
+.dropdown a:focus {
+  background: rgba(255,255,255,0.08);
+  color: var(--brand-accent);
+}
+
+/* keep main link hover underline effect consistent */
+.nav-item.has-dropdown > .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--brand-accent), #ffe66d);
+  transition: width var(--timing) var(--easing);
+}
+.nav-item.has-dropdown:hover > .nav-link::after,
+.nav-item.has-dropdown > .nav-link:focus::after {
+  width: 100%;
+}
+
+/* mobile: dropdown hidden (we already have a mobile menu) */
+@media (max-width: 920px) {
+  .nav-item.has-dropdown .dropdown { display: none !important; }
+}
+
+
