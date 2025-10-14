@@ -7,6 +7,8 @@
   <link rel="icon" href="resources/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/services.css">
+  <link rel="stylesheet" href="css/specialization.css">
 </head>
 <body>
 
@@ -67,73 +69,26 @@
   </div>
 </section>
 
+<!-- Include Services section -->
+<div id="services-container"></div>
+
+<script>
+  // Dynamically load the services section HTML
+  fetch('sections/services.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('services-container').innerHTML = html);
+</script>
+<!-- where Services ends -->
+<div id="specialization-container"></div>
+
+<script>
+  // If you already have a fetch for services, just add this below it:
+  fetch('sections/specialization.html')
+    .then(r => r.text())
+    .then(html => document.getElementById('specialization-container').innerHTML = html);
+</script>
 
 
-<section class="interior-section" id="interior">
-  <div class="container interior-row">
-    <div class="interior-text">
-      <h2>Interior Design</h2>
-      <p>
-        Our interiors strike a balance between beauty and practicality, curated to match our clients’ personality and lifestyle.
-      </p>
-    </div>
-    <div class="interior-slideshow">
-      <div class="slide-wrapper">
-        <img class="slide-image active" src="resources/Image1.jpg" alt="Interior Slide 1">
-        <!-- (optional) add more images to rotate automatically -->
-        <!-- <img class="slide-image" src="Image1b.jpg" alt="Interior Slide 2"> -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="interior-section" id="services-turnkey">
-  <div class="container interior-row">
-    <div class="interior-text">
-      <h2>Turnkey Execution</h2>
-      <p>
-        We manage everything — drawings, permits, procurement, construction — to bring your space to life effortlessly.
-      </p>
-    </div>
-    <div class="interior-slideshow">
-      <div class="slide-wrapper">
-        <img class="slide-image active" src="resources/Image2.jpg" alt="Turnkey Slide 1">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="interior-section" id="services-supply">
-  <div class="container interior-row">
-    <div class="interior-text">
-      <h2>Product Supply</h2>
-      <p>
-        We provide curated and customized products for your space, tailored to your needs.
-      </p>
-    </div>
-    <div class="interior-slideshow">
-      <div class="slide-wrapper">
-        <img class="slide-image active" src="resources/Image3.jpg" alt="Supply Slide 1">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="interior-section" id="services-consulting">
-  <div class="container interior-row">
-    <div class="interior-text">
-      <h2>Material Consulting</h2>
-      <p>
-        Choose smart, sustainable, and cost-effective materials that last and enhance your space’s character.
-      </p>
-    </div>
-    <div class="interior-slideshow">
-      <div class="slide-wrapper">
-        <img class="slide-image active" src="resources/Image3.jpg" alt="Consulting Slide 1">
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="full-tile" id="contact">
   <div class="container">

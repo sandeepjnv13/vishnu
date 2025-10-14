@@ -1,0 +1,78 @@
+.specialization {
+  background: #fff;
+  padding: 60px 0 70px;
+}
+
+.specialization h2 {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: .6px;
+  color: #111;
+  margin-bottom: 24px;
+}
+
+/* 5-column responsive grid */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.spec-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  padding: 16px 16px 20px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  text-align: center;
+}
+
+.spec-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;          /* portrait boxes like your mock */
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #f4f4f4;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 420ms ease;
+}
+
+/* Hover: gentle zoom (no shake) */
+.image-wrap:hover img { transform: scale(1.06); }
+
+.spec-card h3 {
+  font-size: 0.95rem;
+  letter-spacing: .12rem;
+  color: #222;
+  line-height: 1.25;
+}
+
+/* tighten the gap with previous section if needed */
+#services + .specialization { margin-top: -8px; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .spec-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 960px) {
+  .spec-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .spec-grid { grid-template-columns: 1fr; }
+}

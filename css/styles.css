@@ -365,3 +365,15 @@ footer {
     min-height: 460px;
   }
 }
+
+/* reduce space between About and Services sections */
+#about {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+
+#services {
+  margin-top: 0;
+  padding-top: 10px;
+}
+
