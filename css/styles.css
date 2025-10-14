@@ -1,0 +1,367 @@
+:root{
+  --brand-bg: #000;
+  --brand-fg: #d6d6d6;
+  --brand-accent: #f9c900;
+  --text: #333;
+  --text-2: #222;
+  --text-3: #444;
+  --surface: #ffffff;
+  --surface-2: #fdfdfd;
+  --radius: 14px;
+  --shadow-1: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-2: 0 10px 30px rgba(0,0,0,0.12);
+  --blur: 4px;
+  --timing: 250ms;
+  --easing: cubic-bezier(.2,.8,.2,1);
+
+  /* explicit header heights so we can size the hero via calc() */
+  --header-h-desktop: 62px; /* Header width */
+  --header-h-mobile: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Bebas Neue', sans-serif;
+  position: relative;
+  color: var(--text);
+  background: #fafafa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 40px;
+}
+
+/* =======================
+   Header
+   ======================= */
+header {
+  height: var(--header-h-desktop);
+  background-color: var(--brand-bg);
+  color: var(--brand-fg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px; /* stable padding */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  transition: box-shadow var(--timing) var(--easing), background-color var(--timing) var(--easing);
+  will-change: box-shadow, background-color;
+}
+
+header.scrolled {
+  /* keep the same height and padding; just add subtle effects */
+  box-shadow: 0 6px 24px rgba(0,0,0,0.0);
+  background-color: rgba(0,0,0,0.0);
+  backdrop-filter: saturate(140%);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* 3) Make the logo smaller so header feels tighter */
+.logo img{
+  height: clamp(32px, 4.5vh, 52px);
+  max-width: min(28vw, 300px);
+}
+
+/* (optional) keep it a touch smaller when scrolled */
+header.scrolled .logo img{
+  height: clamp(30px, 4vh, 48px);
+}
+
+.logo:hover img { transform: scale(1.05); }
+
+.logo span {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+/* Nav with animated underline */
+nav a {
+  color: var(--brand-fg);
+  margin-left: 24px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  padding-bottom: 4px;
+  line-height: var(--header-h-desktop); /* vertically centers in header */
+  transition: color var(--timing) var(--easing), opacity var(--timing) var(--easing);
+  opacity: 0.95;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--brand-accent), #ffe66d);
+  transition: width var(--timing) var(--easing);
+}
+nav a:hover { color: var(--brand-accent); opacity: 1; }
+nav a:hover::after { width: 100%; }
+
+/* Mobile menu trigger (kept hidden by default) */
+.menu-toggle {
+  display: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: transparent;
+  color: var(--brand-fg);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* =======================
+   Landing Banner (Hero)
+   ======================= */
+
+.banner {
+  position: relative;
+  height: calc(100dvh - var(--header-h-desktop) - 12px);
+  min-height: 560px;
+  max-height: none;
+  overflow: hidden;
+  isolation: isolate;
+
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0;
+}
+
+
+
+.banner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* adjust for how much hint space you want */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+  z-index: 3;
+}
+.banner::after{
+  /* subtle gradient veil */
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.3) 100%);
+  pointer-events:none;
+  z-index:2;
+}
+
+.banner-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 900ms var(--easing), transform 8s linear;
+  opacity: 0;
+  z-index: 1;
+  transform: scale(1.02);
+}
+.banner-slide.active {
+  opacity: 1;
+  z-index: 2;
+  transform: scale(1);
+}
+
+.dots {
+  position: absolute;
+  bottom: 24px;              /* a touch higher on tall banners */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #d8d8d8;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.65);
+  transition: transform var(--timing) var(--easing), background-color var(--timing) var(--easing);
+}
+.dot:hover { transform: scale(1.2); }
+.dot.active { background-color: var(--brand-accent); }
+
+/* =======================
+   Sections
+   ======================= */
+.full-tile {
+  background: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  backdrop-filter: blur(var(--blur));
+}
+.full-tile h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+.full-tile p {
+  max-width: 900px;
+  margin: auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.interior-section {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(var(--blur));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+  margin: 50px auto;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 600ms var(--easing), opacity 600ms var(--easing), box-shadow var(--timing) var(--easing);
+  will-change: transform, opacity;
+}
+.interior-section.revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+.interior-section:hover{
+  box-shadow: var(--shadow-2);
+}
+
+.interior-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.interior-text, .interior-slideshow {
+  flex: 1 1 50%;
+  padding: 40px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+}
+
+.interior-text {
+  background-color: var(--surface);
+  flex-direction: column;
+  border-right: 1px solid #eee;
+  gap: 10px;
+}
+
+.interior-text h2 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  color: #111;
+  letter-spacing: 0.6px;
+}
+
+.interior-text p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-3);
+  text-wrap: pretty;
+}
+
+.interior-slideshow {
+  background-color: var(--surface-2);
+  position: relative;
+}
+
+.slide-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+}
+
+.slide-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 900ms var(--easing), transform 4.5s linear;
+  z-index: 1;
+  transform: scale(1.04);
+}
+.slide-image.active {
+  opacity: 1;
+  z-index: 2;
+  transform: scale(1);
+}
+
+#contact p {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-2);
+  align-items: center;
+}
+
+#contact a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+#contact a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: var(--brand-bg);
+  color: var(--brand-fg);
+  padding: 30px;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* =======================
+   Reduce motion
+   ======================= */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* =======================
+   Responsive
+   ======================= */
+@media (max-width: 920px) {
+  .container { padding: 42px 20px; }
+  nav { display: none; }
+  .menu-toggle { display: inline-flex; }
+  header { height: var(--header-h-mobile); }
+  nav a { line-height: var(--header-h-mobile); }
+}
+
+@media (max-width: 768px) {
+  .interior-row { flex-direction: column; }
+  .interior-text, .interior-slideshow { border-right: none; }
+  .banner {
+    height: calc(100dvh - var(--header-h-mobile));
+    min-height: 460px;
+  }
+}
