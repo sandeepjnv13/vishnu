@@ -1,10 +1,8 @@
 /* css/footer.css */
 
 .site-footer {
-  background: #333 url("../resources/pattern.png") repeat; /* optional pattern */
-  color: #eee;
   padding: 0px 0 0px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-pattern {

@@ -27,7 +27,7 @@
 }
 
 body {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   position: relative;
   color: var(--text);
   background: #fafafa;
@@ -112,7 +112,7 @@ nav a::after {
   background: linear-gradient(90deg, var(--brand-accent), #6174b8);
   transition: width var(--timing) var(--easing);
 }
-nav a:hover { color: var(--brand-accent); opacity: 1; }
+nav a:hover {  opacity: 1; }
 nav a:hover::after { width: 100%; }
 
 /* Mobile menu trigger (kept hidden by default) */
