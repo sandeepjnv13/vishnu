@@ -3,12 +3,12 @@
 .site-footer {
   background: #333 url("../resources/pattern.png") repeat; /* optional pattern */
   color: #eee;
-  padding: 60px 0 30px;
+  padding: 0px 0 0px;
   font-family: 'Bebas Neue', sans-serif;
 }
 
 .footer-pattern {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 1);
   padding: 40px 0;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .footer-col a:hover {
-  color: var(--brand-accent, #f9c900);
+  color: var(--brand-accent, #58c4c0);
   text-decoration: underline;
 }
 
