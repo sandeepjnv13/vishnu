@@ -77,10 +77,6 @@ header.scrolled {
   max-width: min(28vw, 300px);
 }
 
-/* (optional) keep it a touch smaller when scrolled */
-header.scrolled .logo img{
-  height: clamp(30px, 4vh, 48px);
-}
 
 .logo:hover img { transform: scale(1.05); }
 
