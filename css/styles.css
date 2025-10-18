@@ -13,6 +13,11 @@
   --blur: 4px;
   --timing: 250ms;
   --easing: cubic-bezier(.2,.8,.2,1);
+    --space-1: clamp(8px, 1.2vw, 12px);   /* micro: title→subtitle, card title→body */
+    --space-2: clamp(12px, 1.6vw, 18px);  /* small: image→title, h2→p */
+    --space-3: clamp(16px, 2vw, 24px);    /* medium: paragraph→grid/cards */
+    --space-4: clamp(24px, 3vw, 36px);    /* large: section inner blocks */
+    --space-5: clamp(32px, 4vw, 48px);    /* x-large: section outer padding */
 
   /* explicit header heights so we can size the hero via calc() */
   --header-h-desktop: 60px; /* Header width */
@@ -201,15 +206,39 @@ nav a:hover::after { width: 100%; }
 /* =======================
    Sections
    ======================= */
-.full-tile {
+
+   .full-tile p + p {
+     margin-top: var(--space-2);    /* paragraph → paragraph */
+   }
+
+   /* Generic cards (applies to any card title/body you use) */
+   article h3 {
+     margin-top: var(--space-2);    /* image → h3 */
+     margin-bottom: var(--space-1); /* h3 → body text */
+   }
+   article p {
+     margin-top: 0;                 /* rely on h3 margins for the gap */
+   }
+   #about h2 {
+    margin-bottom: var(--space-2) !important;
+    margin-bottom: clamp(8px, 0.8vw, 12px);
+   }
+   #about p  { margin: 0 !important; }
+   #about p + p { margin-top: var(--space-2) !important; }
+
+
+
+.full-tile {  /* ABOUT section container */
   background: rgba(255, 255, 255, 0.75);
   text-align: center;
   backdrop-filter: blur(var(--blur));
+  padding-bottom: var(--space-5);
 }
 .full-tile h2 {
   font-size: 2rem;
   margin-bottom: 15px;
   letter-spacing: 0.5px;
+  margin-bottom: var(--space-2); /* h2 → first paragraph */
 }
 .full-tile p {
   max-width: 900px;
@@ -366,6 +395,18 @@ footer {
   margin-bottom: 0;
   padding-bottom: 0px;
 }
+
+/* Same width & typography for About + Services intro */
+#about .container,
+.services-intro {
+  max-width: clamp(60ch, 72ch, 80ch); /* consistent readable width */
+  margin-inline: auto;
+  text-align: justify;                 /* same text alignment */
+  line-height: 1.75;                   /* same line height */
+  font-size: 1.05rem;                  /* same size */
+  text-wrap: pretty;                   /* nicer short lines (safe to ignore if unsupported) */
+}
+
 
 #services {
   margin-top: 0;
