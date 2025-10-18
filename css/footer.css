@@ -1,5 +1,19 @@
 /* css/footer.css */
 
+
+
+
+
+/* Small screens: center the logo cleanly */
+@media (max-width: 600px) {
+  .footer-logo img {
+    margin: 0 auto 20px;
+  }
+}
+
+
+
+
 .site-footer {
   padding: 0px 0 0px;
   font-family: 'Montserrat', sans-serif;
@@ -14,12 +28,19 @@
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr 1fr;
   gap: 40px;
-  align-items: start;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
 }
 
 .footer-logo img {
-  max-width: 160px;
-  filter: brightness(0) invert(1);
+  display: block;
+  width: clamp(140px, 18vw, 220px);  /* responsive but capped */
+  height: auto;
+  object-fit: contain;
 }
 
 .footer-col h4 {

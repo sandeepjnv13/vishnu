@@ -24,6 +24,10 @@
   --header-h-mobile: 64px;
 }
 
+header + * {
+  background-color: #000;              /* minimal: only the very top section */
+}
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -66,8 +70,7 @@ header {
 header.scrolled {
   /* keep the same height and padding; just add subtle effects */
   box-shadow: 0 6px 24px rgba(0,0,0,0.0);
-  background-color: rgba(0,0,0,0.0);
-  backdrop-filter: saturate(140%);
+  background-color: rgba(0, 0, 0, 0.001);
 }
 
 .logo {
@@ -489,4 +492,18 @@ footer {
   .nav-item.has-dropdown .dropdown { display: none !important; }
 }
 
+
+/* Smoothly hide only the nav/menu when below hero */
+header #desktopNav {
+  transition: opacity 180ms var(--easing), transform 180ms var(--easing), visibility 0s linear 180ms;
+  will-change: opacity, transform;
+}
+
+header.menu-hidden #desktopNav {
+  opacity: 0;
+  transform: translateY(-8px); /* tiny lift looks cleaner */
+  visibility: hidden;          /* prevent focus/AT confusion */
+  pointer-events: none;
+  transition: opacity 140ms var(--easing), transform 140ms var(--easing), visibility 0s linear 0s;
+}
 

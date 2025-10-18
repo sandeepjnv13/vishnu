@@ -104,3 +104,33 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 document.querySelectorAll('.interior-section').forEach(el => observer.observe(el));
+
+// Hide menu items once we've scrolled below the hero/banner
+(function () {
+  const header = document.querySelector('header');
+  const nav = document.querySelector('#desktopNav');
+  if (!header || !nav) return;
+
+  // Try common hero IDs/classes; adjust if yours is different
+  const hero = document.querySelector('.hero, #hero, #banner, .banner');
+  if (!hero) return;
+
+  const setHidden = (hidden) => {
+    header.classList.toggle('menu-hidden', hidden);
+    nav.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+  };
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      // When hero is no longer intersecting the top viewport area, hide menu
+      setHidden(!entry.isIntersecting);
+    },
+    {
+      // Offset by header height so "below banner" means banner is fully above the header
+      rootMargin: `-${header.offsetHeight}px 0px 0px 0px`,
+      threshold: 0
+    }
+  );
+
+  observer.observe(hero);
+})();
