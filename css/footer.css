@@ -27,20 +27,25 @@
 .footer-content {
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  gap: 40px;
-  align-items: center;
+  gap: 60px;
+  align-items: left;
 }
 
 .footer-logo {
   display: flex;
+  justify-self: start;    /* <-- left within its grid cell */
+  justify-content: flex-start;  /* <-- left within the flex row */
   align-items: center;
 }
 
+
+
 .footer-logo img {
   display: block;
-  width: clamp(140px, 18vw, 220px);  /* responsive but capped */
+  width: clamp(140px, 18vw, 220px);
   height: auto;
   object-fit: contain;
+  margin: 0;              /* ensure no auto-centering */
 }
 
 .footer-col h4 {
@@ -48,13 +53,14 @@
   letter-spacing: 1px;
   margin-bottom: var(--space-2);
   color: #fff;
-  text-transform: uppercase;
+  text-align: left;
 }
 
 .footer-col ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: left;
 }
 
 .footer-col li {

@@ -14,6 +14,7 @@
   /*padding: 50px 200px; */
   padding-left: 13.5%;
     padding-right: 13.5%;
+    padding-top: 1%;
 }
 
 .services h2 {
@@ -25,7 +26,7 @@
 }
 
 .services-intro {
-  text-align: center;
+  text-align: justify;
   max-width: 980px;
   line-height: 1.7;
   color: #333;
