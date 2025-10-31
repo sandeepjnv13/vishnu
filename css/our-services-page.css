@@ -608,3 +608,34 @@ html {
   }
   #interior-design .service-content-section { justify-self: start; max-width: 560px; }
 }
+
+/* --- Icons column: put label to the RIGHT of the circle --- */
+.service-icons-vertical {
+  display: grid;      /* stack rows of items */
+  gap: 24px;
+  text-align: left;   /* override any center text */
+}
+
+.service-icons-vertical .icon-item {
+  display: flex;
+  flex-direction: row !important;   /* kill any column layout */
+  align-items: center;
+  gap: 14px;                        /* space between circle and text */
+}
+
+.service-icons-vertical .icon-circle {
+  flex: 0 0 56px;                   /* fixed circle size */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  /* keep your border/background styles here if any */
+}
+
+.service-icons-vertical .icon-item > span {
+  display: inline-block;            /* prevents full-width block push */
+  line-height: 1.2;
+  white-space: normal;              /* allow line breaks like SPACE<br>PLANNING */
+}
+
