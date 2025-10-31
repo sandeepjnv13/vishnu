@@ -170,7 +170,7 @@
   flex: 0 0 400px;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/5;
+  aspect-ratio: 5/5;
 }
 
 .service-main-image img {
@@ -226,6 +226,7 @@
   overflow: hidden;
   aspect-ratio: 1;
   max-width: 400px;
+  aspect-ratio: 4/5;
 }
 
 .service-secondary-image img {
