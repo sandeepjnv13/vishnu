@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Services - Infinitspaces</title>
+    <link rel="icon" href="resources/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/our-services-page.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body class="our-services-page">
+
+<!-- Transparent Top Header -->
+<header id="site-header" class="transparent-header">
+    <div class="header-spacer"></div>
+
+    <nav id="desktopNav" aria-label="Primary">
+        <div class="nav-item">
+            <a href="index.html#about" class="nav-link">ABOUT US</a>
+        </div>
+
+        <div class="nav-item">
+            <a href="our-services.html" class="nav-link active">OUR SERVICES</a>
+        </div>
+
+        <div class="nav-item">
+            <a href="index.html#specialization" class="nav-link">OUR WORK</a>
+        </div>
+
+        <div class="nav-item">
+            <a href="index.html#footer" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- Main Layout with Left Sidebar -->
+<div class="services-layout">
+    <!-- Left Sidebar Navigation -->
+    <aside class="services-sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html">
+                <img src="resources/LOGO3.png" alt="Infinitspaces">
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-title">OUR SERVICES</div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#interior-design" class="sidebar-link active">
+                        INTERIOR DESIGN
+                    </a>
+                </li>
+                <li>
+                    <a href="#product-supply" class="sidebar-link">
+                        PRODUCT SUPPLY
+                    </a>
+                </li>
+                <li>
+                    <a href="#turnkey-execution" class="sidebar-link">
+                        TURNKEY EXECUTION
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="services-content">
+
+        <!-- Interior Design Section -->
+        <section id="interior-design" class="service-section">
+            <div class="container">
+                <div class="service-layout">
+                    <!-- Left: Main Image -->
+                    <div class="service-text">
+                        <p>Our interiors strike a balance between beauty and practicality, curated to match our clients' personality and lifestyle.</p>
+                    </div>
+                    <div class="service-main-image">
+                        <img src="resources/Image1.jpg" alt="Interior Design">
+                    </div>
+
+
+                    <!-- Center: Vertical Icons -->
+                    <div class="service-icons-vertical">
+                        <div class="icon-item">
+                            <div class="icon-circle">
+                                <span>✕</span>
+                            </div>
+                            <span>SPACE<br>PLANNING</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon-circle">
+                                <span>✕</span>
+                            </div>
+                            <span>VISUALISATION</span>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon-circle">
+                                <span>✕</span>
+                            </div>
+                            <span>CUSTOMIZATION</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Text and Secondary Image -->
+                    <div class="service-content-section">
+                        <div class="service-secondary-image">
+                            <img src="resources/Image1.jpg" alt="Interior Design Showcase">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Supply Section -->
+        <section id="product-supply" class="service-section alt-layout">
+            <div class="container">
+                <div class="service-grid">
+                    <div class="service-content">
+                        <h2>PRODUCT SUPPLY</h2>
+                        <p>We provide curated and customized products for your space that are tailored to your needs.</p>
+                    </div>
+                    <div class="service-image">
+                        <img src="resources/Image3.jpg" alt="Product Supply">
+                        <div class="image-hover-text">/the image shall shake/zoom on mouse hovering/</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Turnkey Execution Section -->
+        <section id="turnkey-execution" class="service-section">
+            <div class="container">
+                <div class="service-grid">
+                    <div class="service-image">
+                        <img src="resources/Image2.jpg" alt="Turnkey Execution">
+                        <div class="image-hover-text">/the image shall shake/zoom on mouse hovering/</div>
+                    </div>
+                    <div class="service-content">
+                        <h2>TURNKEY EXECUTION</h2>
+                        <p>We manage everything including the drawings, permits, procurement and construction to bring your space to life effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Footer -->
+<div id="footer-container"></div>
+
+<script>
+    // Load footer dynamically
+    fetch('sections/footer.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('footer-container').innerHTML = html);
+</script>
+
+<script src="js/our-services.js" defer></script>
+
+</body>
+</html>

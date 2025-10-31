@@ -512,3 +512,24 @@ header.menu-hidden #desktopNav {
   transition: opacity 140ms var(--easing), transform 140ms var(--easing), visibility 0s linear 0s;
 }
 
+
+/* Right-align the primary nav in the header */
+#site-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+#site-header .header-spacer {
+  flex: 1 1 auto;   /* eats the left side space */
+}
+
+#desktopNav {
+  margin-left: auto;  /* pushes nav to the right */
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+#desktopNav .nav-item { display: inline-block; }
+

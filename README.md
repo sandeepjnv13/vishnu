@@ -11,13 +11,22 @@ vishnu/
 │ └── main.js # Core JavaScript for animations and interactions
 │
 ├── css/
-│ └── styles.css # Stylesheet for layout, theme, and responsiveness
+│ |── styles.css # Stylesheet for layout, theme, and responsiveness
+│ |── specialization.css
+│ |── services.css
+│ └── footer.css
+│
+├── sections/
+│ |── footer.html
+│ |── specialization.html
+│ └── services.html
 │
 │── resources/
 │ ├── logo.png # Company logo
 │ ├── banner_1.jpg # Banner image 1
 │ ├── banner_2.jpg # Banner image 2
-│ └── banner_3.jpg # Banner image 3
+│ |── banner_3.jpg # Banner image 3
+│ └── ...
 │
 │── .github/ # (Optional) GitHub-related configurations
 │── .idea/ # JetBrains IDE configurations
