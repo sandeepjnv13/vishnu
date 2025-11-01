@@ -1,5 +1,3 @@
-
-
 // ============================================
 // Our Services Page Specific JavaScript
 // Add this to your main.js file
@@ -10,20 +8,121 @@ if (document.body.classList.contains('our-services-page')) {
 
   // Sidebar navigation active state management
   const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const sidebarSublinks = document.querySelectorAll('.sidebar-sublink');
   const serviceSections = document.querySelectorAll('.service-section');
+  const productSections = document.querySelectorAll('.product-catalog-section');
+
+  // Initialize dropdown functionality
+  function initDropdowns() {
+    const dropdownItems = document.querySelectorAll('.has-dropdown');
+
+    dropdownItems.forEach(item => {
+      const link = item.querySelector('.sidebar-link');
+      const submenu = item.querySelector('.sidebar-submenu');
+      const arrow = item.querySelector('.dropdown-arrow');
+
+      // Set initial state - if any submenu item is active, expand the dropdown
+      const hasActiveChild = submenu.querySelector('.sidebar-sublink.active');
+      if (hasActiveChild) {
+        item.classList.add('expanded');
+        submenu.classList.add('expanded');
+      }
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Toggle dropdown
+        const isExpanded = item.classList.contains('expanded');
+
+        // Close other dropdowns
+        dropdownItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('expanded');
+            otherItem.querySelector('.sidebar-submenu').classList.remove('expanded');
+          }
+        });
+
+        // Toggle current dropdown
+        if (!isExpanded) {
+          item.classList.add('expanded');
+          submenu.classList.add('expanded');
+        } else {
+          item.classList.remove('expanded');
+          submenu.classList.remove('expanded');
+        }
+      });
+    });
+  }
 
   // Update active sidebar link based on scroll position
   function updateActiveSection() {
     const scrollPosition = window.scrollY + 200;
 
+    // Check product sections first (more specific)
+    let activeProductSection = null;
+    productSections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        activeProductSection = section;
+      }
+    });
+
+    // Update product subsection highlighting
+    if (activeProductSection) {
+      const productId = activeProductSection.id;
+
+      // Clear all active states
+      sidebarLinks.forEach(link => link.classList.remove('active'));
+      sidebarSublinks.forEach(link => link.classList.remove('active'));
+
+      // Activate Product Supply main link
+      const productSupplyLink = document.querySelector('[data-section="product-supply"]');
+      if (productSupplyLink) {
+        productSupplyLink.classList.add('active');
+      }
+
+      // Activate specific product sublink
+      const activeSublink = document.querySelector(`[data-subsection="${productId}"]`);
+      if (activeSublink) {
+        activeSublink.classList.add('active');
+      }
+
+      // Ensure dropdown is expanded
+      const dropdown = document.querySelector('.has-dropdown');
+      if (dropdown) {
+        dropdown.classList.add('expanded');
+        dropdown.querySelector('.sidebar-submenu').classList.add('expanded');
+      }
+
+      return;
+    }
+
+    // Check main service sections
     serviceSections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
 
       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        // Clear all active states
         sidebarLinks.forEach(link => link.classList.remove('active'));
-        if (sidebarLinks[index]) {
-          sidebarLinks[index].classList.add('active');
+        sidebarSublinks.forEach(link => link.classList.remove('active'));
+
+        // Get section ID and activate corresponding link
+        const sectionId = section.id;
+        const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+
+        // Collapse dropdowns when not in product section
+        if (sectionId !== 'product-supply') {
+          const dropdown = document.querySelector('.has-dropdown');
+          if (dropdown) {
+            dropdown.classList.remove('expanded');
+            dropdown.querySelector('.sidebar-submenu').classList.remove('expanded');
+          }
         }
       }
     });
@@ -31,6 +130,25 @@ if (document.body.classList.contains('our-services-page')) {
 
   // Smooth scroll to sections when sidebar links are clicked
   sidebarLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#') && !link.closest('.has-dropdown')) {
+        e.preventDefault();
+        const targetSection = document.querySelector(href);
+
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+
+  // Smooth scroll for submenu links
+  sidebarSublinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href');
@@ -42,9 +160,23 @@ if (document.body.classList.contains('our-services-page')) {
           top: offsetTop,
           behavior: 'smooth'
         });
+
+        // Update active states
+        sidebarSublinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        // Ensure parent link is active
+        const productSupplyLink = document.querySelector('[data-section="product-supply"]');
+        if (productSupplyLink) {
+          sidebarLinks.forEach(l => l.classList.remove('active'));
+          productSupplyLink.classList.add('active');
+        }
       }
     });
   });
+
+  // Initialize dropdowns
+  initDropdowns();
 
   // Update active state on scroll
   window.addEventListener('scroll', updateActiveSection, { passive: true });

@@ -550,7 +550,7 @@ html {
   font-weight: 700; letter-spacing: .06em;
 }
 
-/* ---- Right: stacked “OUR WORK” image with hover zoom/shake ---- */
+/* ---- Right: stacked â€œOUR WORKâ€ image with hover zoom/shake ---- */
 #interior-design .service-content-section {
   position: relative;
   max-width: 420px;
@@ -691,3 +691,93 @@ html {
     transform: scale(1.04) rotate(0.2deg);
 }
 
+
+/* =======================
+   Sidebar Dropdown Functionality
+   ======================= */
+
+/* Update existing sidebar link to support dropdown */
+.sidebar-menu li.has-dropdown {
+  margin-bottom: 8px;
+}
+
+.sidebar-menu li.has-dropdown .sidebar-link {
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+/* Dropdown arrow styling */
+.dropdown-arrow {
+  font-size: 0.8rem;
+  transition: transform 250ms ease;
+  color: var(--brand-accent, #58c4c0);
+  margin-left: auto;
+}
+
+.has-dropdown.expanded .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Submenu styling */
+.sidebar-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 16px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 300ms ease, opacity 250ms ease;
+  opacity: 0;
+}
+
+.sidebar-submenu.expanded {
+  max-height: 500px; /* Adjust based on number of items */
+  opacity: 1;
+}
+
+.sidebar-submenu li {
+  margin-bottom: 4px;
+}
+
+.sidebar-sublink {
+  display: block;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 250ms ease;
+  position: relative;
+  line-height: 1.3;
+}
+
+.sidebar-sublink:hover {
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-sublink.active {
+  color: var(--brand-accent, #58c4c0);
+  background: rgba(88, 196, 192, 0.1);
+  font-weight: 600;
+}
+
+.sidebar-sublink.active::before {
+  content: "▶";
+  position: absolute;
+  left: -8px;
+  font-size: 0.7rem;
+  color: var(--brand-accent, #58c4c0);
+}
+
+/* Mobile responsive adjustments for dropdown */
+@media (max-width: 992px) {
+  .sidebar-submenu.expanded {
+    max-height: 400px;
+  }
+
+  .sidebar-sublink {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
