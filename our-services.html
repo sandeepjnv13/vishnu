@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/our-services-page.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/product-catalog-sections.css">
 </head>
 <body class="our-services-page">
 
@@ -128,18 +129,90 @@
 
         <!-- Product Supply Section -->
         <section id="product-supply" class="service-section alt-layout">
-            <div class="container">
-                <div class="service-grid">
-                    <div class="service-content">
-                        <h2>PRODUCT SUPPLY</h2>
-                        <p>We provide curated and customized products for your space that are tailored to your needs.</p>
+            <!-- Product Section: Kitchen Cabinets - Ready to insert into our-services.html -->
+            <section id="kitchen-cabinets-product" class="service-section product-catalog-section">
+                <div class="container">
+                    <!-- Product Header -->
+                    <div class="product-section-header">
+                        <h2>KITCHEN CABINETS AND VANITIES</h2>
+                        <!-- <p class="product-description">Premium kitchen cabinets and vanities designed to combine functionality with aesthetic appeal.</p> -->
                     </div>
-                    <div class="service-image">
-                        <img src="resources/Image3.jpg" alt="Product Supply">
-                        <div class="image-hover-text">/the image shall shake/zoom on mouse hovering/</div>
+
+                    <!-- Product Layout -->
+                    <div class="product-catalog-layout">
+                        <!-- Left: Main Image and Sub Images -->
+                        <div class="product-images-container">
+                            <!-- Main Product Image -->
+                            <div class="main-product-showcase">
+                                <img src="resources/Image1.jpg" alt="KITCHEN CABINETS AND VANITIES">
+                            </div>
+
+                            <!-- Sub Images Row -->
+                            <div class="product-variations">
+                                <div class="variation-item" data-image="resources/cabinet-plain.jpg">
+                                    <img src="resources/Image1.jpg" alt="Plain Style">
+                                    <span class="variation-label">PLAIN</span>
+                                </div>
+                                <div class="variation-item" data-image="resources/cabinet-shakers.jpg">
+                                    <img src="resources/Image1.jpg" alt="Shakers Style">
+                                    <span class="variation-label">SHAKERS</span>
+                                </div>
+                                <div class="variation-item" data-image="resources/cabinet-fluted.jpg">
+                                    <img src="resources/Image1.jpg" alt="Fluted Style">
+                                    <span class="variation-label">FLUTED</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Finishes and Options -->
+                        <div class="product-options-panel">
+                            <div class="options-header">
+                                <h3>FINISHES</h3>
+                            </div>
+
+                            <div class="options-grid">
+                                <div class="option-item" data-finish="LAMINATED">
+                                    <img src="resources/Image1.jpg" alt="Laminated">
+                                    <span class="option-label">LAMINATED</span>
+                                </div>
+                                <div class="option-item" data-finish="MELAMINE">
+                                    <img src="resources/Image1.jpg" alt="Melamine">
+                                    <span class="option-label">MELAMINE</span>
+                                </div>
+                                <div class="option-item" data-finish="PAINTED">
+                                    <img src="resources/Image1.jpg" alt="Painted">
+                                    <span class="option-label">PAINTED</span>
+                                </div>
+                                <div class="option-item" data-finish="VENEER">
+                                    <img src="resources/Image1.jpg" alt="Veneer">
+                                    <span class="option-label">VENEER</span>
+                                </div>
+                                <div class="option-item" data-finish="ACRYLIC">
+                                    <img src="resources/Image1.jpg" alt="Acrylic">
+                                    <span class="option-label">ACRYLIC</span>
+                                </div>
+                                <div class="option-item" data-finish="PVC">
+                                    <img src="resources/Image1.jpg" alt="PVC">
+                                    <span class="option-label">PVC</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="product-actions">
+                                <a href="#certifications" class="action-btn primary">
+                                    <span>SEE CERTIFICATIONS</span>
+                                    <span class="btn-arrow">></span>
+                                </a>
+                                <a href="#quote" class="action-btn secondary">
+                                    <span>GET A QUOTE</span>
+                                    <span class="btn-arrow">></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            <!-- End Product Section: Kitchen Cabinets -->
         </section>
 
         <!-- Turnkey Execution Section -->
@@ -171,6 +244,7 @@
 </script>
 
 <script src="js/our-services.js" defer></script>
+<script src="js/product-catalog-sections.js" defer></script>
 
 </body>
 </html>
