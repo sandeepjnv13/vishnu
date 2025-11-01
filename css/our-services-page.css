@@ -649,3 +649,45 @@ html {
   white-space: normal;              /* allow line breaks like SPACE<br>PLANNING */
 }
 
+/* Remove the pseudo-elements and replace with real images */
+#interior-design .work-stack::before,
+#interior-design .work-stack::after {
+    display: none;
+}
+
+#interior-design .work-stack {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+#interior-design .work-stack .stack-image {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    transition: transform 420ms var(--easing, cubic-bezier(.2,.8,.2,1));
+    will-change: transform;
+}
+
+#interior-design .work-stack .stack-image.top {
+    z-index: 3;
+    position: relative;
+}
+
+#interior-design .work-stack .stack-image.middle {
+    z-index: 2;
+    top: 0;
+    transform: rotate(-2deg) translate(-6px, -6px);
+}
+
+#interior-design .work-stack .stack-image.bottom {
+    z-index: 1;
+    top: 0;
+    transform: rotate(3deg) translate(-12px, -2px);
+}
+
+#interior-design .work-stack:hover .stack-image.top {
+    transform: scale(1.04) rotate(0.2deg);
+}
+
