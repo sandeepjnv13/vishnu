@@ -22,19 +22,19 @@
 
     <nav id="desktopNav" aria-label="Primary">
         <div class="nav-item">
-            <a href="index.html#about" class="nav-link">ABOUT US</a>
+            <a href="index.html#about" class="nav-link" style="color: #000;">ABOUT US</a>
         </div>
 
         <div class="nav-item">
-            <a href="our-services.html" class="nav-link active">OUR SERVICES</a>
+            <a href="our-services.html" class="nav-link active" style="color: #000;">OUR SERVICES</a>
         </div>
 
         <div class="nav-item">
-            <a href="index.html#specialization" class="nav-link">OUR WORK</a>
+            <a href="index.html#specialization" class="nav-link" style="color: #000;">OUR WORK</a>
         </div>
 
         <div class="nav-item">
-            <a href="index.html#footer" class="nav-link">CONTACT</a>
+            <a href="index.html#footer" class="nav-link" style="color: #000;">CONTACT</a>
         </div>
     </nav>
 </header>
@@ -285,16 +285,6 @@
         </section>
     </main>
 </div>
-
-<!-- Footer -->
-<div id="footer-container"></div>
-
-<script>
-    // Load footer dynamically
-    fetch('sections/footer.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('footer-container').innerHTML = html);
-</script>
 
 <script src="js/our-services.js" defer></script>
 <script src="js/product-catalog-sections.js" defer></script>

@@ -1,14 +1,15 @@
 /* Our Services Page Specific Styles */
 
-/* Override header for transparent effect */
+
 .our-services-page #site-header {
-  background-color: transparent;
-  box-shadow: none;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.001); /* Add subtle shadow */
   position: fixed;
   transition: background-color 300ms ease, box-shadow 300ms ease;
   display: flex;
   justify-content: flex-end;
   padding-right: 24px;
+  z-index: 50;
 }
 
 /* Ensure nav is properly aligned */
@@ -35,8 +36,16 @@
   display: none; /* Hide logo in header */
 }
 
-.our-services-page #site-header:not(.scrolled) {
-  background-color: transparent;
+.our-services-page::before {
+  content: "";
+  position: fixed;
+  top: var(--header-h-desktop);
+  left: 0;
+  right: 0;
+  height: 20px; /* Adjust fade distance */
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+  z-index: 99; /* Below header but above content */
 }
 
 
@@ -105,7 +114,7 @@
   letter-spacing: 0.5px;
   transition: color 250ms ease;
   position: relative;
-  padding: 10px 0;
+  padding: 1px 0;
 }
 
 
@@ -113,6 +122,8 @@
 .sidebar-link.active {
   color: #fff;
 }
+
+
 
 /* Main Content Area */
 .services-content {
@@ -337,11 +348,7 @@
   transition: all 250ms ease;
 }
 
-.icon-item:hover .icon-circle {
-  border-color: var(--brand-accent, #58c4c0);
-  color: var(--brand-accent, #58c4c0);
-  transform: scale(1.1);
-}
+
 
 .icon-item span:last-child {
   font-size: 0.85rem;
@@ -528,7 +535,7 @@ html {
 /* ---- Middle vertical icons + labels ---- */
 #interior-design .service-icons-vertical {
   display: grid;
-  gap: 75px; /* Vertical Gap between circles*/
+  gap: 83px; /* Vertical Gap between circles*/
   align-content: start;
   list-style: none;
   padding: 0;
@@ -595,7 +602,8 @@ html {
 
 #interior-design .work-caption {
   text-align: center;
-  margin-top: 12px;
+  margin-top: 1%;
+  margin-right: 20%;
   letter-spacing: .15em;
   font-weight: 600;
 }
@@ -663,7 +671,7 @@ html {
 
 #interior-design .work-stack .stack-image {
     position: absolute;
-    width: 100%;
+    width: 80%;
     height: auto;
     border: 1px solid #ddd;
     transition: transform 420ms var(--easing, cubic-bezier(.2,.8,.2,1));
@@ -678,13 +686,13 @@ html {
 #interior-design .work-stack .stack-image.middle {
     z-index: 2;
     top: 0;
-    transform: rotate(-2deg) translate(-6px, -6px);
+    transform: translate(-6px, -6px);
 }
 
 #interior-design .work-stack .stack-image.bottom {
     z-index: 1;
     top: 0;
-    transform: rotate(3deg) translate(-12px, -2px);
+    transform: translate(-12px, -12px);
 }
 
 #interior-design .work-stack:hover .stack-image.top {
@@ -780,4 +788,8 @@ html {
     font-size: 0.8rem;
     padding: 5px 10px;
   }
+}
+
+nav a {
+  line-height: 25px; /* Unerline below the left nav bar menus on our services page */
 }
