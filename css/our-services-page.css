@@ -339,15 +339,25 @@
 .icon-circle {
   width: 180px;
   height: 180px;
-  border: 2px solid #333;
+  border: 2px solid transparent;
+  background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
   transition: all 250ms ease;
+  overflow: hidden;
+  position: relative;
 }
 
+.icon-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 300ms ease;
+}
 
 
 .icon-item span:last-child {
@@ -890,4 +900,113 @@ nav a {
     padding-top: var(--space-4);
 }
 
+/* Product Supply Overview Section */
+.product-supply-overview-section {
+    background: #f8f8f8;
+    padding: var(--space-3) 0;
+    margin: 0;
+}
 
+.product-supply-header {
+    text-align: center;
+    margin-bottom: var(--space-3);
+}
+
+.product-supply-header h1 {
+    font-size: 2.1rem;
+    letter-spacing: .6px;
+    margin-bottom: 0;
+    color: #111;
+}
+
+.product-supply-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5%;
+    row-gap: var(--space-3);
+    align-items: start;
+}
+
+.product-supply-card {
+    background: #f8f8f8;
+    transition: transform .25s ease, box-shadow .25s ease;
+    text-align: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.product-supply-card:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.product-image-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 4;
+    overflow: hidden;
+    background: #f4f4f4;
+    margin-bottom: 0;
+}
+
+.product-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    object-position: center;
+    transition: transform 420ms ease;
+}
+
+.product-image-wrap:hover img {
+    transform: scale(1.06);
+}
+
+.product-supply-card h3 {
+    font-size: 1rem;
+    letter-spacing: .3px;
+    color: #222;
+    line-height: 1.2;
+    padding: var(--space-1) var(--space-1) var(--space-2);
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Responsive Design for Product Supply Grid */
+@media (max-width: 1200px) {
+    .product-supply-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4%;
+    }
+}
+
+@media (max-width: 900px) {
+    .product-supply-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5%;
+    }
+
+    .product-supply-card h3 {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-supply-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4%;
+    }
+
+    .product-supply-card h3 {
+        font-size: 0.85rem;
+        padding: 8px 6px 12px;
+    }
+}
+
+/* Adjust spacing between sections */
+.services-overview-section {
+    padding-bottom: var(--space-3);
+}
+
+.product-supply-overview-section {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+}
