@@ -63,8 +63,6 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(var(--blur));
     padding: var(--space-3);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-1);
     position: sticky;
     top: calc(var(--header-h-desktop) + 20px);
     height: fit-content;
@@ -85,7 +83,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius);
 }
 
 .main-product-showcase img {
@@ -141,37 +138,14 @@
 }
 
 .variation-item img {
-    width: 100%;
-    height: 80%;
+    width: 90%;
+    height: 70%;
     object-fit: cover;
     transition: transform 300ms ease;
 }
 
 .variation-item:hover img {
     transform: scale(1.05);
-}
-
-.variation-label {
-    position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #333;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2px 4px;
-    border-radius: 3px;
-    width: 85%;
-    text-align: center;
-}
-
-
-
-.alt-layout .product-options-panel {
-    background: rgba(248, 248, 248, 0.95);
 }
 
 .options-header {
@@ -229,8 +203,8 @@
 }
 
 .option-item img {
-    width: 100%;
-    height: 80%;
+    width: 90%;
+    height: 70%;
     object-fit: cover;
     transition: transform 300ms ease;
 }
@@ -239,7 +213,7 @@
     transform: scale(1.1);
 }
 
-.option-label {
+.option-label, .variation-label {
     position: absolute;
     bottom: 4px;
     left: 50%;
@@ -249,8 +223,7 @@
     text-transform: uppercase;
     letter-spacing: 0.3px;
     color: #333;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2px 4px;
+    padding: 1% -2%;
     border-radius: 3px;
     text-align: center;
     width: 85%;
