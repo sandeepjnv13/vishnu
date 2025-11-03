@@ -195,77 +195,79 @@ if (document.body.classList.contains('our-services-page')) {
     });
   }
 
-  // Update active section based on scroll position
+  // Replace the whole function with this version
   function updateActiveSection() {
-    const scrollPosition = window.scrollY + 200;
-    let activeSection = null;
+    const HEADER_OFFSET = 80; // fixed header height compensation
+    const PROBE_Y = HEADER_OFFSET + 20; // a bit below header
 
-    // Get all sections including nested ones
-    const allSections = document.querySelectorAll('section[id]');
+    // Consider only sections that correspond to left-nav items
+    const sections = [
+      '#services-overview',
+      '#interior-design',
+      '#product-supply-overview',
+      '#kitchen-cabinets-product',
+      '#turnkey-execution'
+    ].map(sel => document.querySelector(sel)).filter(Boolean);
 
-    // Find which section is currently in view
-    allSections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        // Check if this is the most relevant section (topmost in viewport)
-        if (!activeSection || Math.abs(sectionTop - scrollPosition) < Math.abs(activeSection.offsetTop - scrollPosition)) {
-          activeSection = section;
-        }
+    // Find the section whose top has crossed the header but whose bottom hasn't
+    // (i.e., section occupies the top of the viewport under the fixed header)
+    let activeId = null;
+    for (const el of sections) {
+      const r = el.getBoundingClientRect();
+      if (r.top <= PROBE_Y && r.bottom > PROBE_Y) {
+        activeId = el.id;
+        break;
       }
+    }
+
+    // At the very top: explicitly treat as "Overview" but show NO left-nav highlight
+    const atTop = window.scrollY < 50;
+    if (!activeId && atTop) {
+      activeId = 'services-overview';
+    }
+
+    // Clear all states first
+    sidebarLinks.forEach(link => link.classList.remove('active'));
+    sidebarSublinks.forEach(link => link.classList.remove('active'));
+    // Also collapse dropdown unless a child is actually active
+    document.querySelectorAll('.has-dropdown').forEach(item => {
+      item.classList.remove('expanded');
+      const sm = item.querySelector('.sidebar-submenu');
+      if (sm) sm.classList.remove('expanded');
     });
 
-    // Default to services-overview if at top of page
-    if (window.scrollY < 100 && !activeSection) {
-      activeSection = document.getElementById('services-overview');
+    // If we’re in the very top Overview block, do not highlight anything
+    if (activeId === 'services-overview') {
+      return;
     }
 
-    // Update active states based on current section
-    if (activeSection) {
-      const sectionId = activeSection.id;
+    // Product Supply Overview => highlight only the parent, keep submenu collapsed
+    if (activeId === 'product-supply-overview') {
+      const parent = document.querySelector('[data-section="product-supply"]');
+      parent?.classList.add('active');
+      return;
+    }
 
-      // Clear all active states first
-      sidebarLinks.forEach(link => link.classList.remove('active'));
-      sidebarSublinks.forEach(link => link.classList.remove('active'));
+    // Kitchen Cabinets => highlight the child and parent and keep dropdown expanded
+    if (activeId === 'kitchen-cabinets-product') {
+      const child = document.querySelector('a[href="#kitchen-cabinets-product"]');
+      const parent = document.querySelector('[data-section="product-supply"]');
+      child?.classList.add('active');
+      parent?.classList.add('active');
 
-      // Set active link based on section
-      if (sectionId === 'kitchen-cabinets-product') {
-        // Special case for kitchen cabinets - it's a submenu item
-        const kitchenLink = document.querySelector('a[href="#kitchen-cabinets-product"]');
-        const productSupplyLink = document.querySelector('[data-section="product-supply"]');
-
-        if (kitchenLink) kitchenLink.classList.add('active');
-        if (productSupplyLink) productSupplyLink.classList.add('active');
-
-        // Ensure dropdown is expanded
-        const dropdown = kitchenLink?.closest('.has-dropdown');
-        if (dropdown) {
-          dropdown.classList.add('expanded');
-          const submenu = dropdown.querySelector('.sidebar-submenu');
-          if (submenu) submenu.classList.add('expanded');
-        }
-      } else if (sectionId === 'product-supply-overview') {
-        // Product supply overview section
-        const productSupplyLink = document.querySelector('[data-section="product-supply"]');
-        if (productSupplyLink) {
-          productSupplyLink.classList.add('active');
-          // Keep dropdown expanded if it was opened
-          const dropdown = productSupplyLink.closest('.has-dropdown');
-          if (dropdown && dropdown.classList.contains('expanded')) {
-            const submenu = dropdown.querySelector('.sidebar-submenu');
-            if (submenu) submenu.classList.add('expanded');
-          }
-        }
-      } else {
-        // Regular sections
-        const correspondingLink = document.querySelector(`a[href="#${sectionId}"]`);
-        if (correspondingLink) {
-          correspondingLink.classList.add('active');
-        }
+      const dd = child?.closest('.has-dropdown');
+      if (dd) {
+        dd.classList.add('expanded');
+        dd.querySelector('.sidebar-submenu')?.classList.add('expanded');
       }
+      return;
     }
+
+    // All other sections map 1:1 to main links
+    const link = document.querySelector(`a[href="#${activeId}"]`);
+    link?.classList.add('active');
   }
+
 
   // Mobile sidebar toggle functionality
   const sidebar = document.querySelector('.services-sidebar');
