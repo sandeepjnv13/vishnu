@@ -841,10 +841,24 @@ nav a {
 .service-overview-card {
     background: #fff;
     transition: box-shadow 250ms ease, transform 250ms ease;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .service-overview-card:hover {
     transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.service-overview-card h3 {
+    font-size: 1.25rem;
+    letter-spacing: .4px;
+    color: #111;
+    margin-bottom: 8px;
+    text-align: center;
+    padding-top: var(--space-2);
+    pointer-events: none;
 }
 
 .overview-image-wrap {
@@ -867,14 +881,6 @@ nav a {
     transform: scale(1.06);
 }
 
-.service-overview-card h3 {
-    font-size: 1.25rem;
-    letter-spacing: .4px;
-    color: #111;
-    margin-bottom: 8px;
-    text-align: center;
-    padding-top: var(--space-2);
-}
 
 /* Responsive for overview grid */
 @media (max-width: 1024px) {
@@ -931,7 +937,6 @@ nav a {
     background: #f8f8f8;
     transition: transform .25s ease, box-shadow .25s ease;
     text-align: center;
-    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -1010,3 +1015,4 @@ nav a {
     padding-top: var(--space-3);
     padding-bottom: var(--space-3);
 }
+
