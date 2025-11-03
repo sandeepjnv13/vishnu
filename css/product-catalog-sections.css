@@ -63,11 +63,9 @@
     background: #f8f8f8;
     backdrop-filter: blur(var(--blur));
     padding: var(--space-3);
-    position: sticky;
-    top: calc(var(--header-h-desktop) + 20px);
+    position: static;
     height: fit-content;
     min-height: 500px;
-    max-height: calc(100vh - var(--header-h-desktop) - 40px);
 }
 
 
