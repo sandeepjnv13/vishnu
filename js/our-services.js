@@ -97,62 +97,44 @@ if (document.body.classList.contains('our-services-page')) {
 
   // Handle submenu link clicks
   function initSubmenuLinks() {
-    sidebarSublinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        let targetSection = document.querySelector(targetId);
+      sidebarSublinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const targetId = link.getAttribute('href');
 
-        console.log('Submenu clicked:', targetId);
-        console.log('Target section found:', targetSection);
+              // Special handling for kitchen cabinets
+              if (targetId === '#kitchen-cabinets-product') {
+                  const targetSection = document.querySelector('#kitchen-cabinets-product');
+                  if (targetSection) {
+                      const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - 80;
+                      window.scrollTo({
+                          top: offsetTop,
+                          behavior: 'smooth'
+                      });
 
-        // If not found with querySelector, try getElementById
-        if (!targetSection && targetId.startsWith('#')) {
-          targetSection = document.getElementById(targetId.substring(1));
-          console.log('Target section found with getElementById:', targetSection);
-        }
+                      // Set active states
+                      sidebarSublinks.forEach(l => l.classList.remove('active'));
+                      sidebarLinks.forEach(l => l.classList.remove('active'));
+                      link.classList.add('active');
 
-        if (targetSection) {
-          // Calculate offset accounting for header
-          const offsetTop = targetSection.offsetTop - 80;
-          console.log('Scrolling to offset:', offsetTop);
+                      const productSupplyLink = document.querySelector('[data-section="product-supply"]');
+                      if (productSupplyLink) {
+                          productSupplyLink.classList.add('active');
+                      }
 
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
+                      // Ensure dropdown stays expanded
+                      const dropdown = link.closest('.has-dropdown');
+                      if (dropdown) {
+                          dropdown.classList.add('expanded');
+                          const submenu = dropdown.querySelector('.sidebar-submenu');
+                          if (submenu) submenu.classList.add('expanded');
+                      }
+                  }
+                  return;
+              }
 
-          // Set active states - clear all first
-          sidebarSublinks.forEach(l => l.classList.remove('active'));
-          sidebarLinks.forEach(l => l.classList.remove('active'));
-
-          // Set clicked submenu link as active
-          link.classList.add('active');
-
-          // Set parent Product Supply link as active
-          const productSupplyLink = document.querySelector('[data-section="product-supply"]');
-          if (productSupplyLink) {
-            productSupplyLink.classList.add('active');
-          }
-
-          // Ensure dropdown stays expanded
-          const dropdown = link.closest('.has-dropdown');
-          if (dropdown) {
-            dropdown.classList.add('expanded');
-            const submenu = dropdown.querySelector('.sidebar-submenu');
-            if (submenu) submenu.classList.add('expanded');
-          }
-
-          console.log('Navigation completed successfully');
-        } else {
-          console.error('Target section not found for:', targetId);
-          // List all available sections for debugging
-          const allSections = document.querySelectorAll('section[id]');
-          console.log('Available sections:', Array.from(allSections).map(s => s.id));
-        }
-      });
-    });
-  }
+              // Continue with normal flow for other links...
+              let targetSection = document.querySelector(targetId);
 
   // Handle main sidebar link clicks (non-dropdown)
   function initMainLinks() {
@@ -189,86 +171,29 @@ if (document.body.classList.contains('our-services-page')) {
 
   // Update active section based on scroll position
   function updateActiveSection() {
-    const scrollPosition = window.scrollY + 200;
-    let activeSection = null;
+      const scrollPosition = window.scrollY + 200;
+      let activeSection = null;
 
-    // Get all sections including nested ones
-    const allSections = document.querySelectorAll('section[id]');
+      // Get all sections including nested ones
+      const allSections = document.querySelectorAll('section[id]');
 
-    // Find which section is currently in view (check nested sections first)
-    allSections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
+      // Find which section is currently in view
+      allSections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
 
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        // Prefer more specific nested sections over parent sections
-        if (!activeSection || section.offsetTop > activeSection.offsetTop) {
-          activeSection = section;
-        }
-      }
-    });
-
-    if (!activeSection) return;
-
-    const sectionId = activeSection.id;
-    console.log('Active section detected:', sectionId);
-
-    // Clear all active states
-    sidebarLinks.forEach(link => link.classList.remove('active'));
-    sidebarSublinks.forEach(link => link.classList.remove('active'));
-
-    // Handle different section types
-    if (sectionId === 'product-supply-overview') {
-      // Activate Product Supply main link and expand dropdown
-      const productSupplyLink = document.querySelector('[data-section="product-supply"]');
-      if (productSupplyLink) {
-        productSupplyLink.classList.add('active');
-      }
-
-      // Expand dropdown but don't select any submenu item
-      const dropdown = document.querySelector('.has-dropdown');
-      if (dropdown) {
-        dropdown.classList.add('expanded');
-        const submenu = dropdown.querySelector('.sidebar-submenu');
-        if (submenu) submenu.classList.add('expanded');
-      }
-    }
-    else if (sectionId.includes('product') || sectionId === 'kitchen-cabinets-product') {
-      // For specific product sections, activate both main link and submenu item
-      const productSupplyLink = document.querySelector('[data-section="product-supply"]');
-      if (productSupplyLink) {
-        productSupplyLink.classList.add('active');
-      }
-
-      const submenuLink = document.querySelector(`[href="#${sectionId}"]`);
-      if (submenuLink) {
-        submenuLink.classList.add('active');
-      }
-
-      // Expand dropdown
-      const dropdown = document.querySelector('.has-dropdown');
-      if (dropdown) {
-        dropdown.classList.add('expanded');
-        const submenu = dropdown.querySelector('.sidebar-submenu');
-        if (submenu) submenu.classList.add('expanded');
-      }
-    }
-    else {
-      // For main sections (interior-design, turnkey-execution, etc.)
-      const activeLink = document.querySelector(`[data-section="${sectionId}"]`) ||
-                        document.querySelector(`[href="#${sectionId}"]`);
-      if (activeLink) {
-        activeLink.classList.add('active');
-      }
-
-      // Collapse dropdowns for non-product sections
-      dropdownItems.forEach(item => {
-        item.classList.remove('expanded');
-        const submenu = item.querySelector('.sidebar-submenu');
-        if (submenu) submenu.classList.remove('expanded');
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+              // Check if this is the most relevant section (topmost in viewport)
+              if (!activeSection || Math.abs(sectionTop - scrollPosition) < Math.abs(activeSection.offsetTop - scrollPosition)) {
+                  activeSection = section;
+              }
+          }
       });
-    }
-  }
+
+      // Default to services-overview if at top of page
+      if (window.scrollY < 100 && !activeSection) {
+          activeSection = document.getElementById('services-overview');
+      }
 
   // Initialize all functionality
   initDropdowns();
@@ -286,6 +211,20 @@ if (document.body.classList.contains('our-services-page')) {
 
   // Initial update
   updateActiveSection();
+
+  // Clear any incorrect initial states
+  if (window.scrollY === 0) {
+      // We're at the top, so clear all active states except services-overview
+      sidebarLinks.forEach(link => link.classList.remove('active'));
+      sidebarSublinks.forEach(link => link.classList.remove('active'));
+
+      // Collapse all dropdowns initially
+      dropdownItems.forEach(item => {
+          item.classList.remove('expanded');
+          const submenu = item.querySelector('.sidebar-submenu');
+          if (submenu) submenu.classList.remove('expanded');
+      });
+  }
 
   // Mobile sidebar toggle functionality
   const sidebar = document.querySelector('.services-sidebar');
