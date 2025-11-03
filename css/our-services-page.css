@@ -2,8 +2,8 @@
 
 
 .our-services-page #site-header {
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.001); /* Add subtle shadow */
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 10px rgba(248,248,248,0.001); /* Add subtle shadow */
   position: fixed;
   transition: background-color 300ms ease, box-shadow 300ms ease;
   display: flex;
@@ -42,7 +42,7 @@
   top: var(--header-h-desktop);
   left: 0;
   right: 0;
-  height: 20px; /* Adjust fade distance */
+  height: 0px; /* Adjust fade distance */
   background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
   pointer-events: none;
   z-index: 99; /* Below header but above content */
