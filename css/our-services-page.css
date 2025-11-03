@@ -836,7 +836,7 @@ nav a {
 }
 
 .service-overview-card {
-    background: #fff;
+    background: #f8f8f8;
     transition: box-shadow 250ms ease, transform 250ms ease;
     text-decoration: none;
     color: inherit;

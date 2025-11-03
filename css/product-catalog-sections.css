@@ -129,12 +129,10 @@
 
 .variation-item:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-2);
 }
 
 .variation-item.active {
     border-color: var(--brand-accent);
-    box-shadow: 0 0 0 2px var(--brand-accent);
 }
 
 .variation-item img {
@@ -193,7 +191,6 @@
 
 .option-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     border-color: var(--brand-accent);
 }
 
@@ -348,7 +345,7 @@
 .variation-item:empty::before,
 .option-item:empty::before {
     content: "(image)";
-    color: #999;
+    color: #f8f8f8;
     font-style: italic;
     font-size: 1.2rem;
 }
