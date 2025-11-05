@@ -60,12 +60,30 @@ if (document.body.classList.contains('our-services-page')) {
       // For product supply sections, limit scroll range
       if (this.currentSection === 'product-supply-restricted') {
         const currentScrollY = window.scrollY;
-        const deltaY = e.deltaY;
+        const deltaY = e.deltaY || e.touches?.[0]?.clientY || 0;
+        const nextScrollY = currentScrollY + deltaY;
 
-        if ((currentScrollY <= this.minScrollY && deltaY < 0) ||
-            (currentScrollY >= this.maxScrollY && deltaY > 0)) {
+        // Hard lock at boundaries - prevent ANY movement beyond limits
+        if ((deltaY < 0 && currentScrollY <= this.minScrollY) ||
+            (deltaY > 0 && currentScrollY >= this.maxScrollY)) {
           e.preventDefault();
           e.stopPropagation();
+
+          // Force scroll position to boundary
+          if (deltaY < 0 && currentScrollY < this.minScrollY) {
+            window.scrollTo(0, this.minScrollY);
+          } else if (deltaY > 0 && currentScrollY > this.maxScrollY) {
+            window.scrollTo(0, this.maxScrollY);
+          }
+
+          return false;
+        }
+
+        // Clamp the scroll if it would exceed boundaries
+        if (nextScrollY < this.minScrollY || nextScrollY > this.maxScrollY) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.scrollTo(0, deltaY < 0 ? this.minScrollY : this.maxScrollY);
           return false;
         }
       }
@@ -96,12 +114,33 @@ if (document.body.classList.contains('our-services-page')) {
       const endSection = document.querySelector('#kitchen-cabinets-product');
 
       if (startSection && endSection) {
+        // Set exact boundaries with no buffer
         this.minScrollY = startSection.offsetTop - 80;
-        this.maxScrollY = endSection.offsetTop + endSection.offsetHeight - window.innerHeight + 80;
+        this.maxScrollY = endSection.offsetTop + endSection.offsetHeight - window.innerHeight;
 
         // Ensure maxScrollY is not less than minScrollY
         if (this.maxScrollY < this.minScrollY) {
           this.maxScrollY = this.minScrollY + window.innerHeight;
+        }
+
+        // Add a buffer zone for better edge detection
+        this.bufferZone = 5; // pixels
+      }
+    }
+
+    enforceScrollBoundaries() {
+      if (this.currentSection === 'product-supply-restricted') {
+        const currentScrollY = window.scrollY;
+
+        // Use requestAnimationFrame for smoother boundary enforcement
+        if (currentScrollY < this.minScrollY - this.bufferZone) {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: this.minScrollY, behavior: 'instant' });
+          });
+        } else if (currentScrollY > this.maxScrollY + this.bufferZone) {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: this.maxScrollY, behavior: 'instant' });
+          });
         }
       }
     }
@@ -123,7 +162,12 @@ if (document.body.classList.contains('our-services-page')) {
           this.currentSection = 'product-supply-restricted';
           document.body.style.overflow = 'auto';
           this.setupProductSupplyScrollLimits();
-          this.scrollToSection('product-supply-overview');
+          this.scrollToSection(sectionId); // Use actual sectionId instead of always 'product-supply-overview'
+
+          // Enforce boundaries immediately after navigation
+          setTimeout(() => {
+            this.enforceScrollBoundaries();
+          }, 5);
           break;
 
         default:
@@ -542,15 +586,38 @@ if (document.body.classList.contains('our-services-page')) {
   scrollRestriction = new ScrollRestriction();
 
   // Update active state on scroll with throttling and scroll boundary enforcement
+  // Update active state on scroll with throttling and scroll boundary enforcement
   let scrollTimeout;
+  let isScrolling = false;
+
   window.addEventListener('scroll', () => {
     // Check scroll bounds for product supply sections
     if (scrollRestriction && scrollRestriction.currentSection === 'product-supply-restricted') {
       const currentScrollY = window.scrollY;
-      if (currentScrollY < scrollRestriction.minScrollY) {
-        window.scrollTo(0, scrollRestriction.minScrollY);
-      } else if (currentScrollY > scrollRestriction.maxScrollY) {
-        window.scrollTo(0, scrollRestriction.maxScrollY);
+
+      // Immediate hard stop at boundaries
+      if (!isScrolling) {
+        isScrolling = true;
+
+        if (currentScrollY < scrollRestriction.minScrollY) {
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top: scrollRestriction.minScrollY,
+              behavior: 'instant'
+            });
+            isScrolling = false;
+          });
+        } else if (currentScrollY > scrollRestriction.maxScrollY) {
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top: scrollRestriction.maxScrollY,
+              behavior: 'instant'
+            });
+            isScrolling = false;
+          });
+        } else {
+          isScrolling = false;
+        }
       }
     }
 
@@ -558,7 +625,7 @@ if (document.body.classList.contains('our-services-page')) {
       clearTimeout(scrollTimeout);
     }
     scrollTimeout = setTimeout(updateActiveSection, 50);
-  }, { passive: true });
+  }, { passive: false }); // Changed to passive: false for immediate prevention
 
   // Initial setup
   updateActiveSection();
