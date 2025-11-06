@@ -923,9 +923,11 @@ nav a {
 }
 
 .product-supply-grid {
+    padding-left: 100px;
+    padding-right: 100px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15%;
+    gap: 10%;
     row-gap: var(--space-1);
     align-items: start;
 }
