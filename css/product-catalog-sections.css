@@ -172,8 +172,8 @@
 
 .variation-item, .option-item {
     position: relative;
-    aspect-ratio: 1; /* Ensure both are square */
-    width: 100%; /* Fill their grid cells equally */
+    aspect-ratio: 4/5; /* Ensure both are square */
+    width: 90%; /* Fill their grid cells equally */
     height: auto;
     overflow: hidden;
     border: none;
@@ -209,16 +209,17 @@
 }
 
 .option-label, .variation-label {
-    position: absolute;
-    bottom: 4px;
+    position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-60%);
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.3px;
     color: #333;
-    padding: 1% -2%;
+    margin-top: 8px;
+    padding: 1% 20%;
+
     border-radius: 3px;
     text-align: center;
     width: 85%;

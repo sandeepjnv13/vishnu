@@ -159,6 +159,7 @@ if (document.body.classList.contains('our-services-page')) {
 
         case 'product-supply-overview':
         case 'kitchen-cabinets-product':
+        case 'counter-tops'
           this.currentSection = 'product-supply-restricted';
           document.body.style.overflow = 'auto';
           this.setupProductSupplyScrollLimits();
@@ -444,7 +445,7 @@ if (document.body.classList.contains('our-services-page')) {
     // Only update if we're in a scrollable area (product supply)
     if (scrollRestriction && scrollRestriction.currentSection === 'product-supply-restricted') {
       // Allow normal scroll behavior for product supply area
-      const sections = ['#product-supply-overview', '#kitchen-cabinets-product']
+      const sections = ['#product-supply-overview', '#kitchen-cabinets-product', '#counter-tops']
         .map(sel => document.querySelector(sel))
         .filter(Boolean);
 

@@ -368,8 +368,8 @@
 .icon-item span:last-child {
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  text-align: center;
+  letter-spacing: 1px;
+  text-align: left;
   line-height: 1.2;
 }
 
