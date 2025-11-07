@@ -61,7 +61,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 300px;
+  width: min(300px, 25vw);
   height: 100vh;
   background-color: #000;
   color: #fff;
@@ -128,9 +128,15 @@
 /* Main Content Area */
 .services-content {
   flex: 1;
-  margin-left: 300px;
+  margin-left: min(300px, 25vw);
   background: #fff;
   padding-top: var(--header-h-desktop);
+}
+
+/* Prevent side scrolling on laptop*/
+.services-content > * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Services Header */
@@ -376,12 +382,12 @@
 /* Mobile Responsiveness */
 @media (max-width: 1200px) {
   .services-sidebar {
-    width: 250px;
+    width: min(250px, 30vw);
     padding: 25px;
   }
 
   .services-content {
-    margin-left: 250px;
+    margin-left: min(250px, 30vw);
   }
 }
 
