@@ -89,25 +89,6 @@
     object-fit: cover;
 }
 
-
-.image-hover-effect {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #f8f8f8;
-    color: #000;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    font-style: italic;
-    opacity: 0;
-    transition: opacity 300ms ease;
-    pointer-events: none;
-    white-space: nowrap;
-    border-radius: 4px;
-    z-index: 2;
-}
-
 /* Product Variations (Sub Images) */
 .product-variations {
     display: grid;
