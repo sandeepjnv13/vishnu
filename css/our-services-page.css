@@ -193,11 +193,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 600ms ease;
-}
-
-.service-main-image:hover img {
-  transform: scale(1.05);
 }
 
 /* Center: Vertical Icons */
@@ -310,7 +305,7 @@
 }
 
 .service-image:hover .image-hover-text,
-.service-main-image:hover .image-hover-text,
+.image-hover-text,
 .service-secondary-image:hover .image-hover-text {
   opacity: 1;
 }
@@ -529,11 +524,6 @@ html {
   height: auto;
   display: block;
   border: 1px solid #ddd;
-  transition: transform 420ms var(--easing, cubic-bezier(.2,.8,.2,1));
-  will-change: transform;
-}
-.service-main-image:hover img {
-  transform: scale(1.04) rotate(0.2deg);
 }
 
 
@@ -587,8 +577,8 @@ html {
   box-shadow: 0 4px 14px rgba(0,0,0,.08);
   z-index: 0;
 }
-.work-stack::before { transform: rotate(-2deg) translate(-6px, -6px); }
-.work-stack::after  { transform: rotate( 3deg) translate(-12px, -2px); }
+.work-stack::before { transform:  translate(-6px, -6px); }
+.work-stack::after  { transform:  translate(-12px, -2px); }
 
 .work-stack img {
   position: relative;
@@ -599,10 +589,6 @@ html {
   display: block;
   transition: transform 420ms var(--easing, cubic-bezier(.2,.8,.2,1));
   will-change: transform;
-}
-.work-stack:hover img {
-  transform: scale(1.04) rotate(0.2deg);
-  animation: id-jitter 700ms ease-out 1;
 }
 
 .work-caption {
@@ -679,8 +665,6 @@ html {
     width: 80%;
     height: auto;
     border: 1px solid #ddd;
-    transition: transform 420ms var(--easing, cubic-bezier(.2,.8,.2,1));
-    will-change: transform;
 }
 
 .work-stack .stack-image.top {
@@ -700,9 +684,7 @@ html {
     transform: translate(-12px, -12px);
 }
 
-.work-stack:hover .stack-image.top {
-    transform: scale(1.04) rotate(0.2deg);
-}
+
 
 
 /* =======================
