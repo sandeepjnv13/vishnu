@@ -204,7 +204,7 @@
 
 .option-label, .variation-label {
     position: relative;
-    left: 50%;
+    left: 44%;
     transform: translateX(-50%);
     font-size: 0.7rem;
     font-weight: 600;

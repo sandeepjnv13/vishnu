@@ -1,5 +1,5 @@
 // ================================
-// slider-scripts.js (self-contained, race-safe)
+// slider-scripts.js (race-safe, no first-image flash)
 // ================================
 
 // 1) Gallery config (keys are "<sectionId>::<optionKey>")
@@ -42,20 +42,18 @@ const GALLERY_CONFIG = {
       { src: "resources/Image2.jpg", alt: "Melamine 2", label: "Mel 2" }
     ]
   }
-
   // Add more entries as needed...
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  // page guard
   if (!document.body.classList.contains('our-services-page')) return;
   if (typeof Glide === 'undefined') { console.error('[slider] Glide not loaded'); return; }
 
   // 2) Runtime state
   let glides = {};
   let currentActiveGallery = null;
-  const CSS_TRANSITION_MS = 350;     // keep in sync with .option-gallery expand transition
-  const SAFE_REMOVE_MS = CSS_TRANSITION_MS + 10; // slightly above CSS to avoid flicker
+  const CSS_TRANSITION_MS = 350;          // keep in sync with .option-gallery expand transition
+  const SAFE_REMOVE_MS = CSS_TRANSITION_MS + 10;
 
   // 3) Click -> open gallery
   document.querySelectorAll('.option-item').forEach((item) => {
@@ -96,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Let layout settle, then expand and mount on transitionend
       requestAnimationFrame(() => {
-        // Mount Glide only after the expand transition finishes to avoid zero-size measurements
         const mountGlide = () => {
           initializeGlideSlider(gallery, {
             id: `glide-${sectionId}-${finishKey}`,
@@ -110,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
           mountGlide();
         };
 
-        // Fallback in case transitionend doesn't fire (e.g., reduced motion)
+        // Fallback if transitionend doesn't fire
         let fallbackTimer = setTimeout(() => {
           gallery.removeEventListener('transitionend', onEnd);
           mountGlide();
@@ -137,10 +134,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const gallery = document.createElement('div');
     gallery.className = 'option-gallery';
+    gallery.setAttribute('aria-expanded', 'false');
 
     const slides = cfg.images.map(img => `
       <li class="glide__slide">
-        <img src="${img.src}" alt="${img.alt || ''}" loading="lazy">
+        <img src="${img.src}" alt="${img.alt || ''}" loading="lazy" decoding="async">
         <span>${img.label || ''}</span>
       </li>
     `).join('');
@@ -150,15 +148,15 @@ document.addEventListener('DOMContentLoaded', function () {
     gallery.innerHTML = `
       <div class="gallery-header">
         <h4>${title}</h4>
-        <button class="gallery-close" aria-label="Close gallery">×</button>
+        <button class="gallery-close" aria-label="Close gallery" type="button">×</button>
       </div>
-      <div class="glide">
+      <div class="glide" aria-hidden="true">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">${slides}</ul>
         </div>
         <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<" aria-label="Previous slide">‹</button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">" aria-label="Next slide">›</button>
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<" aria-label="Previous slide" type="button">‹</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">" aria-label="Next slide" type="button">›</button>
         </div>
       </div>
     `;
@@ -181,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return gallery;
   }
 
-  // 5) Initialize Glide safely
+  // 5) Initialize Glide safely (and reveal only after mount)
   function initializeGlideSlider(gallery, opts) {
     const el = gallery.querySelector('.glide');
     if (!el) return;
@@ -208,12 +206,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
       instance.mount();
+
+      // Reveal carousel only after Glide has mounted
+      el.classList.add('is-ready');
+      el.removeAttribute('aria-hidden');
+      gallery.setAttribute('aria-expanded', 'true');
+
       glides[opts.id] = instance;
     };
     mount();
   }
 
-  // 6) Close all galleries (race-safe: capture the element we intend to remove)
+  // 6) Close all galleries (race-safe)
   function closeAllGalleries() {
     // destroy all glide instances
     Object.values(glides).forEach(g => { try { g.destroy(); } catch (_) {} });
@@ -223,8 +227,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const toRemove = currentActiveGallery;
     if (toRemove) {
       toRemove.classList.remove('active'); // triggers CSS collapse
+      toRemove.setAttribute('aria-expanded', 'false');
       setTimeout(() => {
-        // only remove the element we captured earlier
         try { toRemove.remove(); } catch (_) {}
       }, SAFE_REMOVE_MS);
     }
