@@ -1,5 +1,5 @@
 // ================================
-// slider-scripts.js (self-contained)
+// slider-scripts.js (self-contained, race-safe)
 // ================================
 
 // 1) Gallery config (keys are "<sectionId>::<optionKey>")
@@ -46,18 +46,20 @@ const GALLERY_CONFIG = {
   // Add more entries as needed...
 };
 
-// 2) Runtime
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // page guard
   if (!document.body.classList.contains('our-services-page')) return;
   if (typeof Glide === 'undefined') { console.error('[slider] Glide not loaded'); return; }
 
+  // 2) Runtime state
   let glides = {};
   let currentActiveGallery = null;
+  const CSS_TRANSITION_MS = 350;     // keep in sync with .option-gallery expand transition
+  const SAFE_REMOVE_MS = CSS_TRANSITION_MS + 10; // slightly above CSS to avoid flicker
 
-  // Click -> open gallery
+  // 3) Click -> open gallery
   document.querySelectorAll('.option-item').forEach((item) => {
-    item.addEventListener('click', function(e) {
+    item.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
 
@@ -80,34 +82,56 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Close previous
+      // Close previous (race-safe)
       closeAllGalleries();
 
       // Build + insert new
       const gallery = createGallery(cfg, sectionEl, this.closest('.product-options-panel'));
 
-      // set active visual state
+      // mark active option
       document.querySelectorAll('.option-item.active-gallery-item').forEach(it => it.classList.remove('active-gallery-item'));
       this.classList.add('active-gallery-item');
 
       currentActiveGallery = gallery;
 
+      // Let layout settle, then expand and mount on transitionend
       requestAnimationFrame(() => {
-        gallery.classList.add('active');
-        setTimeout(() => {
+        // Mount Glide only after the expand transition finishes to avoid zero-size measurements
+        const mountGlide = () => {
           initializeGlideSlider(gallery, {
             id: `glide-${sectionId}-${finishKey}`,
             perView: cfg.perView ?? 3
           });
-        }, 300);
+        };
+
+        const onEnd = (ev) => {
+          if (ev.target !== gallery) return;
+          gallery.removeEventListener('transitionend', onEnd);
+          mountGlide();
+        };
+
+        // Fallback in case transitionend doesn't fire (e.g., reduced motion)
+        let fallbackTimer = setTimeout(() => {
+          gallery.removeEventListener('transitionend', onEnd);
+          mountGlide();
+        }, SAFE_REMOVE_MS + 60);
+
+        gallery.addEventListener('transitionend', (ev) => {
+          if (ev.target !== gallery) return;
+          clearTimeout(fallbackTimer);
+        });
+
+        gallery.addEventListener('transitionend', onEnd, { once: true });
+        gallery.classList.add('active'); // triggers CSS expand
       });
     });
   });
 
+  // 4) Build gallery DOM
   function createGallery(cfg, sectionEl, optionsPanel) {
     if (!optionsPanel) optionsPanel = sectionEl.querySelector('.product-options-panel');
 
-    // remove existing gallery in this panel
+    // remove existing gallery in this panel (defensive; closeAllGalleries() already clears)
     const existing = optionsPanel.querySelector('.option-gallery');
     if (existing) existing.remove();
 
@@ -157,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return gallery;
   }
 
+  // 5) Initialize Glide safely
   function initializeGlideSlider(gallery, opts) {
     const el = gallery.querySelector('.glide');
     if (!el) return;
@@ -164,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mount = () => {
       const rect = el.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) {
+        // wait until it is actually visible & sized
         setTimeout(mount, 80);
         return;
       }
@@ -175,7 +201,11 @@ document.addEventListener('DOMContentLoaded', function() {
         animationDuration: 400,
         dragThreshold: 80,
         swipeThreshold: 50,
-        breakpoints: { 1024: { perView: 2, gap: 15 }, 768: { perView: 2 }, 480: { perView: 1, gap: 10 } }
+        breakpoints: {
+          1024: { perView: Math.min(2, opts.perView || 2), gap: 15 },
+          768:  { perView: 2 },
+          480:  { perView: 1, gap: 10 }
+        }
       });
       instance.mount();
       glides[opts.id] = instance;
@@ -183,21 +213,32 @@ document.addEventListener('DOMContentLoaded', function() {
     mount();
   }
 
+  // 6) Close all galleries (race-safe: capture the element we intend to remove)
   function closeAllGalleries() {
+    // destroy all glide instances
     Object.values(glides).forEach(g => { try { g.destroy(); } catch (_) {} });
     glides = {};
-    if (currentActiveGallery) {
-      currentActiveGallery.classList.remove('active');
-      setTimeout(() => currentActiveGallery?.remove(), 350);
+
+    // capture the element to remove so async timeout can't remove a newly opened one
+    const toRemove = currentActiveGallery;
+    if (toRemove) {
+      toRemove.classList.remove('active'); // triggers CSS collapse
+      setTimeout(() => {
+        // only remove the element we captured earlier
+        try { toRemove.remove(); } catch (_) {}
+      }, SAFE_REMOVE_MS);
     }
     currentActiveGallery = null;
-    document.querySelectorAll('.option-item.active-gallery-item').forEach(it => it.classList.remove('active-gallery-item'));
+
+    // clear any visual active state on options
+    document.querySelectorAll('.option-item.active-gallery-item')
+      .forEach(it => it.classList.remove('active-gallery-item'));
   }
 
-  // Dismiss on outside click / Esc / resize update
+  // 7) Dismiss on outside click / Esc / keep sliders fresh on resize
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.option-gallery') && !e.target.closest('.option-item')) closeAllGalleries();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllGalleries(); });
-  window.addEventListener('resize', () => Object.values(glides).forEach(g => { try { g.update(); } catch(_) {} }));
+  window.addEventListener('resize', () => Object.values(glides).forEach(g => { try { g.update(); } catch (_) {} }));
 });
