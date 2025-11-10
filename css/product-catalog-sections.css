@@ -1,4 +1,4 @@
-/* Product Catalog Section Styles - Add to your existing CSS */
+/* Product Catalog Section Styles - FINAL FIX for gallery expansion */
 
 /* Base Product Section */
 .product-catalog-section {
@@ -38,37 +38,43 @@
     text-align: center;
 }
 
-/* Main Product Layout */
+/* Main Product Layout - LOCKED grid to prevent reflow */
 .product-catalog-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* CRITICAL: Use minmax to lock column widths */
+    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
     gap: var(--space-4);
     align-items: start;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Left Side: Product Images */
+/* Left Side: Product Images - LOCKED sizing */
 .product-images-container {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
-    height: 100%;
     min-height: 500px;
+    /* CRITICAL: Lock width */
+    width: 100%;
+    min-width: 0; /* Allow shrinking but not growing */
 }
 
-/* Right Side: Options Panel */
-
+/* Right Side: Options Panel - LOCKED sizing */
 .product-options-panel {
     background: #f8f8f8;
     backdrop-filter: blur(var(--blur));
     padding: var(--space-3);
-    position: static;
-    height: fit-content;
     min-height: 500px;
+    /* CRITICAL: Lock width to prevent expansion */
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* CRITICAL: Allow internal scrolling if needed */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
-
-
 
 /* Main Product Showcase */
 .main-product-showcase {
@@ -93,8 +99,8 @@
 .product-variations {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-1); /* Same gap as options-grid */
-    aspect-ratio: 2/1; /* Make it half the height of options-grid since it's only 1 row */
+    gap: var(--space-1);
+    aspect-ratio: 2/1;
 }
 
 .variation-item:hover {
@@ -137,22 +143,22 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-2);
     margin-bottom: var(--space-2);
-    row-gap: 70px; /* Control vertical distance between rows */
-    aspect-ratio: 2/1; /* 2 rows of 3 items, so wider than tall */
+    row-gap: 70px;
+    aspect-ratio: 2/1;
     height: auto;
 }
 
 .variation-item, .option-item {
     position: relative;
-    aspect-ratio: 4/5; /* Ensure both are square */
-    width: 90%; /* Fill their grid cells equally */
+    aspect-ratio: 4/5;
+    width: 90%;
     height: auto;
     overflow: hidden;
     border: none;
     background: #f8f8f8;
     display: flex;
     flex-direction: column;
-    align-items: anchor-center;
+    align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 250ms ease;
@@ -169,6 +175,14 @@
     background: #f8f8f8;
 }
 
+/* Updated active state for gallery items */
+.option-item.active-gallery-item {
+    border-color: var(--brand-accent);
+    background: #f0f9f8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 196, 192, 0.2);
+}
+
 .option-item img {
     width: 90%;
     height: 70%;
@@ -183,7 +197,7 @@
 .option-label, .variation-label {
     position: relative;
     left: 50%;
-    transform: translateX(-60%);
+    transform: translateX(-50%);
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -191,21 +205,19 @@
     color: #333;
     margin-top: 5px;
     padding: 1% 20%;
-
     border-radius: 3px;
     text-align: center;
     width: 85%;
 }
 
 /* Product Actions */
-
 .product-actions {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    margin-top: var(--space-5); /* Add top margin to separate from finishes */
-    padding-top: var(--space-5); /* Add padding */
-    border-top: 1px solid #eee; /* Add subtle separator line */
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid #eee;
 }
 
 .action-btn {

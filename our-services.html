@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="css/our-services-page.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/product-catalog-sections.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+    <link rel="stylesheet" href="css/slider-block.css">
 </head>
 <body class="our-services-page">
 
@@ -403,27 +406,82 @@
                             <div class="options-grid">
                                 <div class="option-item" data-finish="LAMINATED">
                                     <img src="resources/Image1.jpg" alt="Laminated">
-                                    <span class="option-label">PEN</span>
+                                    <span class="option-label">LAMINATED</span>
                                 </div>
+
+                                <!-- Simple gallery that appears on click -->
+                                <div class="option-gallery" id="gallery-laminated" style="display: none;">
+                                    <div class="gallery-close">✕</div>
+                                    <div class="glide">
+                                        <div class="glide__track" data-glide-el="track">
+                                            <ul class="glide__slides">
+                                                <li class="glide__slide">
+                                                    <img src="resources/banner_2.jpg" alt="Wood Grain">
+                                                    <span>Wood Grain</span>
+                                                </li>
+                                                <li class="glide__slide">
+                                                    <img src="resources/banner_1.jpg" alt="Marble Look">
+                                                    <span>Marble Look</span>
+                                                </li>
+                                                <li class="glide__slide">
+                                                    <img src="resources/banner_3.jpg" alt="Solid Color">
+                                                    <span>Solid Color</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="glide__arrows" data-glide-el="controls">
+                                            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+                                            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="option-item" data-finish="MELAMINE">
                                     <img src="resources/Image1.jpg" alt="Melamine">
-                                    <span class="option-label">TAB</span>
+                                    <span class="option-label">MELAMINE</span>
                                 </div>
+
+                                <div class="option-gallery" id="gallery-melamine" style="display: none;">
+                                    <div class="gallery-close">✕</div>
+                                    <div class="glide">
+                                        <div class="glide__track" data-glide-el="track">
+                                            <ul class="glide__slides">
+                                                <li class="glide__slide">
+                                                    <img src="resources/melamine-1.jpg" alt="White Matt">
+                                                    <span>White Matt</span>
+                                                </li>
+                                                <li class="glide__slide">
+                                                    <img src="resources/melamine-2.jpg" alt="Black Matt">
+                                                    <span>Black Matt</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="glide__arrows" data-glide-el="controls">
+                                            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+                                            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Repeat for other options... -->
                                 <div class="option-item" data-finish="PAINTED">
                                     <img src="resources/Image1.jpg" alt="Painted">
-                                    <span class="option-label">PLATES</span>
+                                    <span class="option-label">PAINTED</span>
                                 </div>
+
                                 <div class="option-item" data-finish="VENEER">
                                     <img src="resources/Image1.jpg" alt="Veneer">
-                                    <span class="option-label">THIS</span>
+                                    <span class="option-label">VENEER</span>
                                 </div>
+
                                 <div class="option-item" data-finish="ACRYLIC">
                                     <img src="resources/Image1.jpg" alt="Acrylic">
-                                    <span class="option-label">THAT</span>
+                                    <span class="option-label">ACRYLIC</span>
                                 </div>
+
                                 <div class="option-item" data-finish="PVC">
                                     <img src="resources/Image1.jpg" alt="PVC">
-                                    <span class="option-label">BOTTLE</span>
+                                    <span class="option-label">PVC</span>
                                 </div>
                             </div>
 
@@ -511,6 +569,7 @@
 
 <script src="js/our-services.js" defer></script>
 <script src="js/product-catalog-sections.js" defer></script>
+<script src="js/slider-scripts.js" defer></script>
 
 </body>
 </html>
