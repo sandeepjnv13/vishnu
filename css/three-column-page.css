@@ -32,15 +32,15 @@
 
   display: grid;
   grid-template-columns:
-    /* primary image: flexible */
+    /* primary image */
     minmax(0, clamp(280px, 35vw, 560px))
     /* spacer A */
     minmax(0, var(--gap-img-icons))
-    /* circles column: NOW CAN SHRINK */
-    minmax(0, clamp(120px, 12vw, 220px))
+    /* circles column: LOWER MINIMUM + HIGHER VW */
+    minmax(0, clamp(80px, 15vw, 220px))
     /* spacer B */
     minmax(0, var(--gap-icons-stack))
-    /* right stack: NOW CAN SHRINK */
+    /* right stack */
     minmax(0, clamp(180px, 18vw, 260px));
 
   grid-template-rows: auto auto;
@@ -57,7 +57,8 @@
     grid-template-columns:
       minmax(0, clamp(240px, 32vw, 520px))
       minmax(0, var(--gap-img-icons))
-      minmax(0, clamp(100px, 11vw, 200px))
+      /* circles: lower min, higher vw */
+      minmax(0, clamp(70px, 13vw, 200px))
       minmax(0, var(--gap-icons-stack))
       minmax(0, clamp(160px, 16vw, 240px));
   }
@@ -73,10 +74,6 @@
       "icons"
       "stack";
     gap: 24px;
-  }
-  .service-content-section {
-    justify-self: start;
-    max-width: 560px;
   }
 }
 
