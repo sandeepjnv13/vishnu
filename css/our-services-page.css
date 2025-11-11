@@ -510,23 +510,46 @@ html {
 
 /* ===== Interior Design layout exactly like the sketch ===== */
 
+/* Fluid (Option B) — overflow-safe on laptops */
 .service-layout {
-  --gap-img-icons: 1px;   /* between primary image and circles */
-  --gap-icons-stack: 80px; /* between circles and right stack */
+  /* gentler, fluid gaps */
+  --gap-img-icons: clamp(4px, 0.8vw, 12px);
+  --gap-icons-stack: clamp(24px, 4.5vw, 72px);
 
   display: grid;
   grid-template-columns:
-    minmax(420px, 560px)   /* primary image */
-    var(--gap-img-icons)   /* spacer A */
-    220px                  /* circles column */
-    var(--gap-icons-stack) /* spacer B */
-    minmax(320px, 1fr);    /* right stack */
+    /* primary image: can shrink more before wrapping */
+    minmax(0, clamp(340px, 35vw, 560px))
+    /* spacer A: collapsible */
+    minmax(0, var(--gap-img-icons))
+    /* circles column: a bit more flexible */
+    minmax(0, clamp(160px, 12vw, 220px))
+    /* spacer B: collapsible */
+    minmax(0, var(--gap-icons-stack))
+    /* right stack: at least 280, then fill */
+    minmax(120px, 260px);
+
   grid-template-rows: auto auto;
   grid-template-areas:
     "image . icons . stack"
     "text  . icons . stack";
   align-items: start;
+
+  max-width: 100%;
 }
+
+/* Optional safety step for tighter viewports (≤1280px) */
+@media (max-width: 1280px) {
+  .service-layout {
+    grid-template-columns:
+      minmax(0, clamp(300px, 32vw, 520px))
+      minmax(0, var(--gap-img-icons))
+      minmax(0, clamp(140px, 11vw, 200px))
+      minmax(0, var(--gap-icons-stack))
+      minmax(260px, 1fr);
+  }
+}
+
 
 /* map existing parts */
 .service-main-image { grid-area: image; }
