@@ -91,21 +91,21 @@
   z-index: 1;
   flex: 1;
   width: 100%;
-  background: #fff;
+  background: #f8f8f8;
   padding-top: var(--header-h-desktop);
+  min-height: 100vh;
+  min-width: 82vw;
+  /* Prevent side scrolling on laptop*/
+  max-width: 82vw;
+  box-sizing: border-box;
 }
 
 .services-page-wrapper {
   margin-left: 18vw;
-  min-height: 100vh;
   position: relative;
 }
 
-/* Prevent side scrolling on laptop*/
-.services-content > * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
+
 
 .sidebar-title {
   font-size: 1.5rem;
@@ -512,17 +512,19 @@ nav a {
 
 /* Services Overview Section */
 .services-overview-section {
+    min-height: 93vh;
+    display: flex;
+    align-items: center;
     background: #f8f8f8;
     backdrop-filter: blur(4px);
-    margin-bottom: 20%;
 }
 
 .services-overview-section .container {
-    padding-top: 8%;
-    padding-bottom: 8%;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
     padding-left: 8%;
     padding-right: 8%;
-    max-width: none;
+    width: 100%;
 }
 
 
@@ -709,10 +711,7 @@ nav a {
     }
 }
 
-/* Adjust spacing between sections */
-.services-overview-section {
-    padding-bottom: var(--space-3);
-}
+
 
 .product-supply-overview-section {
     padding-top: var(--space-1);

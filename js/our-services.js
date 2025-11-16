@@ -135,13 +135,20 @@ if (document.body.classList.contains('our-services-page')) {
   // Handle main sidebar link clicks (non-dropdown)
   function initMainLinks() {
     sidebarLinks.forEach(link => {
-      // Skip dropdown parent links (they're handled in initDropdowns)
+      // Skip dropdown parent links
       if (link.closest('.has-dropdown')) return;
 
       link.addEventListener('click', (e) => {
-        e.preventDefault();
         const href = link.getAttribute('href');
+
+        // If it's a cross-page link, allow default navigation
+        if (href && href.includes('.html')) {
+          return; // Let browser handle the navigation
+        }
+
+        // For same-page anchors, prevent default and scroll
         if (href && href.startsWith('#')) {
+          e.preventDefault();
           const section = document.querySelector(href);
           if (section) {
             const offsetTop = section.offsetTop - 80;
@@ -150,15 +157,7 @@ if (document.body.classList.contains('our-services-page')) {
               behavior: 'smooth'
             });
           }
-
           setActiveLink(link);
-
-          // Close all dropdowns when clicking main links
-          dropdownItems.forEach(item => {
-            item.classList.remove('expanded');
-            const submenu = item.querySelector('.sidebar-submenu');
-            if (submenu) submenu.classList.remove('expanded');
-          });
         }
       });
     });
