@@ -99,10 +99,6 @@
 }
 
 
-.variation-item:hover {
-    transform: translateY(-3px);
-}
-
 .variation-item.active {
     border-color: var(--brand-accent);
 }
@@ -146,10 +142,6 @@
     transition: transform 300ms ease;
 }
 
-.variation-item:hover img {
-    transform: scale(1.05);
-}
-
 .variation-item, .option-item {
     position: relative;
     aspect-ratio: 4/5;
@@ -165,7 +157,6 @@
     transition: all 250ms ease;
 }
 .variation-item {
-    cursor: pointer;
     width: 100%;
 }
 
@@ -205,6 +196,35 @@
 .product-variations .variation-item:last-child img {
     width: 100%;          /* override the 90% just for these two */
 }
+
+
+/* Make variation thumbnails square + keep label visible
+   (product-supply.html -> .product-variations area) */
+.product-variations .variation-item {
+    /* Let the card be as tall as it needs (image + label) */
+    aspect-ratio: auto;          /* overrides 4/5 */
+    overflow: visible;           /* don't clip label */
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+/* Force the thumbnail itself to be a square box */
+.product-variations .variation-item img {
+    width: 100%;                 /* fill card width */
+    height: auto;
+    aspect-ratio: 1 / 1;         /* always square visual frame */
+    object-fit: contain;         /* no cropping: square image stays intact */
+    display: block;
+}
+
+/* Keep the label safely below the square image */
+.product-variations .variation-label {
+    margin-top: 6px;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+}
+
 
 
 /*
