@@ -622,7 +622,7 @@ nav a {
 }
 
 .product-supply-header h1 {
-    font-size: 2.1rem;
+    font-size: 1.5rem;
     letter-spacing: .6px;
     margin-bottom: 0;
     color: #111;
@@ -680,12 +680,37 @@ nav a {
     font-weight: 600;
 }
 
+
+.product-supply-grid {
+    padding-left: 100px;
+    padding-right: 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12%;
+    row-gap: var(--space-1);
+    align-items: start;
+}
+
+
 /* Responsive Design for Product Supply Grid */
+
+@media (max-width: 1600px) {
+    .product-supply-card h3 {
+            font-size: 0.6rem;
+        }
+        .product-supply-grid {
+            row-gap: 0.2vh;
+        }
+}
+
 @media (max-width: 1200px) {
     .product-supply-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 4%;
     }
+    .product-supply-card h3 {
+            font-size: 0.6rem;
+        }
 }
 
 @media (max-width: 900px) {
@@ -695,7 +720,7 @@ nav a {
     }
 
     .product-supply-card h3 {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
 }
 
@@ -706,7 +731,7 @@ nav a {
     }
 
     .product-supply-card h3 {
-        font-size: 0.62rem;
+        font-size: 0.60rem;
         padding: 8px 6px 12px;
     }
 }
