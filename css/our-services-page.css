@@ -671,7 +671,7 @@ nav a {
 }
 
 .product-supply-card h3 {
-    font-size: 1rem;
+    font-size: 0.75rem;
     letter-spacing: .3px;
     color: #222;
     line-height: 1.2;
@@ -695,7 +695,7 @@ nav a {
     }
 
     .product-supply-card h3 {
-        font-size: 0.95rem;
+        font-size: 0.7rem;
     }
 }
 
@@ -706,7 +706,7 @@ nav a {
     }
 
     .product-supply-card h3 {
-        font-size: 0.85rem;
+        font-size: 0.62rem;
         padding: 8px 6px 12px;
     }
 }
