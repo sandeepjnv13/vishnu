@@ -98,13 +98,6 @@
     object-fit: cover;
 }
 
-/* Product Variations (Sub Images) */
-.product-variations {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-1);
-    aspect-ratio: 2/1;
-}
 
 .variation-item:hover {
     transform: translateY(-3px);
@@ -112,17 +105,6 @@
 
 .variation-item.active {
     border-color: var(--brand-accent);
-}
-
-.variation-item img {
-    width: 90%;
-    height: 70%;
-    object-fit: cover;
-    transition: transform 300ms ease;
-}
-
-.variation-item:hover img {
-    transform: scale(1.05);
 }
 
 .options-header {
@@ -156,6 +138,18 @@
     justify-items: stretch;
 }
 
+
+.variation-item img {
+    width: 90%;
+    height: 70%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+}
+
+.variation-item:hover img {
+    transform: scale(1.05);
+}
+
 .variation-item, .option-item {
     position: relative;
     aspect-ratio: 4/5;
@@ -169,11 +163,49 @@
     align-items: center;
     justify-content: center;
     transition: all 250ms ease;
-    border-radius: 6px;
 }
 .variation-item {
     cursor: pointer;
+    width: 100%;
 }
+
+
+/* Product Variations (Sub Images) */
+.product-variations {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-1);
+    aspect-ratio: 2/1;
+}
+/* Align variation thumbnails: first = left, middle = center, last = right */
+
+/* first thumbnail: hug left */
+.product-variations .variation-item:first-child {
+    justify-self: start;
+}
+
+/* middle thumbnail: stay centered */
+.product-variations .variation-item:nth-child(2) {
+    justify-self: center;
+}
+
+/* last thumbnail: hug right */
+.product-variations .variation-item:last-child {
+    justify-self: end;
+}
+
+/* First and last variation: card flush to edges (from earlier) */
+.product-variations .variation-item:first-child,
+.product-variations .variation-item:last-child {
+    width: 100%;          /* fill the grid column */
+}
+
+/* First and last variation: image fills the card horizontally */
+.product-variations .variation-item:first-child img,
+.product-variations .variation-item:last-child img {
+    width: 100%;          /* override the 90% just for these two */
+}
+
 
 /*
 .option-item:hover {
