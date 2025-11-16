@@ -199,7 +199,7 @@
 
 
 /* Make variation thumbnails square + keep label visible
-   (product-supply.html -> .product-variations area) */
+   (product-catalog.html -> .product-variations area) */
 .product-variations .variation-item {
     /* Let the card be as tall as it needs (image + label) */
     aspect-ratio: auto;          /* overrides 4/5 */
