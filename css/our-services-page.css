@@ -701,6 +701,13 @@ nav a {
         .product-supply-grid {
             row-gap: 1.7vh;
         }
+        .sidebar-title {
+          font-size: 1.2rem;
+        }
+
+        .sidebar-link {
+          font-size: 0.82rem;
+        }
 }
 
 @media (max-width: 1200px) {
