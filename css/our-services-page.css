@@ -697,17 +697,16 @@ nav a {
 @media (max-width: 1600px) {
     .product-supply-card h3 {
             font-size: 0.6rem;
-        }
-        .product-supply-grid {
-            row-gap: 1.7vh;
-        }
-        .sidebar-title {
-          font-size: 1.2rem;
-        }
-
-        .sidebar-link {
-          font-size: 0.82rem;
-        }
+    }
+    .product-supply-grid {
+        row-gap: 1.7vh;
+    }
+    .sidebar-title {
+      font-size: 1.2rem;
+    }
+    .sidebar-link {
+      font-size: 0.82rem;
+    }
 }
 
 @media (max-width: 1200px) {

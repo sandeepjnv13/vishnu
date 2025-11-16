@@ -85,6 +85,13 @@ header.scrolled {
   max-width: min(28vw, 300px);
 }
 
+header.menu-hidden .logo {
+  display: none;            /* hides visually */
+  pointer-events: none;     /* prevents clicks */
+  user-select: none;
+}
+
+
 
 .logo:hover img { transform: scale(1.05); }
 

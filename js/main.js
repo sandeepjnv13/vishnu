@@ -115,10 +115,28 @@ document.querySelectorAll('.interior-section').forEach(el => observer.observe(el
   const hero = document.querySelector('.hero, #hero, #banner, .banner');
   if (!hero) return;
 
+  const logo = header.querySelector('.logo');
+
   const setHidden = (hidden) => {
-    header.classList.toggle('menu-hidden', hidden);
-    nav.setAttribute('aria-hidden', hidden ? 'true' : 'false');
-  };
+      header.classList.toggle('menu-hidden', hidden);
+      nav.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+
+      if (logo) {
+        // hide from assistive tech and remove from tab order when hidden
+        logo.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+
+        if (hidden) {
+          // remember previous tabindex if present
+          logo.__prevTabIndex = logo.hasAttribute('tabindex') ? logo.getAttribute('tabindex') : null;
+          logo.setAttribute('tabindex', '-1');
+        } else {
+          // restore previous tabindex (or remove if none)
+          if (logo.__prevTabIndex === null) logo.removeAttribute('tabindex');
+          else logo.setAttribute('tabindex', logo.__prevTabIndex);
+          delete logo.__prevTabIndex;
+        }
+      }
+    };
 
   const observer = new IntersectionObserver(
     ([entry]) => {
