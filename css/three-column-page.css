@@ -2,7 +2,7 @@
 .service-section {
   position: relative;
   background: #f8f8f8;
-  padding: 4vh 3vw;
+  /* padding: 4vh 1vw; */
   scroll-padding-top: 4vh;
 }
 

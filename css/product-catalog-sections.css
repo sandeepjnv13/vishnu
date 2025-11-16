@@ -39,14 +39,14 @@
 }
 
 /* Main Product Layout - LOCKED grid to prevent reflow */
+
 .product-catalog-layout {
     display: grid;
-    /* CRITICAL: Use minmax to lock column widths */
-    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
-    gap: var(--space-4);
-    align-items: start;
-    max-width: 1400px;
-    margin: 0 auto;
+    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+    gap: clamp(12px, 2.5vw, 32px);
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 /* Left Side: Product Images - LOCKED sizing */

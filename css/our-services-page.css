@@ -94,7 +94,7 @@
   background: #f8f8f8;
   padding-top: 8vh;
   min-height: 100vh;
-  min-width: 82vw;
+  min-width: 80vw;
   /* Prevent side scrolling on laptop*/
   max-width: 82vw;
   box-sizing: border-box;
@@ -231,7 +231,7 @@
 }
 
 .alt-layout .service-grid {
-  direction: rtl;
+  direction: ltr;
 }
 
 .alt-layout .service-content {
