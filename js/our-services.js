@@ -176,7 +176,25 @@
         }
       });
 
-      // No hash: highlight the PRODUCT SUPPLY overview link
+      // Check for specific product sections based on hash
+      if (currentHash) {
+        let matchingSublink = null;
+
+        // Map hash to corresponding sublink
+        if (currentHash === '#kitchen-cabinets-product') {
+          matchingSublink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
+        } else if (currentHash === '#counter-tops') {
+          matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
+        }
+
+        if (matchingSublink) {
+          // Highlight the specific sublink and its parent
+          setActiveLink(matchingSublink);
+          return;
+        }
+      }
+
+      // No specific hash: highlight the PRODUCT SUPPLY overview link
       const overviewLink =
         document.querySelector(
           '.sidebar-link[href*="product-catalog.html#product-supply-overview"]'
@@ -212,6 +230,41 @@
       return;
     }
   };
+
+  // --------------------------------------------
+  // Handle hash changes (for same-page navigation)
+  // --------------------------------------------
+  const handleHashChange = () => {
+    const newHash = window.location.hash.toLowerCase();
+
+    if (newHash && currentPath.split('/').pop() === 'product-catalog.html') {
+      let matchingSublink = null;
+
+      // Map hash to corresponding sublink
+      if (newHash === '#kitchen-cabinets-product') {
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
+      } else if (newHash === '#counter-tops') {
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
+      } else if (newHash === '#product-supply-overview') {
+        // For overview, highlight the parent link
+        const overviewLink = document.querySelector('[data-section="product-supply"]');
+        if (overviewLink) {
+          setActiveLink(overviewLink);
+          return;
+        }
+      }
+
+      if (matchingSublink) {
+        setActiveLink(matchingSublink);
+      }
+    } else {
+      // Re-apply initial highlight for other cases
+      applyInitialHighlight();
+    }
+  };
+
+  // Listen for hash changes
+  window.addEventListener('hashchange', handleHashChange);
 
   // --------------------------------------------
   // Mobile sidebar toggle
@@ -289,6 +342,46 @@
     );
 
     serviceSections.forEach((section) => observer.observe(section));
+  }
+
+  // --------------------------------------------
+  // Enhanced scroll spy for product catalog sections
+  // --------------------------------------------
+  if (currentPath.split('/').pop() === 'product-catalog.html') {
+    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops');
+
+    if (sections.length > 0) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              const sectionId = entry.target.id;
+              let targetLink = null;
+
+              // Find corresponding sidebar link
+              if (sectionId === 'product-supply-overview') {
+                targetLink = document.querySelector('[data-section="product-supply"]');
+              } else if (sectionId === 'kitchen-cabinets-product') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
+              } else if (sectionId === 'counter-tops') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
+              }
+
+              if (targetLink && !window.location.hash) {
+                // Only update if there's no explicit hash in URL
+                setActiveLink(targetLink);
+              }
+            }
+          });
+        },
+        {
+          threshold: [0.3],
+          rootMargin: '-100px 0px -100px 0px'
+        }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
+    }
   }
 
   // --------------------------------------------
