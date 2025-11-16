@@ -156,7 +156,7 @@ class ProductCatalogSections {
 
   // Setup keyboard navigation
   setupKeyboardNavigation() {
-    const interactiveItems = document.querySelectorAll('.variation-item, .option-item');
+    const interactiveItems = document.querySelectorAll('.variation-item');
 
     interactiveItems.forEach(item => {
       item.setAttribute('tabindex', '0');

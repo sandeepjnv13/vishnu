@@ -168,11 +168,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     transition: all 250ms ease;
     border-radius: 6px;
 }
+.variation-item {
+    cursor: pointer;
+}
 
+/*
 .option-item:hover {
     transform: translateY(-3px);
     border-color: var(--brand-accent);
@@ -183,23 +186,20 @@
     background: #f8f8f8;
 }
 
-/* Updated active state for gallery items */
 .option-item.active-gallery-item {
     border-color: var(--brand-accent);
     background: #f0f9f8;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(88, 196, 192, 0.2);
 }
+*/
+
 
 .option-item img {
     width: 90%;
     height: 70%;
     object-fit: cover;
     transition: transform 300ms ease;
-}
-
-.option-item:hover img {
-    transform: scale(1.1);
 }
 
 
