@@ -27,7 +27,9 @@
 
   </a>
 
-  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle menu">
+    <span></span>
+  </button>
   <nav id="desktopNav" aria-label="Primary">
     <div class="nav-item">
       <a href="#about" class="nav-link">ABOUT US</a>
@@ -52,13 +54,23 @@
   </nav>
 </header>
 
-<!-- simple mobile menu preserving your links -->
+<!-- Simple mobile menu with direct links -->
 <nav id="mobileNav" style="display:none; background:#0a0a0a; border-top:1px solid rgba(255,255,255,0.08);">
   <div class="container" style="padding:16px 24px; display:flex; flex-direction:column; gap:12px;">
-    <a style="color:#fff; text-decoration:none;" href="#about">ABOUT US</a>
-    <a href="our-services.html" class="nav-link" aria-haspopup="true" aria-expanded="false">OUR SERVICES</a>
-    <a href="#specialization" class="nav-link">OUR WORK</a>
-    <a href="#footer" class="nav-link">CONTACT</a>
+    <a style="color:#fff; text-decoration:none; font-size:0.95rem; padding:8px 0;" href="#about">ABOUT US</a>
+
+    <!-- Main Services Link -->
+    <a style="color:#fff; text-decoration:none; font-size:0.95rem; padding:8px 0 4px 0;" href="our-services.html">OUR SERVICES</a>
+
+    <!-- Services Sub-links (indented and closer) -->
+    <div style="padding-left:20px; display:flex; flex-direction:column; gap:2px; margin-top:-8px;">
+      <a style="color:#ccc; text-decoration:none; font-size:0.80rem; padding:4px 0;" href="our-services.html#interior-design">Interior Design</a>
+      <a style="color:#ccc; text-decoration:none; font-size:0.80rem; padding:4px 0;" href="our-services.html#product-supply-overview">Product Supply</a>
+      <a style="color:#ccc; text-decoration:none; font-size:0.80rem; padding:4px 0;" href="our-services.html#turnkey-execution">Turnkey Execution</a>
+    </div>
+
+    <a style="color:#fff; text-decoration:none; font-size:0.95rem; padding:8px 0;" href="#specialization">OUR WORK</a>
+    <a style="color:#fff; text-decoration:none; font-size:0.95rem; padding:8px 0;" href="#footer">CONTACT</a>
   </div>
 </nav>
 
