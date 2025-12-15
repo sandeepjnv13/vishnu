@@ -543,6 +543,7 @@ header.menu-hidden #desktopNav {
 
 
 /* Mobile-only styles (below 700px) */
+/*TODO [15 Dec 2025] Currently considering max width of 700px to be for mobile screens. Landscape view of mobile is not currently considered */
 @media (max-width: 700px) {
   /* Header adjustments */
   header {
