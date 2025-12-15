@@ -1,19 +1,5 @@
 /* css/footer.css */
 
-
-
-
-
-/* Small screens: center the logo cleanly */
-@media (max-width: 600px) {
-  .footer-logo img {
-    margin: 0 auto 20px;
-  }
-}
-
-
-
-
 .site-footer {
   padding: 0px 0 0px;
   font-family: 'Montserrat', sans-serif;
@@ -89,12 +75,50 @@
   }
 }
 
-@media (max-width: 600px) {
+/* Mobile-only styles (below 700px) */
+@media (max-width: 700px) {
+  .site-footer {
+    padding: 0;
+  }
+
+  .footer-pattern {
+    padding: 24px 0;
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .footer-logo {
+    justify-self: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo img {
+    width: 140px;
+    margin: 0 auto;
+  }
+
+  .footer-col {
     text-align: center;
   }
-  .footer-logo img {
-    margin: 0 auto 20px;
+
+  .footer-col h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .footer-col ul {
+    text-align: center;
+  }
+
+  .footer-col li {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
   }
 }
