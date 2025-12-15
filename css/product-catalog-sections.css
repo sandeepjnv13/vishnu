@@ -382,16 +382,6 @@
     }
 }
 
-@media (max-width: 480px) {
-    .options-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .product-actions {
-        gap: var(--space-1);
-    }
-}
-
 /* Placeholder styling for missing images */
 .main-product-showcase:empty::before,
 .variation-item:empty::before,
@@ -421,4 +411,48 @@
 
 .services-content .product-catalog-section + .product-catalog-section {
     border-top: 1px solid #eee;
+}
+
+/* Mobile fixes for product variations - below 700px */
+@media (max-width: 700px) {
+    /* Keep 3-column grid on mobile */
+    .product-variations {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        aspect-ratio: auto;
+        margin-top: 12px;
+    }
+
+    /* Reset alignment - center all items */
+    .product-variations .variation-item:first-child,
+    .product-variations .variation-item:nth-child(2),
+    .product-variations .variation-item:last-child {
+        justify-self: center;
+    }
+
+    /* Ensure all variation items have proper sizing */
+    .product-variations .variation-item {
+        width: 100%;
+        aspect-ratio: auto;
+        overflow: visible;
+    }
+
+    /* Make images smaller but visible on mobile */
+    .product-variations .variation-item img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    /* Make labels smaller and visible */
+    .product-variations .variation-label {
+        font-size: 0.55rem;
+        margin-top: 4px;
+        line-height: 1.1;
+        white-space: normal;
+        word-wrap: break-word;
+        padding: 0 2px;
+    }
 }
