@@ -730,18 +730,6 @@ nav a {
     }
 }
 
-@media (max-width: 600px) {
-    .product-supply-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 4%;
-    }
-
-    .product-supply-card h3 {
-        font-size: 0.5rem;
-        padding: 8px 6px 12px;
-    }
-}
-
 
 
 .product-supply-overview-section {
@@ -754,4 +742,132 @@ a.product-supply-card {
     text-decoration: none;
     color: inherit;
     display: block;
+}
+
+/* Mobile-only styles (below 700px) */
+@media (max-width: 700px) {
+  /* Force sidebar to always be visible and extend to top */
+  .services-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: translateX(0) !important;
+    width: 90px !important;
+    height: 100vh !important;
+    height: 100dvh !important; /* Use dynamic viewport height */
+    padding: 15px 10px !important;
+    z-index: 150 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Keep sidebar always visible on mobile */
+  .services-sidebar.active {
+    transform: translateX(0) !important;
+  }
+
+  .services-layout {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  /* Adjust content to account for visible sidebar */
+  .services-page-wrapper {
+    margin-left: 90px !important;
+    width: calc(100vw - 90px) !important;
+  }
+
+  .services-content {
+    margin-left: 0 !important;
+    padding-top: 70px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+  }
+
+  /* Sidebar logo - compact for mobile */
+  .services-sidebar .sidebar-logo {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .sidebar-logo img {
+    height: 30px !important;
+    width: auto !important;
+    max-width: 70px !important;
+  }
+
+  /* Compact sidebar navigation for mobile */
+  .sidebar-title {
+    font-size: 0.7rem !important;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .sidebar-menu {
+    padding: 0;
+  }
+
+  .sidebar-menu li {
+    margin-bottom: 15px;
+  }
+
+  .sidebar-link {
+    font-size: 0.65rem !important;
+    text-align: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px 5px;
+    line-height: 1.2;
+  }
+
+  /* Hide dropdown arrow on mobile */
+  .dropdown-arrow {
+    display: none;
+  }
+
+  /* Compact submenu */
+  .sidebar-submenu {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .sidebar-sublink {
+    font-size: 0.6rem !important;
+    padding: 6px 4px;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  /* Hide sidebar toggle button on mobile since sidebar is always visible */
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  /* Adjust header for mobile */
+  .our-services-page #site-header {
+    padding-left: 90px !important;
+    width: 100vw !important;
+    left: 0 !important;
+  }
+
+  /* Product grid adjustments */
+  .product-supply-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .product-supply-card h3 {
+    font-size: 0.85rem !important;
+  }
+
+  /* Services overview adjustments */
+  .services-overview-section .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
 }

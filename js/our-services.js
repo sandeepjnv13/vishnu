@@ -272,7 +272,7 @@
   let sidebarToggle = null;
 
   const ensureSidebarToggle = () => {
-    const shouldShow = window.innerWidth <= 992;
+    const shouldShow = window.innerWidth <= 700;
     if (shouldShow && !sidebarToggle) {
       sidebarToggle = document.createElement('button');
       sidebarToggle.className = 'sidebar-toggle';
@@ -299,7 +299,7 @@
 
   // Close sidebar when clicking outside on mobile
   document.addEventListener('click', (e) => {
-    if (window.innerWidth > 992 || !sidebarToggle) return;
+    if (window.innerWidth > 700 || !sidebarToggle) return;
     if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
       sidebar.classList.remove('active');
       sidebarToggle.textContent = '☰';
