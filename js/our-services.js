@@ -185,6 +185,12 @@
           matchingSublink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
         } else if (currentHash === '#counter-tops') {
           matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
+        } else if (currentHash === '#Flooring-Block') {
+           matchingSublink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
+        } else if (currentHash === '#Tiles-Block') {
+           matchingSublink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
+        } else if (currentHash === '#ShowerDoors-Block') {
+           matchingSublink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
         }
 
         if (matchingSublink) {
@@ -245,6 +251,12 @@
         matchingSublink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
       } else if (newHash === '#counter-tops') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
+      }else if (newHash === '#Flooring-Block') {
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
+      } else if (newHash === '#Tiles-Block') {
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
+      } else if (newHash === '#ShowerDoors-Block') {
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
       } else if (newHash === '#product-supply-overview') {
         // For overview, highlight the parent link
         const overviewLink = document.querySelector('[data-section="product-supply"]');
@@ -348,7 +360,7 @@
   // Enhanced scroll spy for product catalog sections
   // --------------------------------------------
   if (currentPath.split('/').pop() === 'product-catalog.html') {
-    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops');
+    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops', '#Flooring-Block', '#Tiles-Block', '#ShowerDoors-Block');
 
     if (sections.length > 0) {
       const sectionObserver = new IntersectionObserver(
