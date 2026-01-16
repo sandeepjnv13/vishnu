@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact Us - Infinitspaces</title>
+    <link rel="icon" href="resources/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+
+<header id="site-header">
+    <a class="logo" href="/" aria-label="Infinitspaces Home">
+        <img src="resources/LOGO3.png" alt="Infinitspaces – logo" decoding="async" fetchpriority="high"/>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+
+    <nav id="desktopNav" aria-label="Primary">
+        <div class="nav-item">
+            <a href="index.html#about" class="nav-link">ABOUT US</a>
+        </div>
+        <div class="nav-item has-dropdown">
+            <a href="our-services.html" class="nav-link" aria-haspopup="true" aria-expanded="false">OUR SERVICES</a>
+            <ul class="dropdown" aria-label="Services submenu">
+                <li><a href="our-services.html#interior-design">INTERIOR DESIGN</a></li>
+                <li><a href="our-services.html#product-supply-overview">PRODUCT SUPPLY</a></li>
+                <li><a href="our-services.html#turnkey-execution">TURNKEY EXECUTION</a></li>
+            </ul>
+        </div>
+        <div class="nav-item">
+            <a href="index.html#specialization" class="nav-link">OUR WORK</a>
+        </div>
+        <div class="nav-item">
+            <a href="contact.html" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile menu -->
+<nav id="mobileNav" style="display:none; background:#0a0a0a; border-top:1px solid rgba(255,255,255,0.08);">
+    <div class="container" style="padding:16px 24px; display:flex; flex-direction:column; gap:12px;">
+        <a style="color:#fff; text-decoration:none;" href="index.html#about">About</a>
+        <a style="color:#fff; text-decoration:none;" href="our-services.html">Our Services</a>
+        <a style="color:#fff; text-decoration:none;" href="index.html#specialization">Our Work</a>
+        <a style="color:#fff; text-decoration:none;" href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<!-- Contact Page Content -->
+<!-- Contact Page Content -->
+<section class="contact-page">
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>GET IN TOUCH</h1>
+            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location <span class="required">*</span></label>
+                        <select id="location" name="location" required>
+                            <option value="">Select your location</option>
+                            <option value="US">US</option>
+                            <option value="India">India</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="Tell us more about your project..."></textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit-btn" id="submitBtn">
+                        Send Message
+                    </button>
+                </form>
+
+                <div class="form-message" id="formMessage"></div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info-wrapper">
+                <div class="contact-info-card">
+                    <h3>CONTACT INFORMATION</h3>
+
+                    <div class="info-item">
+                        <strong>Address:</strong>
+                        <p>Plot 93, Sector 44<br>Gurgaon, Haryana, India</p>
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Phone:</strong>
+                        <p><a href="https://wa.me/919830742622">+91-9830742622</a></p>
+                        <p><a href="https://wa.me/18563609489">+1 (856) 360-9489</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Email:</strong>
+                        <p><a href="mailto:info@infinitspaces.com">info@infinitspaces.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <h3>BUSINESS HOURS</h3>
+                    <div class="info-item">
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/main.js" defer></script>
+<script src="js/contact.js" defer></script>
+
+</body>
+</html>
