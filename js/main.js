@@ -21,7 +21,7 @@ menuToggle?.addEventListener('click', () => {
 });
 
 // Banner slideshow with gentle zoom + dot navigation + pause on hover
-const images = ["resources/banner_4.png", "resources/banner_5.jpg", "resources/banner_1.jpg", "resources/banner_2.jpg", "resources/banner_3.jpg"];
+const images = ["resources/Banner_01.png", "resources/banner_5.jpg", "resources/banner_1.jpg", "resources/Banner_04.jpg", "resources/Banner_05.jpeg"];
 let current = 0;
 const slide1 = document.getElementById("slide1");
 const slide2 = document.getElementById("slide2");

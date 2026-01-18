@@ -6,9 +6,9 @@
     // AIRTABLE CONFIGURATION
     // ============================================
     const AIRTABLE_CONFIG = {
-        apiToken: 'pat9gUCwScODWuZHh.e888153317f4fbff89fc4703a54e538c45c2abf15087ecbba745876626d01274',
-        baseId: 'appjaLQj1wDUiVSex',
-        tableName: 'Contacts'
+        apiToken: 'patX7oTlpF4i3JSOn.1044c9e5a0877f5ec44486ea5435aa44a517d97d967d7cf096fa46ac8d545a3e',
+        baseId: 'apphWGHJbQob1k2ga',
+        tableName: 'Customer-Queries'
     };
 
     // Check if Airtable is configured
@@ -129,10 +129,9 @@
                     fields: {
                         Name: formData.name,
                         Email: formData.email || 'Not provided',
-                        Phone: formData.phone || 'Not provided',
-                        Location: formData.location,
-                        Message: formData.message,
-                        Timestamp: new Date().toISOString()
+                        'Contact-Number': formData.phone || 'Not provided',
+                        'Location-Country': formData.location,
+                        'Description-Message': formData.message
                     }
                 }
             ]
