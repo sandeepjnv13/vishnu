@@ -360,7 +360,7 @@
   // Enhanced scroll spy for product catalog sections
   // --------------------------------------------
   if (currentPath.split('/').pop() === 'product-catalog.html') {
-    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops', '#Flooring-Block', '#Tiles-Block', '#ShowerDoors-Block');
+    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #Flooring-Block, #Tiles-Block, #ShowerDoors-Block');
 
     if (sections.length > 0) {
       const sectionObserver = new IntersectionObserver(
@@ -377,6 +377,12 @@
                 targetLink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
               } else if (sectionId === 'counter-tops') {
                 targetLink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
+              } else if (sectionId === 'Flooring-Block') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
+              } else if (sectionId === 'Tiles-Block') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
+              } else if (sectionId === 'ShowerDoors-Block') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
               }
 
               if (targetLink && !window.location.hash) {
