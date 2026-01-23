@@ -196,9 +196,9 @@
 }
 
 .service-icons-vertical .icon-circle {
-  flex: 0 0 clamp(40px, 6vw, 65px); /* Responsive circle size */
-  width: clamp(40px, 6vw, 65px);
-  height: clamp(40px, 6vw, 65px);
+  flex: 0 0 clamp(46px, 6.9vw, 75px);
+  width: clamp(46px, 6.9vw, 75px);
+  height: clamp(46px, 6.9vw, 75px);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -227,15 +227,15 @@
 }
 
 .icon-circle {
-  width: clamp(120px, 15vw, 180px); /* Responsive large circle */
-  height: clamp(120px, 15vw, 180px);
+  width: clamp(138px, 17.25vw, 207px);
+  height: clamp(138px, 17.25vw, 207px);
   border: 2px solid transparent;
   background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(24px, 3vw, 32px);
+  font-size: clamp(28px, 3.45vw, 37px);
   transition: all 250ms ease;
   overflow: hidden;
   position: relative;
@@ -359,13 +359,14 @@
   }
 
   .icon-circle {
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-  }
+        width: 46px;
+        height: 46px;
+        font-size: 23px;
+    }
 
   .service-section .container {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
+
