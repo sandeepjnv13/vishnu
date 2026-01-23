@@ -44,6 +44,11 @@
       top,
       behavior: 'smooth'
     });
+
+    // Update the URL hash to trigger hashchange event
+    if (window.location.hash !== hash) {
+      history.pushState(null, null, hash);
+    }
   };
 
   const clearActive = () => {
@@ -110,7 +115,10 @@
 
     const linkPath = normalizePath(url.pathname);
     const linkHash = (url.hash || '').toLowerCase();
-    const isSamePage = !linkPath || linkPath === currentPath;
+    // Compare just the filename, not the full path
+    const currentFileName = currentPath.split('/').pop();
+    const linkFileName = linkPath.split('/').pop();
+    const isSamePage = !linkPath || linkPath === currentPath || linkFileName === currentFileName;
 
     // Same-page anchor navigation (smooth scroll + highlight)
     if (isSamePage && linkHash && linkHash.startsWith('#')) {
@@ -180,16 +188,16 @@
       if (currentHash) {
         let matchingSublink = null;
 
-        // Map hash to corresponding sublink
+        // Map hash to corresponding sublink (currentHash is already lowercase)
         if (currentHash === '#kitchen-cabinets-product') {
           matchingSublink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
         } else if (currentHash === '#counter-tops') {
           matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
-        } else if (currentHash === '#Flooring-Block') {
+        } else if (currentHash === '#flooring-block') {
            matchingSublink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
-        } else if (currentHash === '#Tiles-Block') {
+        } else if (currentHash === '#tiles-block') {
            matchingSublink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
-        } else if (currentHash === '#ShowerDoors-Block') {
+        } else if (currentHash === '#showerdoors-block') {
            matchingSublink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
         }
 
@@ -246,16 +254,16 @@
     if (newHash && currentPath.split('/').pop() === 'product-catalog.html') {
       let matchingSublink = null;
 
-      // Map hash to corresponding sublink
+      // Map hash to corresponding sublink (newHash is already lowercase)
       if (newHash === '#kitchen-cabinets-product') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
       } else if (newHash === '#counter-tops') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
-      }else if (newHash === '#Flooring-Block') {
+      }else if (newHash === '#flooring-block') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
-      } else if (newHash === '#Tiles-Block') {
+      } else if (newHash === '#tiles-block') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
-      } else if (newHash === '#ShowerDoors-Block') {
+      } else if (newHash === '#showerdoors-block') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
       } else if (newHash === '#product-supply-overview') {
         // For overview, highlight the parent link
