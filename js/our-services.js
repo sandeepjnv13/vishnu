@@ -194,11 +194,11 @@
         } else if (currentHash === '#counter-tops') {
           matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
         } else if (currentHash === '#flooring-block') {
-           matchingSublink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
+           matchingSublink = document.querySelector('.sidebar-sublink[href*="flooring-block"]');
         } else if (currentHash === '#tiles-block') {
-           matchingSublink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
+           matchingSublink = document.querySelector('.sidebar-sublink[href*="tiles-block"]');
         } else if (currentHash === '#showerdoors-block') {
-           matchingSublink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
+           matchingSublink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
         }
 
         if (matchingSublink) {
@@ -260,11 +260,11 @@
       } else if (newHash === '#counter-tops') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
       }else if (newHash === '#flooring-block') {
-        matchingSublink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="flooring-block"]');
       } else if (newHash === '#tiles-block') {
-        matchingSublink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="tiles-block"]');
       } else if (newHash === '#showerdoors-block') {
-        matchingSublink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
+        matchingSublink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
       } else if (newHash === '#product-supply-overview') {
         // For overview, highlight the parent link
         const overviewLink = document.querySelector('[data-section="product-supply"]');
@@ -368,7 +368,7 @@
   // Enhanced scroll spy for product catalog sections
   // --------------------------------------------
   if (currentPath.split('/').pop() === 'product-catalog.html') {
-    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #Flooring-Block, #Tiles-Block, #ShowerDoors-Block');
+    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #flooring-block, #tiles-block, #showerdoors-block');
 
     if (sections.length > 0) {
       const sectionObserver = new IntersectionObserver(
@@ -385,12 +385,12 @@
                 targetLink = document.querySelector('.sidebar-sublink[href*="kitchen-cabinets-product"]');
               } else if (sectionId === 'counter-tops') {
                 targetLink = document.querySelector('.sidebar-sublink[href*="counter-tops"]');
-              } else if (sectionId === 'Flooring-Block') {
-                targetLink = document.querySelector('.sidebar-sublink[href*="Flooring-Block"]');
-              } else if (sectionId === 'Tiles-Block') {
-                targetLink = document.querySelector('.sidebar-sublink[href*="Tiles-Block"]');
-              } else if (sectionId === 'ShowerDoors-Block') {
-                targetLink = document.querySelector('.sidebar-sublink[href*="ShowerDoors-Block"]');
+              } else if (sectionId === 'flooring-block') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="flooring-block"]');
+              } else if (sectionId === 'tiles-block') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="tiles-block"]');
+              } else if (sectionId === 'showerdoors-block') {
+                targetLink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
               }
 
               if (targetLink && !window.location.hash) {
