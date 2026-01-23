@@ -27,7 +27,58 @@
         return;
     }
 
-    // Form submission handler
+    // ============================================
+    // MULTISELECT FUNCTIONALITY
+    // ============================================
+    const requirementSelect = document.getElementById('Requirement');
+    const selectedTagsContainer = document.getElementById('selectedTags');
+    const requirementValueInput = document.getElementById('requirementValue');
+    const selectedValues = new Set();
+
+    // Handle requirement selection
+    if (requirementSelect && selectedTagsContainer && requirementValueInput) {
+        requirementSelect.addEventListener('change', function() {
+            const selectedValue = this.value;
+
+            if (selectedValue && !selectedValues.has(selectedValue)) {
+                selectedValues.add(selectedValue);
+                addTag(selectedValue);
+                updateHiddenInput();
+            }
+
+            // Reset to placeholder
+            this.value = '';
+        });
+    }
+
+    // Add tag to display
+    function addTag(value) {
+        const tag = document.createElement('div');
+        tag.className = 'tag';
+        tag.innerHTML = `
+            <span>${value}</span>
+            <span class="tag-remove" data-value="${value}">×</span>
+        `;
+
+        selectedTagsContainer.appendChild(tag);
+
+        // Add remove functionality
+        tag.querySelector('.tag-remove').addEventListener('click', function() {
+            const valueToRemove = this.getAttribute('data-value');
+            selectedValues.delete(valueToRemove);
+            tag.remove();
+            updateHiddenInput();
+        });
+    }
+
+    // Update hidden input with comma-separated values
+    function updateHiddenInput() {
+        requirementValueInput.value = Array.from(selectedValues).join(', ');
+    }
+
+    // ============================================
+    // FORM SUBMISSION HANDLER
+    // ============================================
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -37,6 +88,7 @@
             email: document.getElementById('email').value.trim(),
             phone: document.getElementById('phone').value.trim(),
             location: document.getElementById('location').value,
+            requirement: document.getElementById('requirementValue').value.trim(),
             message: document.getElementById('message').value.trim()
         };
 
@@ -88,8 +140,11 @@
             // Show success message
             showMessage('✓ Thank you for contacting us! We will get back to you shortly.', 'success');
 
-            // Reset form
+            // Reset form and multiselect
             form.reset();
+            selectedValues.clear();
+            selectedTagsContainer.innerHTML = '';
+            requirementValueInput.value = '';
 
             // Hide success message after 5 seconds
             setTimeout(() => {
@@ -121,7 +176,9 @@
         }
     });
 
-    // Submit to Airtable
+    // ============================================
+    // AIRTABLE SUBMISSION
+    // ============================================
     async function submitToAirtable(formData) {
         const airtableData = {
             records: [
@@ -131,6 +188,7 @@
                         Email: formData.email || 'Not provided',
                         'Contact-Number': formData.phone || 'Not provided',
                         'Location-Country': formData.location,
+                        Requirement: formData.requirement || 'Not specified',
                         'Description-Message': formData.message
                     }
                 }
@@ -156,6 +214,10 @@
 
         return await response.json();
     }
+
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
 
     // Show message function
     function showMessage(text, type) {
