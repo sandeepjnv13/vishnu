@@ -41,7 +41,7 @@
                 }
             ]
         },
-        'retail-gallery': {
+        'retail-gallery-1': {
             caption: 'Inviting retail environment optimized for customer experience and product display',
             images: [
                 {
@@ -57,6 +57,40 @@
                     alt: 'Retail interior'
                 }
             ]
+        },
+        'retail-gallery-2': {
+            caption: 'Modern boutique design with elegant display fixtures and ambient lighting',
+            images: [
+                {
+                    src: 'resources/Image3.jpg',
+                    alt: 'Boutique retail space'
+                },
+                {
+                    src: 'resources/RetailSection_01.jpeg',
+                    alt: 'Retail display area'
+                },
+                {
+                    src: 'resources/Image1.jpg',
+                    alt: 'Customer service area'
+                }
+            ]
+        },
+        'retail-gallery-3': {
+            caption: 'Contemporary shopping experience with streamlined layouts and premium finishes',
+            images: [
+                {
+                    src: 'resources/Image2.jpg',
+                    alt: 'Contemporary retail interior'
+                },
+                {
+                    src: 'resources/Image3.jpg',
+                    alt: 'Premium retail finish'
+                },
+                {
+                    src: 'resources/RetailSection_01.jpeg',
+                    alt: 'Retail checkout area'
+                }
+            ]
         }
     };
 
@@ -64,14 +98,18 @@
     const currentIndices = {
         'office-gallery': 0,
         'restaurant-gallery': 0,
-        'retail-gallery': 0
+        'retail-gallery-1': 0,
+        'retail-gallery-2': 0,
+        'retail-gallery-3': 0
     };
 
     // Track if images are being animated
     const isAnimating = {
         'office-gallery': false,
         'restaurant-gallery': false,
-        'retail-gallery': false
+        'retail-gallery-1': false,
+        'retail-gallery-2': false,
+        'retail-gallery-3': false
     };
 
     // Preload all images

@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/our-services-page.css">
-    <link rel="stylesheet" href="css/three-column-page.css">
+    <link rel="stylesheet" href="css/two-column-page.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/product-catalog-sections.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
@@ -104,56 +104,47 @@
     <div class="services-page-wrapper">
         <div class="services-content">
 
-            <!-- Interior Design Section -->
-            <section id="interior-design" class="service-section">
+            <!-- Interior Design Section - Two Column Layout -->
+            <section id="interior-design" class="two-column-section">
                 <div class="services-overview-header">
                     <h1>INTERIOR DESIGN</h1>
                 </div>
                 <div class="container">
-                    <div class="service-layout">
-                        <!-- Left: Main Image -->
-                        <div class="service-text">
-                            <p>Our interiors strike a balance between beauty and practicality, curated to match our clients' personality and lifestyle.</p>
-                        </div>
-                        <div class="service-main-image">
-                            <img src="resources/Image1.jpg" alt="Interior Design">
+                    <div class="two-column-layout">
+                        <!-- Left Column: Text + Horizontal Image -->
+                        <div class="left-column">
+                            <div class="interior-text">
+                                <p>Our interiors strike a balance between beauty and practicality, curated to match our clients' personality and lifestyle.</p>
+                            </div>
+
+                            <div class="horizontal-main-image">
+                                <img src="resources/Image1.jpg" alt="Interior Design">
+                            </div>
                         </div>
 
-
-                        <!-- Center: Vertical Icons -->
-                        <div class="service-icons-vertical">
-                            <div class="icon-item">
-                                <div class="icon-circle">
+                        <!-- Right Column: Vertical Icons -->
+                        <div class="right-column">
+                            <div class="vertical-icon-item">
+                                <div class="vertical-icon-circle">
                                     <img src="resources/Space_Planning.png" alt="Planning">
                                 </div>
                                 <span>SPACE<br>PLANNING</span>
                             </div>
-                            <div class="icon-item">
-                                <div class="icon-circle">
+
+                            <div class="vertical-icon-item">
+                                <div class="vertical-icon-circle">
                                     <img src="resources/Visualization_.png" alt="visualisation">
                                 </div>
                                 <span>VISUALISATION</span>
                             </div>
-                            <div class="icon-item">
-                                <div class="icon-circle">
-                                    <img src="resources/Customization_.png" alt="visualisation">
+
+                            <div class="vertical-icon-item">
+                                <div class="vertical-icon-circle">
+                                    <img src="resources/Customization_.png" alt="customization">
                                 </div>
                                 <span>CUSTOMIZATION</span>
                             </div>
                         </div>
-
-                        <!-- Right: Text and Secondary Image -->
-
-
-                        <div class="service-content-section">
-                            <div class="work-stack">
-                                <img src="resources/Image1.jpg" alt="Interior Design Showcase" class="stack-image top">
-                                <img src="resources/Image2.jpg" alt="Project 2" class="stack-image middle">
-                                <img src="resources/Image3.jpg" alt="Project 3" class="stack-image bottom">
-                            </div>
-                            <div class="work-caption">OUR WORK</div>
-                        </div>
-
                     </div>
                     <div style="height: 2vh;"></div>
                 </div>
@@ -165,7 +156,7 @@
                     <div class="category-buttons">
                         <button class="category-btn active" data-target="office-gallery">OFFICE</button>
                         <button class="category-btn" data-target="restaurant-gallery">RESTAURANT</button>
-                        <button class="category-btn" data-target="retail-gallery">RETAIL</button>
+                        <button class="category-btn" data-target="retail-gallery-1">RETAIL</button>
                     </div>
                 </div>
             </section>
@@ -213,8 +204,8 @@
                     </div>
                 </section>
 
-                <!-- Retail Gallery Block -->
-                <section id="retail-gallery" class="project-gallery-block">
+                <!-- Retail Gallery Block 1 -->
+                <section id="retail-gallery-1" class="project-gallery-block">
                     <div class="container">
                         <div class="gallery-carousel">
                             <button class="carousel-arrow carousel-arrow-left" aria-label="Previous image">
@@ -225,6 +216,46 @@
                                     <!-- Images will be dynamically inserted by JavaScript -->
                                 </div>
                                 <p class="gallery-caption">Inviting retail environment optimized for customer experience and product display</p>
+                            </div>
+                            <button class="carousel-arrow carousel-arrow-right" aria-label="Next image">
+                                <span>▶</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Retail Gallery Block 2 -->
+                <section id="retail-gallery-2" class="project-gallery-block">
+                    <div class="container">
+                        <div class="gallery-carousel">
+                            <button class="carousel-arrow carousel-arrow-left" aria-label="Previous image">
+                                <span>◀</span>
+                            </button>
+                            <div class="gallery-image-container">
+                                <div class="gallery-image-wrapper">
+                                    <!-- Images will be dynamically inserted by JavaScript -->
+                                </div>
+                                <p class="gallery-caption">Modern boutique design with elegant display fixtures and ambient lighting</p>
+                            </div>
+                            <button class="carousel-arrow carousel-arrow-right" aria-label="Next image">
+                                <span>▶</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Retail Gallery Block 3 -->
+                <section id="retail-gallery-3" class="project-gallery-block">
+                    <div class="container">
+                        <div class="gallery-carousel">
+                            <button class="carousel-arrow carousel-arrow-left" aria-label="Previous image">
+                                <span>◀</span>
+                            </button>
+                            <div class="gallery-image-container">
+                                <div class="gallery-image-wrapper">
+                                    <!-- Images will be dynamically inserted by JavaScript -->
+                                </div>
+                                <p class="gallery-caption">Contemporary shopping experience with streamlined layouts and premium finishes</p>
                             </div>
                             <button class="carousel-arrow carousel-arrow-right" aria-label="Next image">
                                 <span>▶</span>
