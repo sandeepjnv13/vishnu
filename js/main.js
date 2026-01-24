@@ -4,8 +4,10 @@ const siteHeader = document.getElementById('site-header');
 let lastY = 0;
 window.addEventListener('scroll', () => {
     const y = window.scrollY || document.documentElement.scrollTop;
-    if (y > 12 && y >= lastY) siteHeader.classList.add('scrolled');
-    else if (y < 12) siteHeader.classList.remove('scrolled');
+    const threshold = window.innerHeight * 0.09;
+
+    if (y > threshold && y >= lastY) siteHeader.classList.add('scrolled');
+    else if (y < threshold) siteHeader.classList.remove('scrolled');
     lastY = y;
 }, {
     passive: true
