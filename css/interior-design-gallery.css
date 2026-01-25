@@ -1,60 +1,16 @@
 /* Interior Design Gallery Styles - Multiple Blocks Version */
 
-/* Category Navigation Section */
-.category-nav-section {
-    background: #f8f8f8;
-    padding: var(--space-4) 0;
-}
-
-.category-buttons {
-    display: flex;
-    justify-content: center;
-    gap: clamp(16px, 3vw, 32px);
-    flex-wrap: wrap;
-}
-
-.category-btn {
-    background: transparent;
-    color: var(--brand-accent, #58c4c0);
-    border: 2px solid var(--brand-accent, #58c4c0);
-    padding: 12px 32px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 250ms ease;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-}
-
-.category-btn:hover {
-    background: var(--brand-accent, #58c4c0);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(88, 196, 192, 0.3);
-}
-
-.category-btn.active {
-    background: var(--brand-accent, #58c4c0);
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(88, 196, 192, 0.2);
-}
-
-.category-btn:active {
-    transform: translateY(0);
-}
 
 /* Container for all gallery blocks */
 .gallery-blocks-container {
     background: #f8f8f8;
-    padding: var(--space-4) 0;
+    padding: var(--space-2) 0;
 }
 
 /* Individual Gallery Block - Always visible, stacked vertically */
 .project-gallery-block {
     background: #f8f8f8;
-    padding: var(--space-5) 0;
+    padding: var(--space-1) 0;
     opacity: 1;
     display: block;
 }

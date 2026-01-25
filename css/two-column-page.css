@@ -10,11 +10,15 @@
 /* Services Overview Header - Centered at Top */
 .services-overview-header {
   text-align: center;
-  margin-bottom: clamp(4vh, 5vh, 6vh);
+  margin-bottom: clamp(8vh, 9vh, 10vh);
+  padding: 0 clamp(3vw, 6vw, 10vw);
+}
+.services-ourwork-header {
+  text-align: center;
   padding: 0 clamp(3vw, 6vw, 10vw);
 }
 
-.services-overview-header h1 {
+.services-overview-header .services-ourwork-header h1 {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 700;
   letter-spacing: 0.2vw;
