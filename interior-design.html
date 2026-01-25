@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
     <link rel="stylesheet" href="css/slider-block.css">
     <link rel="stylesheet" href="css/interior-design-gallery.css">
+    <!-- Collage CSS -->
+    <link rel="stylesheet" href="css/interior-collage.css">
 </head>
 <body class="our-services-page">
 
@@ -111,11 +113,15 @@
                 </div>
                 <div class="container">
                     <div class="two-column-layout">
-                        <!-- Left Column: Text + Horizontal Image -->
+                        <!-- Left Column: Collage replaces single image -->
                         <div class="left-column">
                             <div class="image-text-block">
                                 <div class="horizontal-main-image">
-                                    <img src="resources/Image1.jpg" alt="Interior Design">
+                                    <!-- Collage will be dynamically inserted by JavaScript -->
+                                    <!-- Fallback for no-JS -->
+                                    <noscript>
+                                        <img src="resources/Image1.jpg" alt="Interior Design">
+                                    </noscript>
                                 </div>
                             </div>
                         </div>
@@ -151,9 +157,9 @@
                 </div>
             </section>
 
-                <div class="services-ourwork-header">
-                    <h1>OUR WORKS</h1>
-                </div>
+            <div class="services-ourwork-header">
+                <h1>OUR WORKS</h1>
+            </div>
 
             <!-- Multiple Gallery Blocks - All Visible Simultaneously -->
             <div class="gallery-blocks-container">
@@ -341,6 +347,8 @@
 <script src="js/product-catalog-sections.js" defer></script>
 <script src="js/slider-scripts.js" defer></script>
 <script src="js/interior-design-gallery.js" defer></script>
+<!-- Collage JavaScript -->
+<script src="js/interior-collage.js" defer></script>
 
 </body>
 </html>

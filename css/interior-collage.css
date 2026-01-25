@@ -1,0 +1,214 @@
+/* Interior Design Collage Styles */
+
+/* Collage Container - replaces single image */
+.interior-collage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: #f2f2f2;
+    border-radius: 0;
+}
+
+/* Collage Row - each row contains images that fill the width */
+.collage-row {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+/* Individual collage item */
+.collage-item {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Support for custom flex values to control image widths in a row */
+.collage-item[data-flex="1"] { flex: 1; }
+.collage-item[data-flex="1.2"] { flex: 1.2; }
+.collage-item[data-flex="1.5"] { flex: 1.5; }
+.collage-item[data-flex="0.8"] { flex: 0.8; }
+.collage-item[data-flex="0.9"] { flex: 0.9; }
+.collage-item[data-flex="1.1"] { flex: 1.1; }
+.collage-item[data-flex="1.3"] { flex: 1.3; }
+.collage-item[data-flex="1.4"] { flex: 1.4; }
+
+/* Image styling */
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    /* Grayscale effect by default */
+    filter: grayscale(70%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* Hover state for individual image - color reveal */
+
+/* Expanded image overlay - appears on hover */
+.collage-expanded-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.collage-expanded-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.collage-expanded-overlay img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* Hover preview - expands 30% on top of collage within bounds */
+.collage-hover-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.collage-hover-preview .preview-image {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.collage-hover-preview .preview-image.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.collage-hover-preview .preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0%);
+    display: block;
+}
+
+/* Row height variations for visual interest */
+.collage-row.row-tall {
+    flex: 1.3;
+}
+
+.collage-row.row-short {
+    flex: 0.8;
+}
+
+.collage-row.row-medium {
+    flex: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .interior-collage {
+        gap: 3px;
+    }
+
+    .collage-row {
+        gap: 3px;
+    }
+}
+
+@media (max-width: 768px) {
+    .interior-collage {
+        gap: 2px;
+        aspect-ratio: 4/3;
+    }
+
+    .collage-row {
+        gap: 2px;
+    }
+
+    /* On mobile, show color by default for better visibility */
+    .collage-item img {
+        filter: grayscale(50%);
+    }
+
+    .collage-item:hover img {
+        filter: grayscale(0%);
+    }
+}
+
+@media (max-width: 480px) {
+    .interior-collage {
+        aspect-ratio: 1/1;
+    }
+
+    /* Simplify collage on very small screens */
+    .collage-row {
+        flex-wrap: wrap;
+    }
+}
+
+/* Animation for initial load */
+@keyframes collageItemFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.collage-item {
+    animation: collageItemFadeIn 0.6s ease forwards;
+}
+
+.collage-item:nth-child(1) { animation-delay: 0.05s; }
+.collage-item:nth-child(2) { animation-delay: 0.1s; }
+.collage-item:nth-child(3) { animation-delay: 0.15s; }
+.collage-item:nth-child(4) { animation-delay: 0.2s; }
+
+.collage-row:nth-child(2) .collage-item:nth-child(1) { animation-delay: 0.25s; }
+.collage-row:nth-child(2) .collage-item:nth-child(2) { animation-delay: 0.3s; }
+.collage-row:nth-child(2) .collage-item:nth-child(3) { animation-delay: 0.35s; }
+.collage-row:nth-child(2) .collage-item:nth-child(4) { animation-delay: 0.4s; }
+
+.collage-row:nth-child(3) .collage-item:nth-child(1) { animation-delay: 0.45s; }
+.collage-row:nth-child(3) .collage-item:nth-child(2) { animation-delay: 0.5s; }
+.collage-row:nth-child(3) .collage-item:nth-child(3) { animation-delay: 0.55s; }
+.collage-row:nth-child(3) .collage-item:nth-child(4) { animation-delay: 0.6s; }
