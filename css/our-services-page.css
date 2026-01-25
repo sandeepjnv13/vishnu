@@ -400,6 +400,7 @@
 /* Smooth Scroll Behavior */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h-desktop) + 3vh);
 }
 
 
@@ -594,19 +595,32 @@ nav a {
 }
 
 /* Adjust spacing between overview and interior design sections */
+/* Adjust spacing between overview and interior design sections */
 #services-overview {
     margin-bottom: 0;
     padding-bottom: var(--space-4);
+    scroll-margin-top: calc(var(--header-h-desktop) + 3vh);
 }
 
 #interior-design {
     margin-top: 0;
     padding-top: var(--space-1);
+    scroll-margin-top: calc(var(--header-h-desktop) + 3vh);
 }
 
 #turnkey-execution {
     margin-top: 0;
     padding-top: var(--space-1);
+    scroll-margin-top: calc(var(--header-h-desktop) + 3vh);
+}
+
+#product-supply-overview,
+#kitchen-cabinets-product,
+#counter-tops,
+#flooring-block,
+#tiles-block,
+#showerdoors-block {
+    scroll-margin-top: calc(var(--header-h-desktop) + 3vh);
 }
 
 /* Product Supply Overview Section */
