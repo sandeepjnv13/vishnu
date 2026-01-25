@@ -134,8 +134,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: clamp(4vh, 5vh, 6vh);
-  padding-top: clamp(2vh, 3vh, 4vh);
+  gap: clamp(3vh, 4vh, 5vh);
+  padding-top: clamp(1vh, 2vh, 3vh);
   padding-right: clamp(1vw, 2vw, 3vw);
   padding-left: 0;
   min-width: 0;
