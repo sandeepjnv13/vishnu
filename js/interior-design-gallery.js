@@ -11,24 +11,140 @@
 
     // Gallery data structure with fixed captions per block
     const galleryData = {
-        'office-gallery': {
+        'office-gallery-1': {
             caption: 'Modern office space with collaborative workstations and natural lighting',
             images: [
                 {
-                    src: 'resources/Office.png',
+                    src: 'resources/Office_1_1.Reception.jpeg',
                     alt: 'Office interior design project'
                 },
                 {
-                    src: 'resources/Image1.jpg',
+                    src: 'resources/Office_1_2.Workspac.jpeg',
                     alt: 'Office workspace design'
                 },
                 {
-                    src: 'resources/Image2.jpg',
+                    src: 'resources/Office_1_3.ConferenceRoomView.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_3.ConferenceRoomView2.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_4.Meetingroom.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_4.Meetingroom (1).jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_4.Meetingroom (2).jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_4.Meetingroom2.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_5.PhBooth.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_5.PhBooth2.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_6.Cafeteriaview.jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_1_6.Cafeteriaview2.jpeg',
+                    alt: 'Office meeting area'
+                }
+
+            ]
+        },
+        'office-gallery-2': {
+            caption: 'Modern office space with collaborative workstations and natural lighting',
+            images: [
+                {
+                    src: 'resources/Office_2_wmremove-transformed.jpeg',
+                    alt: 'Office interior design project'
+                },
+                {
+                    src: 'resources/Office_2_wmremove-transformed (1).jpeg',
+                    alt: 'Office workspace design'
+                },
+                {
+                    src: 'resources/Office_2_wmremove-transformed (2).jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_2_wmremove-transformed (3).jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_2_wmremove-transformed (4).jpeg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_2_wmremove-transformed (5).jpeg',
                     alt: 'Office meeting area'
                 }
             ]
         },
-        'restaurant-gallery': {
+        'office-gallery-3': {
+            caption: 'Modern office space with collaborative workstations and natural lighting',
+            images: [
+
+                {
+                    src: 'resources/Office_3_EXE LOUNGE 02.jpg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_3_COLAB ROOM 02.jpg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_3_COLAB ROOM 03.jpg',
+                    alt: 'Office interior design project'
+                },
+                {
+                    src: 'resources/Office_3_CONGF ROOM 01.jpg',
+                    alt: 'Office workspace design'
+                },
+                {
+                    src: 'resources/Office_3_EX CABIN 01.jpg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_3_EXE OFC 05.jpg',
+                    alt: 'Office interior design project'
+                },
+                {
+                    src: 'resources/Office_3_EXE OFC 071.jpg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_3_PODCAST ROOM 01.jpg',
+                    alt: 'Office meeting area'
+                }
+                {
+                    src: 'resources/Office_3_KITCHEN 1.jpg',
+                    alt: 'Office meeting area'
+                },
+                {
+                    src: 'resources/Office_3_KITCHEN 01.jpg',
+                    alt: 'Office interior design project'
+                },
+                {
+                    src: 'resources/Office_3_LOUNGE-2.jpg',
+                    alt: 'Office workspace design'
+                },
+            ]
+        },
+        'restaurant-gallery-1': {
             caption: 'Elegant dining space with contemporary design and ambient atmosphere',
             images: [
                 {
@@ -41,6 +157,59 @@
                 }
             ]
         },
+        'restaurant-gallery-2': {
+            caption: 'Elegant dining space with contemporary design and ambient atmosphere',
+            images: [
+                {
+                    src: 'resources/Restaurant_01.jpeg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Image3.jpg',
+                    alt: 'Restaurant seating area'
+                }
+            ]
+        },
+        'restaurant-gallery-3': {
+            caption: 'Elegant dining space with contemporary design and ambient atmosphere',
+            images: [
+                {
+                    src: 'resources/Restaurant_01.jpeg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Image3.jpg',
+                    alt: 'Restaurant seating area'
+                }
+            ]
+        },
+        'restaurant-gallery-4': {
+                    caption: 'Elegant dining space with contemporary design and ambient atmosphere',
+                    images: [
+                        {
+                            src: 'resources/Restaurant_01.jpeg',
+                            alt: 'Restaurant interior design project'
+                        },
+                        {
+                            src: 'resources/Image3.jpg',
+                            alt: 'Restaurant seating area'
+                        }
+                    ]
+                },
+
+        'restaurant-gallery-5': {
+                    caption: 'Elegant dining space with contemporary design and ambient atmosphere',
+                    images: [
+                        {
+                            src: 'resources/Restaurant_01.jpeg',
+                            alt: 'Restaurant interior design project'
+                        },
+                        {
+                            src: 'resources/Image3.jpg',
+                            alt: 'Restaurant seating area'
+                        }
+                    ]
+                },
         'retail-gallery-1': {
             caption: 'Inviting retail environment optimized for customer experience and product display',
             images: [
@@ -57,59 +226,25 @@
                     alt: 'Retail interior'
                 }
             ]
-        },
-        'retail-gallery-2': {
-            caption: 'Modern boutique design with elegant display fixtures and ambient lighting',
-            images: [
-                {
-                    src: 'resources/Image3.jpg',
-                    alt: 'Boutique retail space'
-                },
-                {
-                    src: 'resources/RetailSection_01.jpeg',
-                    alt: 'Retail display area'
-                },
-                {
-                    src: 'resources/Image1.jpg',
-                    alt: 'Customer service area'
-                }
-            ]
-        },
-        'retail-gallery-3': {
-            caption: 'Contemporary shopping experience with streamlined layouts and premium finishes',
-            images: [
-                {
-                    src: 'resources/Image2.jpg',
-                    alt: 'Contemporary retail interior'
-                },
-                {
-                    src: 'resources/Image3.jpg',
-                    alt: 'Premium retail finish'
-                },
-                {
-                    src: 'resources/RetailSection_01.jpeg',
-                    alt: 'Retail checkout area'
-                }
-            ]
         }
     };
 
     // Current image indices for each gallery
     const currentIndices = {
-        'office-gallery': 0,
+        'office-gallery-1': 0,
+        'office-gallery-2': 0,
+        'office-gallery-3': 0,
         'restaurant-gallery': 0,
-        'retail-gallery-1': 0,
-        'retail-gallery-2': 0,
-        'retail-gallery-3': 0
+        'retail-gallery-1': 0
     };
 
     // Track if images are being animated
     const isAnimating = {
-        'office-gallery': false,
+        'office-gallery-1': false,
+        'office-gallery-2': false,
+        'office-gallery-3': false,
         'restaurant-gallery': false,
-        'retail-gallery-1': false,
-        'retail-gallery-2': false,
-        'retail-gallery-3': false
+        'retail-gallery-1': false
     };
 
     // Preload all images
