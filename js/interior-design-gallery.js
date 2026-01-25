@@ -129,7 +129,7 @@
                 {
                     src: 'resources/Office_3_PODCAST ROOM 01.jpg',
                     alt: 'Office meeting area'
-                }
+                },
                 {
                     src: 'resources/Office_3_KITCHEN 1.jpg',
                     alt: 'Office meeting area'
@@ -148,11 +148,35 @@
             caption: 'Elegant dining space with contemporary design and ambient atmosphere',
             images: [
                 {
-                    src: 'resources/Restaurant_01.jpeg',
+                    src: 'resources/Restaurant _1 (1).jpeg',
                     alt: 'Restaurant interior design project'
                 },
                 {
-                    src: 'resources/Image3.jpg',
+                    src: 'resources/Restaurant _1 (2).jpeg',
+                    alt: 'Restaurant seating area'
+                },
+                {
+                    src: 'resources/Restaurant _1 (3).jpeg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Restaurant _1 (4).jpeg',
+                    alt: 'Restaurant seating area'
+                },
+                {
+                    src: 'resources/Restaurant _1 (5).jpeg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Restaurant _1 (6).jpeg',
+                    alt: 'Restaurant seating area'
+                },
+                {
+                    src: 'resources/Restaurant _1 (7).jpeg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Restaurant _1 (8).jpeg',
                     alt: 'Restaurant seating area'
                 }
             ]
@@ -160,25 +184,61 @@
         'restaurant-gallery-2': {
             caption: 'Elegant dining space with contemporary design and ambient atmosphere',
             images: [
-                {
-                    src: 'resources/Restaurant_01.jpeg',
-                    alt: 'Restaurant interior design project'
-                },
-                {
-                    src: 'resources/Image3.jpg',
-                    alt: 'Restaurant seating area'
-                }
+              {
+                  src: 'resources/Restaurant_3 (1).jpg',
+                  alt: 'Restaurant interior design project'
+              },
+              {
+                  src: 'resources/Restaurant_3 (2).jpg',
+                  alt: 'Restaurant seating area'
+              },
+              {
+                  src: 'resources/Restaurant_3 (3).jpg',
+                  alt: 'Restaurant interior design project'
+              },
+              {
+                  src: 'resources/Restaurant_3 (4).jpg',
+                  alt: 'Restaurant seating area'
+              },
+              {
+                  src: 'resources/Restaurant_3 (5).jpg',
+                  alt: 'Restaurant interior design project'
+              }
             ]
         },
         'restaurant-gallery-3': {
             caption: 'Elegant dining space with contemporary design and ambient atmosphere',
             images: [
                 {
-                    src: 'resources/Restaurant_01.jpeg',
+                    src: 'resources/Restaurant_5 (1).jpg',
                     alt: 'Restaurant interior design project'
                 },
                 {
-                    src: 'resources/Image3.jpg',
+                    src: 'resources/Restaurant_5 (2).jpg',
+                    alt: 'Restaurant seating area'
+                },
+                {
+                    src: 'resources/Restaurant_5 (3).jpg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Restaurant_5 (4).jpg',
+                    alt: 'Restaurant seating area'
+                },
+                {
+                    src: 'resources/Restaurant_5 (5).jpg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Restaurant_5 (6).jpg',
+                    alt: 'Restaurant seating area'
+                },
+                {
+                    src: 'resources/Restaurant_5 (7).jpg',
+                    alt: 'Restaurant interior design project'
+                },
+                {
+                    src: 'resources/Restaurant_5 (8).jpg',
                     alt: 'Restaurant seating area'
                 }
             ]
@@ -187,11 +247,27 @@
                     caption: 'Elegant dining space with contemporary design and ambient atmosphere',
                     images: [
                         {
-                            src: 'resources/Restaurant_01.jpeg',
+                            src: 'resources/Restaurant_7 (1).jpeg',
                             alt: 'Restaurant interior design project'
                         },
                         {
-                            src: 'resources/Image3.jpg',
+                            src: 'resources/Restaurant_7 (2).jpeg',
+                            alt: 'Restaurant seating area'
+                        },
+                        {
+                            src: 'resources/Restaurant_7 (3).jpeg',
+                            alt: 'Restaurant interior design project'
+                        },
+                        {
+                            src: 'resources/Restaurant_7 (4).jpeg',
+                            alt: 'Restaurant seating area'
+                        },
+                        {
+                            src: 'resources/Restaurant_7 (5).jpeg',
+                            alt: 'Restaurant interior design project'
+                        },
+                        {
+                            src: 'resources/Restaurant_7 (6).jpeg',
                             alt: 'Restaurant seating area'
                         }
                     ]
@@ -201,11 +277,27 @@
                     caption: 'Elegant dining space with contemporary design and ambient atmosphere',
                     images: [
                         {
-                            src: 'resources/Restaurant_01.jpeg',
+                            src: 'resources/Restaurant_8 (1).jpeg',
                             alt: 'Restaurant interior design project'
                         },
                         {
-                            src: 'resources/Image3.jpg',
+                            src: 'resources/Restaurant_8 (2).jpeg',
+                            alt: 'Restaurant seating area'
+                        },
+                        {
+                            src: 'resources/Restaurant_8 (3).jpeg',
+                            alt: 'Restaurant interior design project'
+                        },
+                        {
+                            src: 'resources/Restaurant_8 (4).jpeg',
+                            alt: 'Restaurant seating area'
+                        },
+                        {
+                            src: 'resources/Restaurant_8 (5).jpeg',
+                            alt: 'Restaurant interior design project'
+                        },
+                        {
+                            src: 'resources/Restaurant_8 (6).jpeg',
                             alt: 'Restaurant seating area'
                         }
                     ]
@@ -214,15 +306,23 @@
             caption: 'Inviting retail environment optimized for customer experience and product display',
             images: [
                 {
-                    src: 'resources/RetailSection_01.jpeg',
+                    src: 'resources/Retail_1 (1).jpeg',
                     alt: 'Retail interior design project'
                 },
                 {
-                    src: 'resources/Image1.jpg',
+                    src: 'resources/Retail_1 (2).jpeg',
                     alt: 'Retail showcase'
                 },
                 {
-                    src: 'resources/Image2.jpg',
+                    src: 'resources/Retail_1 (3).jpeg',
+                    alt: 'Retail interior'
+                },
+                {
+                    src: 'resources/Retail_1 (4).jpeg',
+                    alt: 'Retail interior'
+                },
+                {
+                    src: 'resources/Retail_1 (5).jpeg',
                     alt: 'Retail interior'
                 }
             ]
@@ -234,7 +334,11 @@
         'office-gallery-1': 0,
         'office-gallery-2': 0,
         'office-gallery-3': 0,
-        'restaurant-gallery': 0,
+        'restaurant-gallery-1': 0,
+        'restaurant-gallery-2': 0,
+        'restaurant-gallery-3': 0,
+        'restaurant-gallery-4': 0,
+        'restaurant-gallery-5': 0,
         'retail-gallery-1': 0
     };
 
@@ -243,7 +347,11 @@
         'office-gallery-1': false,
         'office-gallery-2': false,
         'office-gallery-3': false,
-        'restaurant-gallery': false,
+        'restaurant-gallery-1': false,
+        'restaurant-gallery-2': false,
+        'restaurant-gallery-3': false,
+        'restaurant-gallery-4': false,
+        'restaurant-gallery-5': false,
         'retail-gallery-1': false
     };
 
