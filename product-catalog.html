@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
     <link rel="stylesheet" href="css/slider-block.css">
+    <link rel="stylesheet" href="css/custom-furniture-collage.css">
 </head>
 <body class="our-services-page">
 
@@ -670,6 +671,34 @@
                     </div>
                 </section>
 
+                <!-- Custom Furniture Section - Square Image + Collage Layout -->
+                <section id="custom-furniture" class="service-section product-collage-section">
+                    <div class="container">
+                        <div style="height: 2.4vh;"></div>
+
+                        <div class="product-collage-header">
+                            <h2>CUSTOM FURNITURE</h2>
+                        </div>
+
+                        <div class="product-collage-layout">
+                            <!-- Left: Square Main Image -->
+                            <div class="product-collage-main-image">
+                                <img src="resources/Office_1_1.Reception.jpeg" alt="Custom Furniture Showcase">
+                            </div>
+
+                            <!-- Right: Rectangular Collage (injected by JS) -->
+                            <div class="product-collage-container" data-collage-id="custom-furniture"></div>
+                        </div>
+
+                        <div class="product-collage-actions">
+                            <a href="#quote" class="action-btn secondary">
+                                <span>GET A QUOTE</span>
+                                <span class="btn-arrow">></span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
             </section>
 
 
@@ -679,6 +708,7 @@
 
 <script src="js/our-services.js" defer></script>
 <script src="js/product-catalog-sections.js" defer></script>
+<script src="js/custom-furniture-collage.js" defer></script>
 <!--<script src="js/slider-scripts.js" defer></script>-->
 
 </body>
