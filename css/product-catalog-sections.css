@@ -419,7 +419,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(16px, 3vw, 32px);
     margin: var(--space-3) 0;
-    padding: 0 clamp(20px, 4vw, 60px);
 }
 
 .vertical-product-item {
@@ -428,10 +427,6 @@
     align-items: center;
     gap: var(--space-2);
     transition: transform 300ms ease;
-}
-
-.vertical-product-item:hover {
-    transform: translateY(-8px);
 }
 
 .vertical-image-wrap {
@@ -533,4 +528,50 @@
         .vertical-product-label {
             font-size: 0.7rem;
         }
+}
+
+/*
+Css for two row 4 images per row.
+*/
+/* Custom Door Section - Height-based sizing */
+
+.vertical-product-item-custom-door {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    transition: transform 300ms ease;
+}
+
+.vertical-image-wrap-custom-door {
+   height: 31vh;
+    aspect-ratio: 3 / 4;
+    width: auto;
+    overflow: hidden;
+    background: #f4f4f4;
+    border: 1px solid #e0e0e0;
+}
+
+
+.vertical-image-wrap-custom-door img {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 420ms ease;
+}
+
+.vertical-product-item-custom-door:hover .vertical-image-wrap-custom-door img {
+    transform: scale(1.06);
+}
+
+/* Responsive adjustments for custom door wrap */
+@media (max-width: 1200px) {
+    .vertical-image-wrap-custom-door {
+        height: 25vh;
+    }
+}
+
+@media (max-width: 700px) {
+    .vertical-image-wrap-custom-door {
+        height: 22vh;
+    }
 }

@@ -199,7 +199,9 @@
            matchingSublink = document.querySelector('.sidebar-sublink[href*="tiles-block"]');
         } else if (currentHash === '#showerdoors-block') {
            matchingSublink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
-        }
+        }else if (currentHash === '#doors-block') {
+            matchingSublink = document.querySelector('.sidebar-sublink[href*="doors-block"]');
+         }
 
         if (matchingSublink) {
           // Highlight the specific sublink and its parent
@@ -265,7 +267,9 @@
         matchingSublink = document.querySelector('.sidebar-sublink[href*="tiles-block"]');
       } else if (newHash === '#showerdoors-block') {
         matchingSublink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
-      } else if (newHash === '#product-supply-overview') {
+      }else if (newHash === '#doors-block') {
+       matchingSublink = document.querySelector('.sidebar-sublink[href*="doors-block"]');
+     } else if (newHash === '#product-supply-overview') {
         // For overview, highlight the parent link
         const overviewLink = document.querySelector('[data-section="product-supply"]');
         if (overviewLink) {
@@ -368,7 +372,7 @@
   // Enhanced scroll spy for product catalog sections
   // --------------------------------------------
   if (currentPath.split('/').pop() === 'product-catalog.html') {
-    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #flooring-block, #tiles-block, #showerdoors-block');
+    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #flooring-block, #tiles-block, #showerdoors-block, #doors-block');
 
     if (sections.length > 0) {
       const sectionObserver = new IntersectionObserver(
@@ -391,7 +395,9 @@
                 targetLink = document.querySelector('.sidebar-sublink[href*="tiles-block"]');
               } else if (sectionId === 'showerdoors-block') {
                 targetLink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
-              }
+              }else if (sectionId === 'doors-block') {
+               targetLink = document.querySelector('.sidebar-sublink[href*="doors-block"]');
+             }
 
               if (targetLink && !window.location.hash) {
                 // Only update if there's no explicit hash in URL

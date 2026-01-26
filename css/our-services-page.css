@@ -618,7 +618,7 @@ nav a {
 #kitchen-cabinets-product,
 #counter-tops,
 #flooring-block,
-#tiles-block,
+#tiles-block, #doors-block,
 #showerdoors-block {
     scroll-margin-top: calc(var(--header-h-desktop) + 3vh);
 }
