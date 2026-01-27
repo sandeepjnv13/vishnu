@@ -201,7 +201,9 @@
            matchingSublink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
         }else if (currentHash === '#doors-block') {
             matchingSublink = document.querySelector('.sidebar-sublink[href*="doors-block"]');
-         }
+         }else if (currentHash === '#custom-furniture') {
+             matchingSublink = document.querySelector('.sidebar-sublink[href*="custom-furniture"]');
+          }
 
         if (matchingSublink) {
           // Highlight the specific sublink and its parent
@@ -269,6 +271,8 @@
         matchingSublink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
       }else if (newHash === '#doors-block') {
        matchingSublink = document.querySelector('.sidebar-sublink[href*="doors-block"]');
+     }else if (newHash === '#custom-furniture') {
+       matchingSublink = document.querySelector('.sidebar-sublink[href*="custom-furniture"]');
      } else if (newHash === '#product-supply-overview') {
         // For overview, highlight the parent link
         const overviewLink = document.querySelector('[data-section="product-supply"]');
@@ -372,7 +376,7 @@
   // Enhanced scroll spy for product catalog sections
   // --------------------------------------------
   if (currentPath.split('/').pop() === 'product-catalog.html') {
-    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #flooring-block, #tiles-block, #showerdoors-block, #doors-block');
+    const sections = document.querySelectorAll('#product-supply-overview, #kitchen-cabinets-product, #counter-tops, #flooring-block, #tiles-block, #showerdoors-block, #doors-block, #custom-furniture');
 
     if (sections.length > 0) {
       const sectionObserver = new IntersectionObserver(
@@ -397,7 +401,11 @@
                 targetLink = document.querySelector('.sidebar-sublink[href*="showerdoors-block"]');
               }else if (sectionId === 'doors-block') {
                targetLink = document.querySelector('.sidebar-sublink[href*="doors-block"]');
-             }
+              }else if (sectionId === 'custom-furniture') {
+                 targetLink = document.querySelector('.sidebar-sublink[href*="custom-furniture"]');
+               }
+
+
 
               if (targetLink && !window.location.hash) {
                 // Only update if there's no explicit hash in URL

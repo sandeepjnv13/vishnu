@@ -17,27 +17,27 @@
             {
                 height: 'medium',
                 images: [
-                    { src: 'resources/Office_1_2.Workspac.jpeg', alt: 'Modern Office Space', flex: 1 },
-                    { src: 'resources/Retail_2 (5).jpeg', alt: 'Salon Interior', flex: 1 },
-                    { src: 'resources/Restaurant_7 (3).jpeg', alt: 'Restaurant Design', flex: 1 }
+                    { src: 'resources/Hotel_Furniture (1).png', alt: 'Modern Office Space', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (2).png', alt: 'Salon Interior', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (3).png', alt: 'Restaurant Design', flex: 1 }
                 ]
             },
             // Row 2: 2 images
             {
                 height: 'tall',
                 images: [
-                    { src: 'resources/Office_2_wmremove-transformed (3).jpeg', alt: 'Industrial Office', flex: 1 },
-                    { src: 'resources/Restaurant_8 (2).jpeg', alt: 'Upscale Restaurant', flex: 1 }
+                    { src: 'resources/Hotel_Furniture (4).png', alt: 'Industrial Office', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (5).png', alt: 'Upscale Restaurant', flex: 1 }
                 ]
             },
             // Row 3: 4 images
             {
                 height: 'medium',
                 images: [
-                    { src: 'resources/Restaurant _1 (6).jpeg', alt: 'Restaurant Lounge', flex: 1 },
-                    { src: 'resources/Office_3_COLAB ROOM 03.jpg', alt: 'Conference Room', flex: 1 },
-                    { src: 'resources/Restaurant_3 (1).jpg', alt: 'Evening Cafe', flex: 1 },
-                    { src: 'resources/Restaurant_5 (2).jpg', alt: 'Bar Interior', flex: 1 }
+                    { src: 'resources/Hotel_Furniture (6).png', alt: 'Restaurant Lounge', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (7).png', alt: 'Conference Room', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (8).png', alt: 'Evening Cafe', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (9).png', alt: 'Bar Interior', flex: 1 }
                 ]
             }
         ]

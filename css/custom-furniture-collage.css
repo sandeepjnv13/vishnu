@@ -36,10 +36,11 @@
    ============================================ */
 .product-collage-layout {
     display: grid;
-    grid-template-columns: 1.3fr 1.5fr;
-    gap: clamp(10px, 1.2vw, 16px);
+    grid-template-columns: 1.8fr 1.5fr;
+    gap: clamp(20px, 1.8vw, 25px);
     align-items: stretch;
-    max-width: 100%;
+    max-width: 90%;
+    background-color: #f2f2f2;
 }
 
 /* ============================================
