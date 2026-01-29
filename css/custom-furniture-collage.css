@@ -35,12 +35,16 @@
    MAIN LAYOUT: Square Image + Collage Side by Side
    ============================================ */
 .product-collage-layout {
+    grid-auto-rows: 68vh;
     display: grid;
-    grid-template-columns: 1.8fr 1.5fr;
+    grid-template-columns: 1.3fr 1.65fr;
     gap: clamp(20px, 1.8vw, 25px);
     align-items: stretch;
-    max-width: 90%;
+    max-width: 100%;
     background-color: #f2f2f2;
+}
+.product-collage-layout > *:first-child {
+    aspect-ratio: 1 / 1;
 }
 
 /* ============================================
