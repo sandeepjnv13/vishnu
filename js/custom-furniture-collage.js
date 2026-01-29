@@ -34,10 +34,10 @@
             {
                 height: 'medium',
                 images: [
-                    { src: 'resources/Hotel_Furniture (6).png', alt: 'Restaurant Lounge', flex: 1 },
+                    { src: 'resources/Hotel_Furniture (6).png', alt: 'Restaurant Lounge', flex: 2 },
                     { src: 'resources/Hotel_Furniture (4).png', alt: 'Conference Room', flex: 1 },
-                    { src: 'resources/Hotel_Furniture (8).png', alt: 'Evening Cafe', flex: 1 },
-                    { src: 'resources/Hotel_Furniture (5).png', alt: 'Bar Interior', flex: 1 }
+                    { src: 'resources/Hotel_Furniture (8).png', alt: 'Evening Cafe', flex: 2 },
+                    { src: 'resources/Hotel_Furniture (5).png', alt: 'Bar Interior', flex: 1.5 }
                 ]
             }
         ]
