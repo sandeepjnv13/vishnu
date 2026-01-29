@@ -242,10 +242,9 @@ nav a:hover::after { width: 100%; }
 #about h2 { text-align: center; }
 
 #about .container > p {
-  max-width: 1000px;                                   /* your desired line measure */
-  margin-left: 6% !important;                       /* push block to the right */
+  max-width: 70%;                                   /* your desired line measure */
+  margin-left: 15% !important;                       /* push block to the right */
   margin-right: auto !important;
-  text-align: justify;                                /* keep justified text */
   line-height: 1.7;
   font-size: 1.05rem;
   padding-inline: 0.25rem;                            /* tiny breathing room */
