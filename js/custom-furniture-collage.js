@@ -17,27 +17,27 @@
             {
                 height: 'medium',
                 images: [
-                    { src: 'resources/Hotel_Furniture (1).png', alt: 'Modern Office Space', flex: 1 },
-                    { src: 'resources/Hotel_Furniture (2).png', alt: 'Salon Interior', flex: 1 },
-                    { src: 'resources/Hotel_Furniture (3).png', alt: 'Restaurant Design', flex: 1 }
+                    { src: 'resources/Hotel_Furniture_(1).webp', alt: 'Modern Office Space', flex: 1 },
+                    { src: 'resources/Hotel_Furniture_(2).webp', alt: 'Salon Interior', flex: 1 },
+                    { src: 'resources/Hotel_Furniture_(3).webp', alt: 'Restaurant Design', flex: 1 }
                 ]
             },
             // Row 2: 2 images
             {
                 height: 'tall',
                 images: [
-                    { src: 'resources/Hotel_Furniture (9).png', alt: 'Industrial Office', flex: 1 },
-                    { src: 'resources/Hotel_Furniture (7).png', alt: 'Upscale Restaurant', flex: 1 }
+                    { src: 'resources/Hotel_Furniture_(9).webp', alt: 'Industrial Office', flex: 1 },
+                    { src: 'resources/Hotel_Furniture_(7).webp', alt: 'Upscale Restaurant', flex: 1 }
                 ]
             },
             // Row 3: 4 images
             {
                 height: 'medium',
                 images: [
-                    { src: 'resources/Hotel_Furniture (6).png', alt: 'Restaurant Lounge', flex: 2 },
-                    { src: 'resources/Hotel_Furniture (4).png', alt: 'Conference Room', flex: 1 },
-                    { src: 'resources/Hotel_Furniture (8).png', alt: 'Evening Cafe', flex: 2 },
-                    { src: 'resources/Hotel_Furniture (5).png', alt: 'Bar Interior', flex: 1.5 }
+                    { src: 'resources/Hotel_Furniture_(6).webp', alt: 'Restaurant Lounge', flex: 2 },
+                    { src: 'resources/Hotel_Furniture_(4).webp', alt: 'Conference Room', flex: 1 },
+                    { src: 'resources/Hotel_Furniture_(8).webp', alt: 'Evening Cafe', flex: 2 },
+                    { src: 'resources/Hotel_Furniture_(5).webp', alt: 'Bar Interior', flex: 1.5 }
                 ]
             }
         ]
