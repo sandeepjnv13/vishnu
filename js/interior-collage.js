@@ -21,28 +21,28 @@
         {
             height: 'medium', // 'short', 'medium', 'tall'
             images: [
-                { src: 'resources/Office_1_2.Workspac.jpeg', alt: 'Modern Office Space', flex: 1 },
-                { src: 'resources/Retail_2 (5).jpeg', alt: 'Salon Interior', flex: 1 },
-                { src: 'resources/Restaurant_7 (3).jpeg', alt: 'Restaurant Design', flex: 1 },
-                { src: 'resources/Retail_1 (2).jpeg', alt: 'Retail Store', flex: 1 }
+                { src: 'resources/Office_1_2.Workspac.webp', alt: 'Modern Office Space', flex: 1 },
+                { src: 'resources/Retail_2_(5).webp', alt: 'Salon Interior', flex: 1 },
+                { src: 'resources/Restaurant_7_(3).webp', alt: 'Restaurant Design', flex: 1 },
+                { src: 'resources/Retail_1_(2).webp', alt: 'Retail Store', flex: 1 }
             ]
         },
         // Row 2: 2 larger images (industrial office, upscale restaurant)
         {
             height: 'tall',
             images: [
-                { src: 'resources/Office_2_wmremove-transformed (3).jpeg', alt: 'Industrial Office', flex: 1 },
-                { src: 'resources/Restaurant_8 (2).jpeg', alt: 'Upscale Restaurant', flex: 1 }
+                { src: 'resources/Office_2_wmremove-transformed_(3).webp', alt: 'Industrial Office', flex: 1 },
+                { src: 'resources/Restaurant_8_(2).webp', alt: 'Upscale Restaurant', flex: 1 }
             ]
         },
         // Row 3: 4 images (restaurant lounge, conference room, cafe, bar)
         {
             height: 'medium',
             images: [
-                { src: 'resources/Restaurant _1 (6).jpeg', alt: 'Restaurant Lounge', flex: 1 },
-                { src: 'resources/Office_3_COLAB ROOM 03.jpg', alt: 'Conference Room', flex: 1 },
-                { src: 'resources/Restaurant_3 (1).jpg', alt: 'Evening Cafe', flex: 1 },
-                { src: 'resources/Restaurant_5 (2).jpg', alt: 'Bar Interior', flex: 1 }
+                { src: 'resources/Restaurant__1_(6).webp', alt: 'Restaurant Lounge', flex: 1 },
+                { src: 'resources/Office_3_COLAB_ROOM_03.webp', alt: 'Conference Room', flex: 1 },
+                { src: 'resources/Restaurant_3_(1).webp', alt: 'Evening Cafe', flex: 1 },
+                { src: 'resources/Restaurant_5_(2).webp', alt: 'Bar Interior', flex: 1 }
             ]
         }
     ];

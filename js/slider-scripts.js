@@ -29,17 +29,17 @@ const GALLERY_CONFIG = {
     title: "Cabinet Laminates",
     perView: 3,
     images: [
-      { src: "resources/Image1.jpg", alt: "Laminate 1", label: "Lam 1" },
-      { src: "resources/Image2.jpg", alt: "Laminate 2", label: "Lam 2" },
-      { src: "resources/Image3.jpg", alt: "Laminate 3", label: "Lam 3" }
+      { src: "resources/Image1.webp", alt: "Laminate 1", label: "Lam 1" },
+      { src: "resources/Image2.webp", alt: "Laminate 2", label: "Lam 2" },
+      { src: "resources/Image3.webp", alt: "Laminate 3", label: "Lam 3" }
     ]
   },
   "kitchen-cabinets-product::melamine": {
     title: "Cabinet Melamine",
     perView: 3,
     images: [
-      { src: "resources/Image1.jpg", alt: "Melamine 1", label: "Mel 1" },
-      { src: "resources/Image2.jpg", alt: "Melamine 2", label: "Mel 2" }
+      { src: "resources/Image1.webp", alt: "Melamine 1", label: "Mel 1" },
+      { src: "resources/Image2.webp", alt: "Melamine 2", label: "Mel 2" }
     ]
   }
   // Add more entries as needed...
