@@ -56,6 +56,20 @@
   position: relative;
 }
 
+/* The element right after <header> inherits the homepage-hero rule
+   `header + * { background:#000 }`. On service pages that element is
+   .services-layout, so the black shows as a thin strip on the right wherever
+   the 18vw + 82vw column math spills a scrollbar-width past the (scrollbar-
+   excluded) viewport. Neutralise the colour and clip that sub-pixel overflow.
+   The sidebar keeps its own black background and is position:fixed, so it is
+   unaffected. */
+.our-services-page .services-layout {
+  background-color: #f8f8f8;
+  /* clip (not hidden) so the other axis isn't forced to `auto`, which would
+     create a stray scroll container */
+  overflow-x: clip;
+}
+
 /* Left Sidebar */
 .services-sidebar {
   position: fixed;
@@ -83,6 +97,12 @@
 
 .sidebar-nav {
   flex: 1;
+}
+
+/* Main-site nav lives in the drawer on mobile only (see 992px block below).
+   Hidden on desktop, where the top nav handles these links. */
+.sidebar-mainnav {
+  display: none;
 }
 
 /* Main Content Area */
@@ -372,28 +392,30 @@
   }
 }
 
-/* Sidebar Toggle Button (for mobile) */
+/* Header hamburger (mobile/tablet). Lives in the fixed header at top-right — the
+   conventional spot — and opens the off-canvas drawer that holds the full nav.
+   Hidden on desktop, where the top nav + left rail handle navigation. */
 .sidebar-toggle {
   display: none;
   position: fixed;
-  left: 20px;
-  top: 80px;
-  z-index: 101;
-  background: #000;
-  color: #fff;
+  top: 0;
+  right: 14px;
+  height: var(--header-h-mobile);
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  background: transparent;
+  color: #111;
   border: none;
-  padding: 10px 15px;
+  font-size: 1.7rem;
+  line-height: 1;
+  padding: 0 6px;
   cursor: pointer;
-  border-radius: 4px;
 }
 
 @media (max-width: 992px) {
   .sidebar-toggle {
-    display: block;
-  }
-
-  .our-services-page #site-header {
-    padding-left: 70px;
+    display: flex;
   }
 }
 
@@ -587,7 +609,7 @@ nav a {
     }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
     .services-overview-grid {
         grid-template-columns: 1fr;
     }
@@ -757,130 +779,73 @@ a.product-supply-card {
     display: block;
 }
 
-/* Mobile-only styles (below 700px) */
-@media (max-width: 700px) {
-  /* Force sidebar to always be visible and extend to top */
+/* Mobile / tablet: the sidebar becomes an off-canvas drawer opened by the ☰
+   toggle (created in our-services.js). The old permanent 90px rail is gone, so
+   content spans the full width. The sidebar is already pushed off-canvas by the
+   992px block above; here we just size it to be readable and reclaim the width. */
+@media (max-width: 992px) {
   .services-sidebar {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: translateX(0) !important;
-    width: 90px !important;
-    height: 100vh !important;
-    height: 100dvh !important; /* Use dynamic viewport height */
-    padding: 15px 10px !important;
-    z-index: 150 !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+    width: min(80vw, 300px);
+    height: 100dvh;
+    padding: 28px 22px;
+    z-index: 150;
   }
-
-  /* Keep sidebar always visible on mobile */
   .services-sidebar.active {
-    transform: translateX(0) !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
   }
 
-  .services-layout {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  /* Adjust content to account for visible sidebar */
-  .services-page-wrapper {
-    margin-left: 90px !important;
-    width: calc(100vw - 90px) !important;
-  }
-
+  /* Content reclaims the full width (base rules cap it for the desktop rail) */
+  .services-page-wrapper { margin-left: 0; }
   .services-content {
-    margin-left: 0 !important;
-    padding-top: 70px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: auto !important;
-  }
-
-  /* Sidebar logo - compact for mobile */
-  .services-sidebar .sidebar-logo {
-    margin-top: 15px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
-  .sidebar-logo img {
-    height: 30px !important;
-    width: auto !important;
-    max-width: 70px !important;
-  }
-
-  /* Compact sidebar navigation for mobile */
-  .sidebar-title {
-    font-size: 0.7rem !important;
-    text-align: center;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-
-  .sidebar-menu {
-    padding: 0;
-  }
-
-  .sidebar-menu li {
-    margin-bottom: 15px;
-  }
-
-  .sidebar-link {
-    font-size: 0.65rem !important;
-    text-align: center;
-    flex-direction: column;
-    gap: 5px;
-    padding: 8px 5px;
-    line-height: 1.2;
-  }
-
-  /* Hide dropdown arrow on mobile */
-  .dropdown-arrow {
-    display: none;
-  }
-
-  /* Compact submenu */
-  .sidebar-submenu {
     margin-left: 0;
-    padding-left: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
-  .sidebar-sublink {
-    font-size: 0.6rem !important;
-    padding: 6px 4px;
-    text-align: center;
-    line-height: 1.1;
+  /* Header no longer needs to clear a rail */
+  .our-services-page #site-header { padding-left: 0; }
+
+  /* Main-site nav, surfaced inside the drawer so the hamburger holds the full
+     navigation on mobile. Injected by our-services.js; hidden on desktop. */
+  .sidebar-mainnav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  /* Hide sidebar toggle button on mobile since sidebar is always visible */
-  .sidebar-toggle {
-    display: none !important;
+  .sidebar-mainnav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 8px 0;
+    transition: color 250ms ease;
   }
 
-  /* Adjust header for mobile */
-  .our-services-page #site-header {
-    padding-left: 90px !important;
-    width: 100vw !important;
-    left: 0 !important;
+  .sidebar-mainnav a:hover {
+    color: var(--brand-accent, #58c4c0);
   }
+}
 
-  /* Product grid adjustments */
+/* Phone content tweaks (standard --bp-mobile: 768px) */
+@media (max-width: 768px) {
   .product-supply-grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .product-supply-card h3 {
-    font-size: 0.85rem !important;
+    font-size: 0.85rem;
   }
 
-  /* Services overview adjustments */
   .services-overview-section .container {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

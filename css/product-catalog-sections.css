@@ -476,8 +476,8 @@
 }
 
 
-/* Mobile fixes for product variations - below 700px */
-@media (max-width: 700px) {
+/* Mobile fixes for product variations (standard --bp-mobile: 768px) */
+@media (max-width: 768px) {
     /* Keep 3-column grid on mobile */
     .product-variations {
         grid-template-columns: repeat(3, 1fr);
@@ -570,7 +570,7 @@ Css for two row 4 images per row.
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     .vertical-image-wrap-custom-door {
         height: 22vh;
     }

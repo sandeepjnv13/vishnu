@@ -299,8 +299,36 @@
   // --------------------------------------------
   let sidebarToggle = null;
 
+  // Surface the main-site nav inside the drawer, so the mobile hamburger holds
+  // the FULL navigation (main links + services sub-nav). CSS-hidden on desktop.
+  const injectMobileMainNav = () => {
+    if (!sidebar || sidebar.querySelector('.sidebar-mainnav')) return;
+    const nav = document.createElement('nav');
+    nav.className = 'sidebar-mainnav';
+    nav.setAttribute('aria-label', 'Main');
+    nav.innerHTML =
+      '<a href="index.html#about">ABOUT US</a>' +
+      '<a href="our-services.html">OUR SERVICES</a>' +
+      '<a href="interior-design.html#our-work-section">OUR WORK</a>' +
+      '<a href="contact.html">CONTACT</a>';
+    const logo = sidebar.querySelector('.sidebar-logo');
+    if (logo && logo.nextSibling) sidebar.insertBefore(nav, logo.nextSibling);
+    else sidebar.insertBefore(nav, sidebar.firstChild);
+  };
+
+  const closeSidebar = () => {
+    sidebar.classList.remove('active');
+    if (sidebarToggle) sidebarToggle.textContent = '☰';
+  };
+
+  // Tapping any link in the drawer closes it (standard mobile-nav behavior).
+  sidebar.addEventListener('click', (e) => {
+    if (window.innerWidth > 992 || !sidebarToggle) return;
+    if (e.target.closest('a')) closeSidebar();
+  });
+
   const ensureSidebarToggle = () => {
-    const shouldShow = window.innerWidth <= 700;
+    const shouldShow = window.innerWidth <= 992;
     if (shouldShow && !sidebarToggle) {
       sidebarToggle = document.createElement('button');
       sidebarToggle.className = 'sidebar-toggle';
@@ -327,7 +355,7 @@
 
   // Close sidebar when clicking outside on mobile
   document.addEventListener('click', (e) => {
-    if (window.innerWidth > 700 || !sidebarToggle) return;
+    if (window.innerWidth > 992 || !sidebarToggle) return;
     if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
       sidebar.classList.remove('active');
       sidebarToggle.textContent = '☰';
@@ -428,6 +456,7 @@
   // Init on load
   // --------------------------------------------
   applyInitialHighlight();
+  injectMobileMainNav();
   ensureSidebarToggle();
   updateHeader();
 })();

@@ -326,8 +326,8 @@
     }
 }
 
-/* Mobile-specific adjustments (below 700px) */
-@media (max-width: 700px) {
+/* Mobile-specific adjustments (standard --bp-mobile: 768px) */
+@media (max-width: 768px) {
     .projects-section {
         padding: 20px 0;
     }

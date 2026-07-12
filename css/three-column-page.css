@@ -134,7 +134,8 @@
       "text"
       "icons"
       "stack";
-    gap: 24px;
+    gap: 28px;
+    justify-items: center;
   }
 }
 
@@ -368,6 +369,89 @@
   .service-section .container {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+/* ==========================================================================
+   Mobile redesign for the stacked (single-column) layout.
+   Placed at the end so these rules win the source-order tie against the base
+   `.service-icons-vertical .icon-item { flex-direction: row !important }`.
+   Second column (icons) becomes a centered 3-up strip; third column (the
+   photo stack) is centered and contained instead of drifting left.
+   ========================================================================== */
+@media (max-width: 820px) {
+  .service-text {
+    max-width: 60ch;
+    text-align: center;
+  }
+
+  .service-main-image {
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 16/10;
+  }
+
+  /* Icons: centered 3-up feature strip (circle on top, label centered below) */
+  .service-icons-vertical {
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 4vw, 32px);
+    width: 100%;
+    max-width: 460px;
+    justify-items: center;
+  }
+
+  .service-icons-vertical .icon-item {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    gap: 1vh;
+    width: 100%;
+  }
+
+  .service-icons-vertical .icon-circle {
+    flex: 0 0 auto;
+    width: clamp(64px, 18vw, 92px);
+    height: clamp(64px, 18vw, 92px);
+  }
+
+  .service-icons-vertical .icon-item > span {
+    text-align: center;
+    white-space: normal;
+    font-size: clamp(0.72rem, 3vw, 0.85rem);
+    line-height: 1.25;
+  }
+
+  /* Photo stack: centered and contained, caption re-centred */
+  .service-content-section {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-self: center;
+  }
+
+  .work-stack {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    /* offset images peek up-and-left, so pad top-left and nudge the cluster
+       right so it reads centred */
+    padding: 14px 0 8px 16px;
+  }
+
+  .work-caption {
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .service-icons-vertical {
+    gap: 8px;
+  }
+
+  .service-icons-vertical .icon-item > span {
+    font-size: 0.68rem;
   }
 }
 

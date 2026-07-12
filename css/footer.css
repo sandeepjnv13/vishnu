@@ -67,16 +67,16 @@
   text-decoration: underline;
 }
 
-/* responsive layout */
-@media (max-width: 900px) {
+/* responsive layout — tablet (standard --bp-tablet: 1024px) */
+@media (max-width: 1024px) {
   .footer-content {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
 }
 
-/* Mobile-only styles (below 700px) */
-@media (max-width: 700px) {
+/* Mobile-only styles (standard --bp-mobile: 768px) */
+@media (max-width: 768px) {
   .site-footer {
     padding: 0;
   }

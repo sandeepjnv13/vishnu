@@ -239,12 +239,14 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     gap: 4vh;
+    justify-items: center;
   }
 
   /* Reset grid positions for mobile stacking */
   .left-column {
     grid-column: 1;
     grid-row: 1;
+    width: 100%;
   }
 
   .right-column {
@@ -269,25 +271,46 @@
     height: 100%;
   }
 
+  /* Icons become a centered 3-up feature strip (circle on top, label below) */
   .right-column {
-    padding-left: 0;
-    gap: 3vh;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: flex-start;
+    gap: clamp(12px, 3vw, 28px);
+    width: 100%;
+    max-width: 520px;
+    padding: 0;
+  }
+
+  .vertical-icon-item {
+    flex: 1 1 0;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2vh;
   }
 
   .vertical-icon-circle {
-    width: 14.4vw;
-    height: 14.4vw;
-    min-width: 14.4vw;
+    width: clamp(64px, 18vw, 96px);
+    height: clamp(64px, 18vw, 96px);
+    min-width: clamp(64px, 18vw, 96px);
   }
 
   .vertical-icon-item > span {
-    font-size: 1.02rem;
+    text-align: center;
+    white-space: normal;
+    font-size: clamp(0.78rem, 3vw, 0.95rem);
+    line-height: 1.25;
+  }
+
+  .interior-text {
+    text-align: center;
   }
 }
 
-/* Mobile-only styles (below 700px) */
-@media (max-width: 700px) {
+/* Mobile-only styles (standard --bp-mobile: 768px) */
+@media (max-width: 768px) {
   .two-column-section .container {
     padding-left: 3vw;
     padding-right: 3vw;
@@ -308,7 +331,7 @@
   .horizontal-main-image {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 4/2.8;
+    aspect-ratio: 4/3;
     margin: 0;
   }
 
@@ -316,21 +339,18 @@
     height: 100%;
   }
 
-  .right-column {
-    gap: 2.5vh;
+  .image-text-block {
+    gap: 0;
   }
+}
 
-  .vertical-icon-circle {
-    width: 17.3vw;
-    height: 17.3vw;
-    min-width: 17.3vw;
+/* Very small phones — keep the 3-up strip from crowding */
+@media (max-width: 400px) {
+  .right-column {
+    gap: 8px;
   }
 
   .vertical-icon-item > span {
-    font-size: 0.9rem;
-  }
-
-  .image-text-block {
-    gap: 0;
+    font-size: 0.7rem;
   }
 }

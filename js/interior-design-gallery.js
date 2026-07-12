@@ -5,9 +5,13 @@
 (function() {
     'use strict';
 
-    // Check if we're on the interior design page
+    // Check if we're on a page that hosts the gallery blocks. Originally this
+    // lived inside interior-design.html (#interior-design); it now also powers
+    // the standalone our-work-gallery.html, which has no #interior-design section
+    // but does have the .gallery-blocks-container.
     if (!document.body.classList.contains('our-services-page')) return;
-    if (!document.getElementById('interior-design')) return;
+    if (!document.getElementById('interior-design') &&
+        !document.querySelector('.gallery-blocks-container')) return;
 
     // Gallery data structure with fixed captions per block
     const galleryData = {
