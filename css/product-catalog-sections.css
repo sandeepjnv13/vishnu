@@ -343,8 +343,18 @@
         top: auto;
     }
 
+    /* Once the layout is stacked, drop the locked heights the two-column desktop
+       relied on — otherwise the panels reserve 500px and the options grid crushes
+       its rows into a fixed 2:1 box. Let both grow with their content. */
+    .product-images-container,
+    .product-options-panel {
+        min-height: 0;
+    }
+
     .options-grid {
         grid-template-columns: repeat(2, 1fr);
+        aspect-ratio: auto;
+        height: auto;
     }
 }
 
@@ -359,7 +369,7 @@
 
 @media (max-width: 768px) {
     .product-section-header h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .product-variations {
@@ -367,13 +377,47 @@
         gap: var(--space-1);
     }
 
+    /* Three finishes per row on phones (kitchen cabinets, countertops, flooring,
+       tiles). minmax(0,1fr) keeps the tracks from growing to the images'
+       intrinsic width. Tighter gap so three columns fit comfortably. */
     .options-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-1);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        row-gap: 14px;
     }
 
+    /* Full-bleed panel on phones — the section .container already supplies the
+       side gutter, so the extra panel padding just wasted width. */
     .product-options-panel {
-        padding: var(--space-3);
+        padding: 0;
+    }
+
+    /* Tiles fill their grid cell instead of sitting at 90% with stray gaps.
+       Drop the fixed 4/5 box (and its clipping) so the square image + label
+       below can size to content in the narrower 3-column track. */
+    .option-item {
+        width: 100%;
+        aspect-ratio: auto;
+        overflow: visible;
+        justify-content: flex-start;
+    }
+
+    /* Smaller image + label so three finishes read cleanly in a narrow column. */
+    .option-item img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    .option-label {
+        font-size: 0.55rem;
+        padding: 2px 2px 0;
+        line-height: 1.15;
+    }
+
+    .product-actions {
+        margin-top: var(--space-3);
     }
 
     .action-btn {
@@ -571,7 +615,15 @@ Css for two row 4 images per row.
 }
 
 @media (max-width: 768px) {
+    /* Fill the 2-column cell (like the shower-door tiles) instead of a small
+       viewport-height box that leaves the door floating in the middle. */
     .vertical-image-wrap-custom-door {
-        height: 22vh;
+        height: auto;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+    }
+
+    .vertical-image-wrap-custom-door img {
+        height: 100%;
     }
 }

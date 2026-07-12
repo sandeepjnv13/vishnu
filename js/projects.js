@@ -7,6 +7,13 @@
     // Only run on projects page
     if (!document.body.classList.contains('projects-page')) return;
 
+    // Read the gallery track's actual CSS gap so transform math stays in sync
+    // across breakpoints (desktop 15px, phone 10px).
+    function readTrackGap(track) {
+        const g = parseFloat(getComputedStyle(track).columnGap);
+        return Number.isFinite(g) ? g : 15;
+    }
+
     // ============================================
     // CATEGORY FILTERING
     // ============================================
@@ -80,8 +87,10 @@
         const updateVisibleCount = () => {
             const galleryWidth = gallery.offsetWidth;
             const imageWidth = images[0].offsetWidth;
-            const gap = 15; // Must match CSS gap
-            return Math.floor(galleryWidth / (imageWidth + gap));
+            const gap = readTrackGap(track);
+            // At least 1 — on phones a single full-width image would otherwise
+            // floor to 0 and let the carousel scroll into an empty frame.
+            return Math.max(1, Math.floor(galleryWidth / (imageWidth + gap)));
         };
 
         track.dataset.visibleCount = updateVisibleCount().toString();
@@ -136,7 +145,7 @@
 
         // Calculate transform
         const imageWidth = images[0].offsetWidth;
-        const gap = 15; // Must match CSS gap
+        const gap = readTrackGap(track); // Read the real CSS gap (varies by breakpoint)
         const moveDistance = (imageWidth + gap) * currentIndex;
 
         track.style.transform = `translateX(-${moveDistance}px)`;

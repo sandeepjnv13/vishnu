@@ -795,7 +795,15 @@ a.product-supply-card {
   }
 
   /* Content reclaims the full width (base rules cap it for the desktop rail) */
-  .services-page-wrapper { margin-left: 0; }
+  .services-page-wrapper {
+    margin-left: 0;
+    /* The wrapper is the sole in-flow flex child of .services-layout. Without
+       min-width:0 its flex min-size stays `auto`, so it refuses to shrink below
+       the intrinsic width of the largest image inside (~765px) and blows past
+       the viewport — the .services-layout `overflow:clip` then hides the right
+       half (the "half cut" product sections on phones). Let it shrink to fit. */
+    min-width: 0;
+  }
   .services-content {
     margin-left: 0;
     width: 100%;
@@ -833,15 +841,25 @@ a.product-supply-card {
 
 /* Phone content tweaks (standard --bp-mobile: 768px) */
 @media (max-width: 768px) {
+  /* Two tiles per row (industry-standard category grid) instead of one
+     full-width image that renders enormous on a phone. */
   .product-supply-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 12px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .product-supply-card h3 {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
+  }
+
+  /* The base .container caps width at 80%; on phones that squeezes the tile
+     grid into the middle 80%. Reclaim the full width and let the section pad. */
+  .product-supply-overview-section .container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .services-overview-section .container {
