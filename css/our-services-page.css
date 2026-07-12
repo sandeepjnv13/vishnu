@@ -833,15 +833,25 @@ a.product-supply-card {
 
 /* Phone content tweaks (standard --bp-mobile: 768px) */
 @media (max-width: 768px) {
+  /* Two tiles per row (industry-standard category grid) instead of one
+     full-width image that renders enormous on a phone. */
   .product-supply-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 12px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .product-supply-card h3 {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
+  }
+
+  /* The base .container caps width at 80%; on phones that squeezes the tile
+     grid into the middle 80%. Reclaim the full width and let the section pad. */
+  .product-supply-overview-section .container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .services-overview-section .container {
