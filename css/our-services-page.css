@@ -795,7 +795,15 @@ a.product-supply-card {
   }
 
   /* Content reclaims the full width (base rules cap it for the desktop rail) */
-  .services-page-wrapper { margin-left: 0; }
+  .services-page-wrapper {
+    margin-left: 0;
+    /* The wrapper is the sole in-flow flex child of .services-layout. Without
+       min-width:0 its flex min-size stays `auto`, so it refuses to shrink below
+       the intrinsic width of the largest image inside (~765px) and blows past
+       the viewport — the .services-layout `overflow:clip` then hides the right
+       half (the "half cut" product sections on phones). Let it shrink to fit. */
+    min-width: 0;
+  }
   .services-content {
     margin-left: 0;
     width: 100%;

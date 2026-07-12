@@ -377,10 +377,13 @@
         gap: var(--space-1);
     }
 
+    /* Three finishes per row on phones (kitchen cabinets, countertops, flooring,
+       tiles). minmax(0,1fr) keeps the tracks from growing to the images'
+       intrinsic width. Tighter gap so three columns fit comfortably. */
     .options-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        row-gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        row-gap: 14px;
     }
 
     /* Full-bleed panel on phones — the section .container already supplies the
@@ -389,9 +392,28 @@
         padding: 0;
     }
 
-    /* Tiles fill their grid cell instead of sitting at 90% with stray gaps. */
+    /* Tiles fill their grid cell instead of sitting at 90% with stray gaps.
+       Drop the fixed 4/5 box (and its clipping) so the square image + label
+       below can size to content in the narrower 3-column track. */
     .option-item {
         width: 100%;
+        aspect-ratio: auto;
+        overflow: visible;
+        justify-content: flex-start;
+    }
+
+    /* Smaller image + label so three finishes read cleanly in a narrow column. */
+    .option-item img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    .option-label {
+        font-size: 0.55rem;
+        padding: 2px 2px 0;
+        line-height: 1.15;
     }
 
     .product-actions {
