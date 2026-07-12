@@ -159,11 +159,26 @@
 @media (max-width: 768px) {
     .interior-collage {
         gap: 2px;
-        aspect-ratio: 4/3;
+        /* Let the collage height come from its content instead of a fixed
+           aspect-ratio. With a fixed height + flex rows + object-fit:cover
+           images, the last row painted as a clipped sliver even though its
+           layout box "fit" — the bottom row of the collage looked cut in half.
+           Auto height + an intrinsic aspect-ratio on each item (below) makes
+           every row size to its content, so no row is ever clipped. */
+        aspect-ratio: auto;
+        height: auto;
     }
 
     .collage-row {
         gap: 2px;
+        /* Keep each row on one line; the images already shrink to fit (min-width:0). */
+        flex-wrap: nowrap;
+    }
+
+    /* Gives each thumbnail a real height so the auto-height container can size
+       to fit all rows (rows no longer rely on distributing a fixed height). */
+    .collage-item {
+        aspect-ratio: 4 / 3;
     }
 
     /* On mobile, show color by default for better visibility */
@@ -173,17 +188,6 @@
 
     .collage-item:hover img {
         filter: grayscale(0%);
-    }
-}
-
-@media (max-width: 480px) {
-    .interior-collage {
-        aspect-ratio: 1/1;
-    }
-
-    /* Simplify collage on very small screens */
-    .collage-row {
-        flex-wrap: wrap;
     }
 }
 
