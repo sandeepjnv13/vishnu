@@ -20,8 +20,8 @@
     --space-5: clamp(32px, 4vw, 48px);    /* x-large: section outer padding */
 
   /* explicit header heights so we can size the hero via calc() */
-  --header-h-desktop: 60px; /* Header width */
-  --header-h-mobile: 64px;
+  --header-h-desktop: 60px; /* Header height (desktop) */
+  --header-h-mobile: 56px;  /* Header height (mobile) — matches the phone header */
 }
 
 header + * {
@@ -397,8 +397,16 @@ footer {
 
 /* =======================
    Responsive
+
+   Standard breakpoint set (widely-used convention) — use these values only:
+     --bp-mobile : 768px   phone / small-tablet — layout goes single-column here
+     --bp-tablet : 1024px  tablet
+     --bp-wide   : 1280px  large desktop
+     (480px reserved for small-phone-only tweaks)
+   Note: CSS media queries can't read custom properties, so the numbers are
+   written literally below — keep them on the standard set above.
    ======================= */
-@media (max-width: 920px) {
+@media (max-width: 768px) {
   .container { padding: 42px 20px; }
   nav { display: none; }
   .menu-toggle { display: inline-flex; }
@@ -500,7 +508,7 @@ footer {
 }
 
 /* mobile: dropdown hidden (we already have a mobile menu) */
-@media (max-width: 920px) {
+@media (max-width: 768px) {
   .nav-item.has-dropdown .dropdown { display: none !important; }
 }
 
@@ -541,13 +549,12 @@ header.menu-hidden #desktopNav {
 #desktopNav .nav-item { display: inline-block; }
 
 
-/* Mobile-only styles (below 700px) */
-/*TODO [15 Dec 2025] Currently considering max width of 700px to be for mobile screens. Landscape view of mobile is not currently considered */
-@media (max-width: 700px) {
-  /* Header adjustments */
+/* Mobile-only styles (standard phone boundary: 768px) */
+@media (max-width: 768px) {
+  /* Header adjustments — keep in sync with --header-h-mobile */
   header {
-    height: 56px;
-    padding: 0 16px !important;
+    height: var(--header-h-mobile);
+    padding: 0 16px;
     justify-content: space-between;
     display: flex;
     align-items: center;

@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Unified mobile navigation drawer
+   --------------------------------------------------------------------------
+   One consistent mobile menu for EVERY page (landing, our services, our work,
+   product catalog, etc.). Everything here is scoped to <=768px, and the drawer
+   pieces are display:none above that width, so the DESKTOP VIEW IS UNTOUCHED.
+   Markup is created by js/mobile-nav.js.
+   ========================================================================== */
+
+/* Hidden by default (desktop): only revealed inside the mobile media query. */
+.mnav-toggle,
+.mnav-drawer,
+.mnav-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Retire the older per-page mobile menus so the drawer is the single system. */
+  #menuToggle,
+  #mobileNav,
+  .sidebar-toggle,
+  .services-sidebar {
+    display: none !important;
+  }
+
+  /* --- Hamburger button (lives in the header, right-aligned) --------------- */
+  .mnav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;            /* default: dark header (landing, contact) */
+    cursor: pointer;
+    position: relative;
+    z-index: 60;
+  }
+
+  /* Service pages have a light header, so the icon must be dark. */
+  .our-services-page .mnav-toggle {
+    color: #111;
+  }
+
+  /* three bars built from one <span> + its pseudo-elements, using currentColor */
+  .mnav-toggle span {
+    display: block;
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+  .mnav-toggle span::before,
+  .mnav-toggle span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.25s ease;
+  }
+  .mnav-toggle span::before { top: -7px; }
+  .mnav-toggle span::after  { top: 7px; }
+
+  /* --- Overlay behind the drawer ------------------------------------------ */
+  .mnav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1400;
+  }
+  .mnav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* --- The drawer --------------------------------------------------------- */
+  .mnav-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(82vw, 320px);
+    height: 100dvh;
+    background: #000;
+    color: #fff;
+    padding: 12px 22px 28px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1500;
+  }
+  .mnav-drawer.open {
+    transform: translateX(0);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .mnav-head {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .mnav-close {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0 4px;
+    cursor: pointer;
+  }
+
+  /* --- Section 1: main site nav ------------------------------------------- */
+  .mnav-main {
+    display: flex;
+    flex-direction: column;
+  }
+  .mnav-main a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* --- Section 2: services detail ----------------------------------------- */
+  .mnav-title {
+    color: #888;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 22px 0 4px;
+  }
+
+  .mnav-services {
+    display: flex;
+    flex-direction: column;
+  }
+  .mnav-services > a,
+  .mnav-group-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #ddd;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+    padding: 12px 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .mnav-chevron {
+    color: var(--brand-accent, #58c4c0);
+    font-size: 0.8rem;
+    transition: transform 0.25s ease;
+  }
+  .mnav-group.open .mnav-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* collapsible product-supply sub-list */
+  .mnav-sub {
+    max-height: 0;
+    overflow: hidden;
+    padding-left: 14px;
+    transition: max-height 0.3s ease;
+  }
+  .mnav-group.open .mnav-sub {
+    max-height: 600px;
+  }
+  .mnav-sub a {
+    display: block;
+    color: #9a9a9a;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.3px;
+    padding: 9px 0;
+  }
+  .mnav-sub a:active {
+    color: var(--brand-accent, #58c4c0);
+  }
+
+  /* lock background scroll while the drawer is open */
+  body.mnav-open {
+    overflow: hidden;
+  }
+
+  /* hamburger morphs to an X when the drawer is open */
+  .mnav-toggle[aria-expanded="true"] span {
+    background: transparent;
+  }
+  .mnav-toggle[aria-expanded="true"] span::before {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .mnav-toggle[aria-expanded="true"] span::after {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
